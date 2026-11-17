@@ -4,7 +4,7 @@
 # when that pin moves, compare this file with Quartz's quartz.config.default.yaml.
 configuration:
   pageTitle: AI Engineering Brain
-  pageTitleSuffix: ""
+  pageTitleSuffix: " · AI Engineering Brain"
   enableSPA: true
   enablePopovers: true
   analytics: null

@@ -51,3 +51,10 @@ Procedures live in `.agents/skills/` (linked from `.claude/skills/`) and load wh
 - `brain-ingest`: add a source and fold it into the wiki.
 - `brain-lint`: health check, mechanical and by judgement.
 - `brain-refresh`: look for new material from the watchlist.
+
+## Website
+
+Every push to `main` publishes the wiki at https://mishaevoma.github.io/aie-brain/ (`.github/workflows/pages.yml`). Settings and build scripts are in `site/`.
+
+- Every `.md` file becomes a public page unless `site/quartz.config.yaml` lists it under `ignorePatterns`. Add any new file or folder that is not a wiki page to that list.
+- An agent that cannot clone reads `llms.txt` on the site, and any page as raw markdown at its address plus `.md`.

@@ -32,6 +32,7 @@ log.md         what was ingested and changed, and when
 watchlist.md   where new material comes from
 tools/lint.py  mechanical health checks
 .agents/skills procedures: consult, ingest, lint, refresh
+site/          website build: Quartz settings and two scripts
 ```
 
 This is the LLM wiki pattern: raw sources, a wiki the agent owns, and a schema file that tells it how to maintain the wiki. See [concepts/llm-wiki.md](concepts/llm-wiki.md).
@@ -64,7 +65,9 @@ Nothing has to be installed. An agent that is only given this repository's addre
 
 **Keep it fresh.** Ask "what's new?" and the agent checks the watchlist and proposes what to ingest (`brain-refresh`). Ask it to lint and it looks for broken links, stale pages and contradictions (`brain-lint`).
 
-**Read it yourself.** On GitHub, or open the folder as an Obsidian vault.
+**Read it yourself.** On the website, https://mishaevoma.github.io/aie-brain/, which has search, backlinks and previews of cited sources. Or on GitHub, or by opening the folder as an Obsidian vault.
+
+**Read it without cloning.** An agent that can only fetch web pages starts at https://mishaevoma.github.io/aie-brain/llms.txt. Every page is also served as raw markdown at its address plus `.md`.
 
 ## What is in it
 

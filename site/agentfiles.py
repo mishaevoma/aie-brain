@@ -67,7 +67,8 @@ def main() -> int:
         return LINK.sub(swap, text)
 
     index = (wiki / "index.md").read_text(encoding="utf-8")
-    body = re.sub(r"\A# .*\n", "", FRONTMATTER.sub("", index, count=1), count=1).lstrip("\n")
+    body = FRONTMATTER.sub("", index, count=1).lstrip("\n")
+    body = re.sub(r"\A# .*\n", "", body, count=1).lstrip("\n")  # the page's own heading; llms.txt has its own
     llms = f"# AI Engineering Brain\n\n> {SUMMARY}\n\n{absolute(body, '.')}"
     (public / "llms.txt").write_text(llms, encoding="utf-8")
 
