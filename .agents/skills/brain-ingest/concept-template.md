@@ -2,13 +2,16 @@
 type: concept
 title: "Name of the idea"
 updated: YYYY-MM-DD
+reviewed: YYYY-MM-DD
 status: evolving
 ---
 
 <!--
+updated: the date of the last edit of any kind.
+reviewed: the date the whole page was last re-read against the newest sources on its topic.
 status: settled (sources agree and it has held) | evolving (practice is moving) | contested (sources disagree)
 Every bullet under "What to do" ends with a link to the source note that supports it,
-written as [Short title, Mon YYYY](../sources/file.md) so the date is visible.
+written as [Short title, Mon YYYY](../sources/file.md). The lint checks the link and the date.
 Delete this comment in the real page.
 -->
 

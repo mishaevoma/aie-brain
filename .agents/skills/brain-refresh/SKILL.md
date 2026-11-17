@@ -1,6 +1,8 @@
 ---
 name: brain-refresh
 description: Look for new material for the AI engineering brain from its watchlist of blogs and people and from its open leads, then propose what to ingest. Use when the user asks what is new, asks to refresh or update the brain, or when the newest source note is more than about two weeks old.
+metadata:
+  internal: true
 ---
 
 # Refresh the brain
@@ -13,7 +15,7 @@ Read `watchlist.md`. Find the last `refresh` or `ingest` entry in `log.md` (`gre
 
 - Check each feed and person on the watchlist for items since that date. X needs a real browser.
 - Check the open leads: things earlier sources cited that have not been ingested.
-- Skip anything already in `sources/` (search for the URL).
+- Skip anything already in `sources/` or listed in `considered.md` (search for the URL).
 
 ## 3. Rank
 
@@ -25,4 +27,6 @@ Show the owner the shortlist: title, author, date, link and one line on why it e
 
 ## 5. Record
 
-Update the "last checked" date in `watchlist.md`, remove leads that are now ingested, add new ones, and append `## [YYYY-MM-DD] refresh | <n> candidates, <m> ingested` to `log.md`.
+- Add a row to `considered.md` for every candidate you looked at and did not ingest, including ones the owner turned down, so the next refresh does not weigh them again. Give a reason about fit, never about the author.
+- Update the "last checked" date in `watchlist.md`, remove leads that are now ingested and add new ones.
+- Run `python3 tools/lint.py --sync --log "refresh | <n> candidates, <m> ingested"`.

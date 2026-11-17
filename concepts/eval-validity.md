@@ -2,6 +2,7 @@
 type: concept
 title: "Trusting eval numbers"
 updated: 2026-11-17
+reviewed: 2026-11-17
 status: evolving
 ---
 

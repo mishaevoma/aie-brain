@@ -2,6 +2,7 @@
 type: concept
 title: "Retrieval"
 updated: 2026-11-17
+reviewed: 2026-11-17
 status: evolving
 ---
 

@@ -2,6 +2,7 @@
 type: playbook
 title: "Reviewing agent work"
 updated: 2026-11-17
+reviewed: 2026-11-17
 ---
 
 # Reviewing agent work

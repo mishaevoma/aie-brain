@@ -2,6 +2,7 @@
 type: playbook
 title: "Building an agent product"
 updated: 2026-11-17
+reviewed: 2026-11-17
 ---
 
 # Building an agent product

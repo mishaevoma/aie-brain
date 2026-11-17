@@ -5,16 +5,23 @@ description: Answer a question or review a plan using the AI engineering brain, 
 
 # Consult the brain
 
+Consulting is read-only. It never changes the brain.
+
 ## 1. Find it
 
-If the current project has `index.md`, `glossary.md` and `concepts/` at its root, you are in the brain. Otherwise run `sh brain-root.sh` from this skill's folder. It prints the brain's root, following the link this skill was installed through.
+Run `sh brain-root.sh` from this skill's folder. It prints the root of a local copy of the brain. It looks in three places: the repository this skill is linked from, the current folder and its parents, and the path in the `AI_ENGINEERING_BRAIN` environment variable.
+
+If it finds none, read the public copy. Start at `https://raw.githubusercontent.com/mishaevoma/ai-engineering-brain/main/index.md`. Every path in the index is relative to `https://raw.githubusercontent.com/mishaevoma/ai-engineering-brain/main/`. Say in your answer that you used the public copy.
 
 ## 2. Read as little as answers the question
 
-1. `index.md`, always. Add `glossary.md` when the question turns on a term, and `overview.md` when it is about the big picture or what is disputed.
-2. The one to three concept pages or the playbook that fit.
-3. A source note only for detail, a number, or a point the page marks as disputed.
-4. The original URL only when the note is not enough.
+1. `index.md`, always. Its "Route by decision" table points from the decision at hand to the page that covers it.
+2. `glossary.md` when the question turns on a term, and `overview.md` when it is about the big picture or what is disputed.
+3. The one to three concept pages or the playbook that fit.
+4. A source note only for detail, a number, or a point the page marks as disputed.
+5. The original URL only when the note is not enough.
+
+Do not load the whole wiki.
 
 ## 3. Answer
 
@@ -29,4 +36,4 @@ If the current project has `index.md`, `glossary.md` and `concepts/` at its root
 
 - Mention any gap, stale page or contradiction the question exposed.
 - If your answer is a synthesis worth keeping, offer to file it as a page.
-- Change the brain only when the user agrees, and then follow `brain-ingest` or edit the page and append to `log.md`.
+- Changing the brain is a separate job, done in the brain's own repository with its `brain-ingest` skill, and only when the user agrees.
