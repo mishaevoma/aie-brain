@@ -15,15 +15,27 @@ Most AI products depend on information the model was not trained on. The route y
 
 ## What to do
 
-- For a small corpus, skip retrieval. Put all of it in a cached prompt. The threshold given in 2024 was about 200,000 tokens, which reflects the context windows and prices of that time. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
+- For a small corpus, skip retrieval. Put all of it in a cached prompt. The threshold given in 2024 was about 200,000 tokens, which reflects the context windows and prices of that time. For material inside an agent loop, see "Where sources disagree" below. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
 - If you build an index, start with hybrid search: embeddings plus BM25, which catches exact identifiers such as error codes. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
-- Use contextual retrieval: add a short note on where each chunk sits in its document before indexing, written by a small model with the whole document cached. With reranking this cut failed retrievals by 67% in the original tests. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
+- Use contextual retrieval: add a short note on where each chunk sits in its document before indexing, written by a small model with the whole document cached. With reranking this cut failed retrievals by 67% in Anthropic's tests, averaged over four kinds of corpus, with Claude 3 Haiku writing the notes. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
 - Rerank a wide first pass (150 candidates) down to about 20. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
 - For agents, prefer just-in-time retrieval: give the agent search tools and let it pull what it needs, using file names, sizes and dates as signals. [Context engineering, Sep 2025](../sources/2025-09-29-anthropic-context-engineering.md)
 - For a domain you return to, compile the knowledge once into a maintained wiki. See [LLM wiki](llm-wiki.md). [Chase, Jun 2026](../sources/2026-06-30-chase-wiki-memory.md) · [Karpathy idea file, Apr 2026](../sources/2026-04-04-karpathy-llm-wiki-idea-file.md)
-- At large scale, combine a wiki with search. On a corpus of about 350,000 files, search alone answered 53% of questions, a wiki alone 48%, and both together 61%, with the wiki saving about 20,000 tokens per question. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+- At large scale, combine a wiki with search. In Anthropic's test on a corpus of about 350,000 files, with its own models building the wiki, search alone answered 53% of questions, a wiki alone 48%, and both together 61%, with the wiki saving about 20,000 tokens per question. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Do not expect a wiki to help when the answer sits in a single document. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Apply the same thinking to tools: with many tools, let the model retrieve definitions on demand. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
+
+## Where sources disagree: in the prompt, or on demand?
+
+- **Put it all in the prompt.** A knowledge base small enough to fit goes into the prompt whole, with prompt caching, and no retrieval is built. [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
+- **Load it on demand.** Recall falls as the context grows, so give an agent references and search tools instead of loading whole corpora up front. [Context engineering, Sep 2025](../sources/2025-09-29-anthropic-context-engineering.md) Whatever is always loaded costs tokens in every session and spreads its errors. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+
+This brain's reading, which is a synthesis and not a source claim: the two answer different jobs. The first is one question-answering call over a knowledge base, where nearly every request needs the material. The second is an agent loop, where the material would ride along on every step and most steps do not need it. So:
+
+- Send it whole when nearly every request needs it and the job is one call.
+- Make it a search tool or a [skill](skills.md) when it would sit in a loop whose steps mostly do not use it.
+- Do not expect caching to settle the question. A cached prompt costs less and answers sooner, but the model still has to attend to all of it.
+- When unsure, run both against the same [eval](evals.md) and keep the one that scores better.
 
 ## What is changing
 
@@ -32,4 +44,4 @@ Most AI products depend on information the model was not trained on. The route y
 
 ## Related
 
-[LLM wiki](llm-wiki.md) · [Context engineering](context-engineering.md) · [Memory](memory.md)
+[LLM wiki](llm-wiki.md) · [Context engineering](context-engineering.md) · [Memory](memory.md) · [Skills](skills.md) · [Evals](evals.md)

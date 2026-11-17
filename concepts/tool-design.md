@@ -25,7 +25,7 @@ An agent may call a tool, skip it or misuse it, and it decides from the descript
 
 - Write descriptions as you would brief a new hire: formats, jargon, how resources relate. Use unambiguous parameter names such as `user_id`. [Writing tools for agents, Sep 2025](../sources/2025-09-11-anthropic-writing-tools-for-agents.md) · [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
 - Make mistakes hard to make (poka-yoke). Requiring absolute paths ended a whole class of errors. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) · [SWE-bench scaffold, Jan 2025](../sources/2025-01-06-anthropic-swe-bench-sonnet.md)
-- Add one to five realistic example calls for conventions a schema cannot express. Internally this raised accuracy on complex parameters from 72% to 90%. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
+- Add one to five realistic example calls for conventions a schema cannot express. In Anthropic's internal tests this raised accuracy on complex parameters from 72% to 90%. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
 
 **Outputs**
 
@@ -39,7 +39,7 @@ An agent may call a tool, skip it or misuse it, and it decides from the descript
 
 **Large tool sets and large data**
 
-- Use deferred tool loading once definitions pass about 10K tokens: the model searches for tools and loads only the ones it needs. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
+- Use deferred tool loading once definitions pass about 10K tokens: the model searches for tools and loads only the ones it needs. The threshold is Anthropic's guidance for its own tool-search feature. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
 - Use programmatic tool calling when results are bulky or calls depend on each other: the model calls tools from code and returns aggregates. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md) · [Code execution with MCP, Nov 2025](../sources/2025-11-04-anthropic-code-execution-with-mcp.md)
 
 **Improving tools**

@@ -13,7 +13,7 @@ Run `python3 tools/lint.py --sync` from the brain's root. Fix every error. Read 
 
 ## 2. Checks that need judgement
 
-- **Stale pages.** For each page the script flags, and for any concept whose newest source is much older than the newest sources in the brain, re-read it against the recent notes on the same topic.
+- **Stale pages.** Run `python3 tools/lint.py --ages`. It lists, for each page, how many cited lines rest only on sources older than a year, with the oldest and newest source date. For each page the script flags, and for the pages at the top of that list, re-read the page against the recent notes on the same topic. Where no newer source exists, say on the page that the advice is old, and add the topic to `watchlist.md`.
 - **Contradictions.** Two pages that state opposite things without marking the disagreement.
 - **Unsupported claims.** A sentence with a number or a strong claim and no link to a source note.
 - **Missing pages.** A term used on three or more pages with no glossary entry, or an idea several sources share that has no concept page.

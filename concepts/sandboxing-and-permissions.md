@@ -11,7 +11,7 @@ status: evolving
 
 ## Why it matters
 
-Risk is the likelihood of a failure times its blast radius, and giving an agent more access raises the second. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md) Asking a person to approve each action does not hold up: users accept about 93% of prompts and stop reading them, which is called approval fatigue. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md) · [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md)
+Risk is the likelihood of a failure times its blast radius, and giving an agent more access raises the second. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md) Asking a person to approve each action does not hold up: Claude Code users accepted about 93% of permission prompts, and people who approve nearly everything stop reading what they approve, which is called approval fatigue. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md) · [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md)
 
 ## What to do
 

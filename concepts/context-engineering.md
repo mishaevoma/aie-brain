@@ -26,6 +26,7 @@ Recall and reasoning get worse as the context grows, in every model. The decline
 
 - Give the agent references (paths, queries, links) and tools to load data when needed, instead of loading everything up front. This is just-in-time retrieval. A small always-loaded file plus on-demand search is the common mix. [Context engineering, Sep 2025](../sources/2025-09-29-anthropic-context-engineering.md)
 - Disclose in layers: metadata first, body when relevant, linked files only if needed. [Agent Skills, Oct 2025](../sources/2025-10-16-anthropic-agent-skills.md)
+- A small body of reference material that nearly every request needs can go into the prompt whole instead. When each applies is on the [retrieval](retrieval.md) page, under "Where sources disagree". [Contextual Retrieval, Sep 2024](../sources/2024-09-19-anthropic-contextual-retrieval.md)
 
 **Long tasks**
 

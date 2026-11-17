@@ -6,6 +6,8 @@ Usage:
   python3 tools/lint.py --sync           also rewrite the generated parts: each source note's
                                          `concepts:` list and the source list in index.md
   python3 tools/lint.py --stale-days 90  change the age at which a page is flagged for review
+  python3 tools/lint.py --ages           also print how old the sources behind each page are
+  python3 tools/lint.py --old-days 180   change the age at which --ages counts a cited line as old
 
 What it checks:
   - every relative markdown link points at a file that exists
@@ -16,6 +18,12 @@ What it checks:
   - every figure on a cited line appears in a source note that line cites (warning)
   - source notes that no concept or playbook uses (warning)
   - concept and playbook pages not updated for --stale-days days (warning)
+
+What --ages reports, without raising a warning:
+  - for each concept page and playbook: how many lines cite a source note, how many of those
+    lines rest only on sources published more than --old-days days ago (default 365), and the
+    dates of the oldest and newest source the page cites. `updated:` says when a page was last
+    edited; this says how old its evidence is.
 """
 from __future__ import annotations
 
@@ -24,6 +32,7 @@ import datetime as dt
 import os
 import re
 import sys
+from collections.abc import Container
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -134,6 +143,59 @@ def local_links(path: Path, body: str) -> list[Path]:
     return targets
 
 
+def cited_notes(path: Path, line: str, known: Container[Path]) -> list[Path]:
+    """The source notes that one line of a page links to. `known` holds the paths of all source notes."""
+    return [
+        target
+        for target in (
+            (path.parent / unquote(raw.split("#", 1)[0])).resolve()
+            for raw in LINK.findall(line)
+            if not re.match(r"^[a-z][a-z0-9+.-]*:", raw, re.I)
+        )
+        if target in known
+    ]
+
+
+def ages_report(
+    group: list[Path],
+    pages: dict[Path, tuple[dict[str, object], str]],
+    published_on: dict[Path, dt.date],
+    today: dt.date,
+    old_days: int,
+) -> list[str]:
+    """One row per page, the pages resting most on old sources first."""
+    rows = []
+    for path in group:
+        fields, body = pages[path]
+        cited_lines = 0
+        old_lines = 0
+        dates: list[dt.date] = []
+        for line in body.splitlines():
+            line_dates = [published_on[note] for note in cited_notes(path, line, published_on)]
+            if not line_dates:
+                continue
+            cited_lines += 1
+            dates.extend(line_dates)
+            if (today - max(line_dates)).days > old_days:
+                old_lines += 1
+        if dates:
+            label = str(fields.get("status", fields.get("type", "-")))
+            rows.append((old_lines, cited_lines, rel(path), label, min(dates), max(dates)))
+    rows.sort(key=lambda row: (-row[0], -row[0] / row[1], row[2]))
+    width = max([len(row[2]) for row in rows] + [len("page")])
+    lines = [
+        f"Source ages. A line is old when every source it cites was published more than {old_days} days ago.",
+        f"{'page':<{width}}  {'status':<9}  {'cited':>5}  {'old':>3}  {'oldest':<10}  newest",
+    ]
+    for old_lines, cited_lines, name, label, oldest, newest in rows:
+        lines.append(f"{name:<{width}}  {label:<9}  {cited_lines:>5}  {old_lines:>3}  {oldest.isoformat()}  {newest.isoformat()}")
+    lines.append(
+        f"{sum(row[0] for row in rows)} of {sum(row[1] for row in rows)} cited lines "
+        f"rest only on sources older than {old_days} days"
+    )
+    return lines
+
+
 def check_date(report: Report, path: Path, fields: dict[str, object], key: str) -> dt.date | None:
     value = str(fields.get(key, ""))
     if not DATE.match(value):
@@ -150,6 +212,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Lint the AI engineering brain.")
     parser.add_argument("--sync", action="store_true", help="rewrite `concepts:` in source notes and the source list in index.md")
     parser.add_argument("--stale-days", type=int, default=120, help="flag concept and playbook pages older than this (default 120)")
+    parser.add_argument("--ages", action="store_true", help="also print how old the sources behind each concept page and playbook are")
+    parser.add_argument("--old-days", type=int, default=365, help="with --ages: a cited line is old when all its sources are older than this (default 365)")
     args = parser.parse_args()
 
     report = Report()
@@ -174,6 +238,7 @@ def main() -> int:
 
     # Source notes
     seen_urls: dict[str, Path] = {}
+    published_on: dict[Path, dt.date] = {}
     for path in sorted(sources):
         fields, body = pages[path]
         for key in SOURCE_FIELDS:
@@ -186,6 +251,8 @@ def main() -> int:
         if "read" in fields and fields["read"] not in READ_LEVELS:
             report.error(path, f"`read` must be one of {sorted(READ_LEVELS)}")
         published = check_date(report, path, fields, "published") if "published" in fields else None
+        if published:
+            published_on[path] = published
         if "ingested" in fields:
             check_date(report, path, fields, "ingested")
         name = SOURCE_NAME.match(path.name)
@@ -277,10 +344,7 @@ def main() -> int:
     source_text = {s: strip_digit_commas(s.read_text(encoding="utf-8")) for s in sources}
     for path in sorted(concepts | playbooks | ({ROOT / "overview.md"} & set(pages))):
         for line in pages[path][1].splitlines():
-            cited = [t for t in (
-                (path.parent / unquote(raw.split("#", 1)[0])).resolve()
-                for raw in LINK.findall(line) if not re.match(r"^[a-z][a-z0-9+.-]*:", raw, re.I)
-            ) if t in source_text]
+            cited = cited_notes(path, line, source_text)
             if not cited:
                 continue
             prose = strip_digit_commas(re.sub(r"^\s*(?:[-*]|\d+\.)\s+", "", INLINE_CODE.sub("", LINK_FULL.sub("", line))))
@@ -308,6 +372,9 @@ def main() -> int:
 
     for line in report.errors + report.warnings:
         print(line)
+    if args.ages:
+        for line in ages_report(sorted(concepts | playbooks), pages, published_on, today, args.old_days):
+            print(line)
     print(
         f"{len(sources)} sources, {len(concepts)} concepts, {len(playbooks)} playbooks: "
         f"{len(report.errors)} errors, {len(report.warnings)} warnings"

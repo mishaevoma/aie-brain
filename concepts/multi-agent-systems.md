@@ -11,7 +11,7 @@ status: evolving
 
 ## Why it matters
 
-More agents spend more tokens on a problem, in parallel, with each context kept clean. In one study token use alone explained 80% of the variance in research performance. The price is real: agents use about 4 times the tokens of a chat, and multi-agent systems about 15 times. [Multi-agent research system, Jun 2025](../sources/2025-06-13-anthropic-multi-agent-research-system.md)
+More agents spend more tokens on a problem, in parallel, with each context kept clean. In Anthropic's study of its own research system, on Claude models of mid-2025, token use alone explained 80% of the variance in performance on the BrowseComp benchmark. The price is real: there, agents used about 4 times the tokens of a chat, and multi-agent systems about 15 times. [Multi-agent research system, Jun 2025](../sources/2025-06-13-anthropic-multi-agent-research-system.md)
 
 ## When to use it
 

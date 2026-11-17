@@ -19,6 +19,8 @@ Read `watchlist.md`. Find the last `refresh` or `ingest` entry in `log.md` (`gre
 
 Keep an item if it changes a practice, defines a term the brain uses, adds evidence, or contradicts a page. Drop announcements with no content, reposts, and takes that add nothing to an existing note.
 
+Run `python3 tools/lint.py --ages` and look at the pages whose advice rests mostly on old sources. An item that brings newer evidence to one of them ranks above one that adds to a page already well sourced. So does an item that fills a gap listed in `watchlist.md`.
+
 ## 4. Propose
 
 Show the owner the shortlist: title, author, date, link and one line on why it earns a place. Ingest only what they approve, one source at a time, with `brain-ingest`. If the owner has asked for unattended refresh, ingest the top items and report afterwards.

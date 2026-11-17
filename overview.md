@@ -55,7 +55,15 @@ Across all of them:
 ## What this brain does not cover yet
 
 - Most sources are from Anthropic or from people who build on Claude. Guidance from other labs is nearly absent.
+- Most figures were measured on Anthropic's models and products: memory gains, approval rates, classifier miss rates, retrieval failure rates. Read them as a direction, and measure again on the model you run.
 - Nothing on fine-tuning, voice or multimodal products, cost and pricing, or product and interface design for AI features.
 - Coding agents dominate. Other verticals appear only as examples.
+
+A review of a product design against this brain on 17 November 2026 found four more gaps:
+
+- Durable execution for tasks that wait on a person or must survive a restart: workflow engines, retries, writes that are safe to repeat. [Long-running agents](concepts/long-running-agents.md) covers the agent's side only.
+- Serving many customers from one product: keeping tenants apart, data residency, limits per customer.
+- Model gateways: routing, falling back to another model, and what a silent fallback does to eval results.
+- Agents that operate an existing application through its interface: browser and computer use, and tools a page declares for the agent.
 
 Leads for filling these gaps are in the [watchlist](watchlist.md).

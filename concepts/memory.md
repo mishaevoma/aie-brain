@@ -11,7 +11,7 @@ status: evolving
 
 ## Why it matters
 
-Each session starts blank. Memory is how an agent stops repeating a mistake, and it is the form of "learning" you can add without training a model. With a memory folder, recent models improved sharply on a task with fresh sessions: one went from 0.655 to 0.838 mean reward. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md) · [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
+Each session starts blank. Memory is how an agent stops repeating a mistake, and it is the form of "learning" you can add without training a model. On Anthropic's CL-Bench 1.0, a task with fresh sessions and a memory folder, its recent models improved sharply: Opus 5.5 went from 0.655 to 0.838 mean reward. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md) · [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
 
 ## The layers
 
@@ -43,7 +43,8 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 ## Risks and open questions
 
 - Memory can be poisoned: instruction files, memory files and state directories are all read back as trusted context. This is listed as an open problem. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
-- A model's judgement of what is worth keeping has improved a great deal. An older model accumulated 413 files and spent its steps on upkeep, where a recent one kept 10 small ones and got further. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+- A model's judgement of what is worth keeping has improved a great deal. An older Claude model, Sonnet 3.7, accumulated 413 files and spent its steps on upkeep, where a recent one, Claude Fable 5, kept 10 small ones and got further. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+- Every figure on this page was measured on Anthropic's models, on tasks Anthropic chose. In those tests the newest models wrote useful notes unaided, and an older one gained little until it was given explicit steps. Where another vendor's models fall is not measured in these sources, so test the model you run before trusting it to decide what to keep. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Still open: whether to write during the task or afterwards, how often to re-verify, and what maintaining representations costs in tokens and errors. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 
 ## Related

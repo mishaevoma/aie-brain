@@ -40,6 +40,8 @@ This is the LLM wiki pattern: raw sources, a wiki the agent owns, and a schema f
 
 **Ask it a question.** Open this folder in a coding agent and ask. The agent reads `index.md`, then the pages that fit, and answers with citations. The `brain-consult` skill describes how.
 
+**Review a design.** Ask the agent to review an architecture or a repository setup against the brain. It walks the matching playbook step by step and says, for each step, whether the design agrees with the brain, falls short of it, or lies outside what the brain covers (`brain-consult`, "Review a whole design").
+
 **Use it from another project.** Either add the folder to a session:
 
 ```bash
@@ -53,6 +55,10 @@ ln -s /path/to/ai-engineering-brain/.agents/skills/brain-consult ~/.claude/skill
 ```
 
 For tools without skills, add one line to that project's `AGENTS.md`: "For anything involving LLMs or agents, consult the AI engineering brain at /path/to/ai-engineering-brain, starting at index.md."
+
+Nothing has to be installed. An agent that is only given this repository's address can clone it, read `AGENTS.md`, then `index.md`, and follow `.agents/skills/brain-consult/SKILL.md` as written. If the skill folder was copied instead of linked, set `AIE_BRAIN` to the clone so the skill can find it.
+
+**Cite it.** The brain changes. An answer that will be kept should name the version it read, which `git log -1 --format='%h %cs'` prints.
 
 **Add a source.** Give the agent a link, or drop a file into `raw/`, and say "ingest this". It writes the source note, updates every page the source touches, and logs the change (`brain-ingest`).
 
@@ -69,7 +75,7 @@ Seeded on 17 November 2026 with 50 sources: all 29 articles on Anthropic's engin
 - **Summaries, not copies.** The sources are other people's copyrighted work and this repository is public. Each note is a short summary in our own words with a link. Read the original for anything that matters.
 - **Models wrote this.** Source notes were written by AI agents, most of them reading articles through a fetch tool, with two passes per article. Each note says how much of the original it is based on. Check numbers against the original before you rely on them.
 - **It has a slant.** Most sources come from Anthropic or from people who build on Claude. The gaps are listed at the end of [overview.md](overview.md).
-- **It dates quickly.** Every source note carries its publication date and every concept page the date it was last updated.
+- **It dates quickly.** Every source note carries its publication date and every concept page the date it was last updated. `python3 tools/lint.py --ages` shows which pages rest on old sources.
 
 ## Checks
 
@@ -78,3 +84,9 @@ python3 tools/lint.py
 ```
 
 Standard library only. Add `--sync` to regenerate the source list in `index.md` and the backlinks in source notes.
+
+```bash
+python3 tools/lint.py --ages
+```
+
+Prints, for each concept page and playbook, how many of its cited lines rest only on sources older than a year, with the oldest and newest source date. Every page carries the date it was last edited, which says nothing about how old its evidence is. This report does.

@@ -8,7 +8,7 @@ published: 2024-09-19
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [retrieval]
+concepts: [context-engineering, retrieval]
 ---
 
 # Introducing Contextual Retrieval

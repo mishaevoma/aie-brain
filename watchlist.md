@@ -41,3 +41,11 @@ Things the ingested sources cite or imply that are not in the brain yet.
 ## Gaps to fill
 
 From the end of [overview.md](overview.md): guidance from labs other than Anthropic, fine-tuning, voice and multimodal products, cost, and product design for AI features.
+
+Added after a design review on 17 November 2026. For each, look first for a primary source from a team that runs it in production:
+
+- Durable execution for agent tasks: workflow engines, retries, writes that are safe to repeat, approvals that wait for days.
+- Serving many customers: keeping tenants apart, data residency, limits per customer.
+- Model gateways: routing, fallback to another model, and evals that cover the fallback.
+- Agents that operate an application's interface: browser and computer use, and tools a page declares for the agent.
+- Figures for the same practices measured on models from other labs.
