@@ -1,0 +1,8 @@
+# Full-text captures of other people's work stay local.
+raw/*
+!raw/README.md
+
+# Local editor and OS state
+.obsidian/
+.DS_Store
+__pycache__/
