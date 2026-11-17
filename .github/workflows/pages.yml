@@ -1,0 +1,73 @@
+# Builds the wiki into a website with Quartz and publishes it to GitHub Pages.
+# People get rendered pages with search, backlinks and hover previews.
+# Agents get llms.txt, llms-full.txt and a raw .md copy of every page (page URL + ".md").
+# The wiki's own files are not changed: Quartz reads the repository root as its content folder.
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  # Quartz v5.1.0, pinned to the commit site/quartz.config.yaml was written and tested against.
+  QUARTZ_REF: 7cfb0796165c848be5438117e9806802123bf676
+  SITE_URL: https://mishaevoma.github.io/aie-brain
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the wiki
+        uses: actions/checkout@v6
+        with:
+          path: wiki
+          fetch-depth: 0 # full history, so a page without an `updated:` date gets one from git
+      - name: Check out Quartz
+        uses: actions/checkout@v6
+        with:
+          repository: jackyzha0/quartz
+          ref: ${{ env.QUARTZ_REF }}
+          path: quartz
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: quartz/package-lock.json
+      - name: Install Quartz
+        working-directory: quartz
+        run: |
+          npm ci
+          cp ../wiki/site/quartz.config.yaml quartz.config.yaml
+          npx quartz plugin install
+      - name: Build the site
+        working-directory: quartz
+        run: npx quartz build -d ../wiki -o ../public
+      - name: Add the agent files
+        run: python3 wiki/site/agentfiles.py wiki public "$SITE_URL"
+      - name: Check links
+        run: python3 wiki/site/linkcheck.py public "$SITE_URL"
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
