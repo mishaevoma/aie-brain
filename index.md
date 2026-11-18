@@ -29,7 +29,13 @@ Start from the question you are facing. Each line names the pages to read, the m
 - Does a benchmark number mean anything? [Trusting eval numbers](concepts/eval-validity.md).
 - Should it remember anything between sessions? [Memory](concepts/memory.md), [LLM wiki](concepts/llm-wiki.md).
 - One agent or several? [Multi-agent systems](concepts/multi-agent-systems.md).
-- A task that runs for hours, or waits for a person? [Long-running agents](concepts/long-running-agents.md), [Running agents in production](concepts/production-operations.md).
+- A task that runs for hours, or waits for a person? [Long-running agents](concepts/long-running-agents.md), [Durable execution](concepts/durable-execution.md), [Side effects and approvals](concepts/side-effects.md).
+- Where does the agent run once it leaves a laptop? [Agent platforms](concepts/agent-platforms.md), then step 8 of [Building an agent product](playbooks/building-an-agent-product.md).
+- How does a run survive a crash, a deploy or a three-day wait? [Durable execution](concepts/durable-execution.md), [Running agents in production](concepts/production-operations.md).
+- Build the agent platform, or rent a managed runtime? [Managed agent runtimes](concepts/managed-agent-runtimes.md), [Agent platforms](concepts/agent-platforms.md).
+- Which actions need approval, and how are they undone? [Side effects and approvals](concepts/side-effects.md), [Human judgment and oversight](concepts/human-judgment.md).
+- Whose credentials does the agent use, and how are customers kept apart? [Agent identity and tenancy](concepts/agent-identity.md), [Permissions, sandboxing and containment](concepts/sandboxing-and-permissions.md).
+- Agents that work unattended, started from chat, tickets or schedules? [Background agents](concepts/background-agents.md), [Agent platforms](concepts/agent-platforms.md).
 
 **Setting up coding agents in a repository**
 
@@ -46,6 +52,9 @@ Start from the question you are facing. Each line names the pages to read, the m
 - Quality drops in long sessions. [Context engineering](concepts/context-engineering.md).
 - Quality changed after launch. [Running agents in production](concepts/production-operations.md).
 - Quality is poor and you cannot say why. [Error analysis](concepts/error-analysis.md), then [Evals](concepts/evals.md).
+- A tool call ran twice after a crash or a retry. [Side effects and approvals](concepts/side-effects.md), [Durable execution](concepts/durable-execution.md).
+- A deploy broke agents that were mid-task. [Running agents in production](concepts/production-operations.md), [Durable execution](concepts/durable-execution.md).
+- Unattended agents flood the queue or the reviewers. [Background agents](concepts/background-agents.md).
 
 ## Playbooks
 
@@ -69,7 +78,7 @@ One page per idea: definition, what to do, where sources disagree.
 
 - [Instruction files](concepts/instruction-files.md) — `AGENTS.md` and `CLAUDE.md`: keep short, use as an index, one source of truth.
 - [Skills](concepts/skills.md) — procedures loaded on demand, how to write and prune them.
-- [MCP](concepts/mcp.md) — connecting outside tools and data, what it costs in context, security.
+- [MCP](concepts/mcp.md) — connecting outside tools and data, what it costs in context, long-running calls, security.
 - [Tool design](concepts/tool-design.md) — writing tools for a model: shape, choosing the set, inputs, outputs, edits, large tool sets.
 - [Memory](concepts/memory.md) — layers, dreaming, when and where to write, risks.
 
@@ -83,7 +92,16 @@ One page per idea: definition, what to do, where sources disagree.
 
 - [Multi-agent systems](concepts/multi-agent-systems.md) — when several agents pay off and when one thread is better, delegation, coordination, risks.
 - [Long-running agents](concepts/long-running-agents.md) — state on disk, evaluators, scaffolding that expires, cost.
-- [Running agents in production](concepts/production-operations.md) — regressions, deploys, infrastructure at agent volume.
+- [Running agents in production](concepts/production-operations.md) — regressions, deploys and version pinning, infrastructure at agent volume, queues and cost.
+
+**Runtime**
+
+- [Agent platforms](concepts/agent-platforms.md) — the parts agents run on in production, and where the loop runs.
+- [Durable execution](concepts/durable-execution.md) — surviving crashes, deploys and waits: four mechanisms and what each costs. *Contested.*
+- [Side effects and approvals](concepts/side-effects.md) — actions that change the world: approving them, repeating them safely, undoing them.
+- [Managed agent runtimes](concepts/managed-agent-runtimes.md) — what can be rented, what to check first, build or rent. *Contested.*
+- [Background agents](concepts/background-agents.md) — unattended agents started from chat, tickets and schedules, and their queues.
+- [Agent identity and tenancy](concepts/agent-identity.md) — whose authority an agent acts under, credentials, keeping customers apart.
 
 **Quality**
 
@@ -110,48 +128,127 @@ One page per idea: definition, what to do, where sources disagree.
 Newest first. Each note is our own summary with a link to the original.
 
 <!-- sources:start -->
+- 2026-11-17 · [Durable Execution](sources/2026-11-17-pydantic-durable-execution.md) · Pydantic
 - 2026-11-17 · [How the Claude Code team thinks about verification](sources/2026-11-17-osmani-claude-code-team-verification.md) · Addy Osmani
+- 2026-11-17 · [Architecture](sources/2026-11-17-openai-agents-api-architecture.md) · OpenAI
+- 2026-11-17 · [What We’ve Learned Building Proactive Agents](sources/2026-11-17-langchain-proactive-agents.md) · Sydney Runkle
+- 2026-11-17 · [Incident report for November 12, 2026 - Missed function runs](sources/2026-11-17-inngest-incident-missed-function-runs.md) · Inngest
+- 2026-11-17 · [Claude Managed Agents overview](sources/2026-11-17-anthropic-managed-agents-overview.md) · Anthropic
+- 2026-11-17 · [Hosting the Agent SDK](sources/2026-11-17-anthropic-agent-sdk-hosting.md) · Anthropic
+- 2026-11-17 · [Streaming and Asynchronous Operations for Long-Running Tasks](sources/2026-11-17-a2a-streaming-and-asynchronous-operations.md) · The Linux Foundation
+- 2026-11-16 · [Agents are sessions, not requests: size GKE node pools for AI agent sessions](sources/2026-11-16-google-agents-are-sessions.md) · Drake Williams, Ivan Nardini
 - 2026-11-15 · [Turn your daily newsletter edits into AI checks, and watch every frontier model jump 25+ points](sources/2026-11-15-shipper-compounding-skills.md) · Dan Shipper
+- 2026-11-13 · [Coordinated snapshots of agent state](sources/2026-11-13-hatchet-coordinated-snapshots.md) · Alexander Belanger
 - 2026-11-13 · [Building strong safety evaluations](sources/2026-11-13-anthropic-building-strong-safety-evaluations.md) · Ruth Appel, Evan Frondorf, Jeremy Hadfield, Rebecca Hiscott, Kamya Jagadish, Shayne Longpre, Madeleine Tucker, Brett Wittmershaus
+- 2026-11-13 · [Building always-on agents](sources/2026-11-13-anthropic-building-always-on-agents.md) · William Hu
+- 2026-11-12 · [Workflow SDK 5: built for production](sources/2026-11-12-vercel-workflow-sdk-5.md) · Pranay Prakash, Peter Wielander
+- 2026-11-12 · [Securing persistent agents like OpenClaw at OpenAI](sources/2026-11-12-openai-securing-persistent-agents.md) · Kevin S Lin
+- 2026-11-12 · [Interrupts](sources/2026-11-12-langchain-langgraph-interrupts.md) · LangChain
+- 2026-11-12 · [Sandbox persistence](sources/2026-11-12-e2b-sandbox-persistence.md) · E2B
+- 2026-11-12 · [Operate Claude Managed Agents inside your security perimeter](sources/2026-11-12-anthropic-self-hosted-managed-agents.md) · Anthropic
+- 2026-11-11 · [The harness has to finish the job](sources/2026-11-11-harvey-harness-has-to-finish-the-job.md) · Joey Wang
 - 2026-11-09 · [Real world diff between harnesses is approaching 0 fast (reply)](sources/2026-11-09-theo-harness-difference-approaching-zero.md) · Theo Browne
 - 2026-11-06 · [The components of agent memory](sources/2026-11-06-anthropic-components-of-agent-memory.md) · Lance Martin
+- 2026-11-04 · [Durable Execution means deciding what survives failure](sources/2026-11-04-temporal-deciding-what-survives-failure.md) · Muhammad Abu Bakkar Bin Akmal
+- 2026-11-03 · [Durable Coroutines for TypeScript: Fault-tolerant Agents with millisecond overhead](sources/2026-11-03-restate-durable-coroutines.md) · Igal Shilman, Stephan Ewen, Giselle van Dongen
 - 2026-11-03 · [Critical thinking when agents do the work](sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md) · Addy Osmani
+- 2026-11-02 · [Building a durable /goal agent loop that survives crashes](sources/2026-11-02-inngest-durable-goal-agent-loop.md) · Mitchell Alderson
+- 2026-11-02 · [AI Identity Management System](sources/2026-11-02-ietf-ai-identity-management-system.md) · Pieter Kasselman, Jean-François Lombardo, Yaroslav Rosomakho, Brian Campbell, Nick Steele, Aaron Parecki
 - 2026-10-30 · [My last video about ai harnesses](sources/2026-10-30-theo-my-last-video-about-ai-harnesses.md) · Theo Browne
+- 2026-10-30 · [Durable Objects now defer code updates by default](sources/2026-10-30-cloudflare-durable-objects-defer-code-updates.md) · Cloudflare
 - 2026-10-29 · [Should T3 Code take on harness configuration? (untitled post)](sources/2026-10-29-theo-harness-configuration-question.md) · Theo Browne
+- 2026-10-27 · [Long-running agents](sources/2026-10-27-cloudflare-long-running-agents.md) · Cloudflare
 - 2026-10-22 · [What is a "harness"?](sources/2026-10-22-theo-what-is-a-harness.md) · Theo Browne
+- 2026-10-22 · [SBD: We Have a Filesystem at Home](sources/2026-10-22-fly-sprites-block-device.md) · Daniel Botha
+- 2026-10-20 · [Building Laminar: Ramp's Managed Agents Platform](sources/2026-10-20-ramp-building-laminar.md) · Sam Kronick
+- 2026-10-19 · [Making every harness durable](sources/2026-10-19-vercel-making-every-harness-durable.md) · Pranay Prakash, Eric Dodds
 - 2026-10-18 · [Coding-agent harnesses, taken apart: Codex, Claude Code, Cursor, OpenCode, Aider, Goose, Cline and T3 Code](sources/2026-10-18-loams-coding-agent-harnesses.md) · Dinakaran
+- 2026-10-15 · [Running Durable Agents on Vercel](sources/2026-10-15-vercel-running-durable-agents.md) · Anshuman Bhardwaj
+- 2026-10-14 · [Resilience for long-running Microsoft Foundry hosted agents](sources/2026-10-14-microsoft-foundry-hosted-agent-resilience.md) · Microsoft
 - 2026-10-13 · [Redesigning source control at Anthropic](sources/2026-10-13-anthropic-redesigning-source-control.md) · Nick G., S.G., R.K., Dan C., Garrett H., Ben L., Colin M., Joe P.
+- 2026-10-08 · [The immortal life of Pi (Running the Pi coding agent on Temporal)](sources/2026-10-08-temporal-immortal-life-of-pi.md) · Moe Abadi
+- 2026-10-01 · [Pi Durable](sources/2026-10-01-earendil-pi-durable.md) · Earendil Engineering
+- 2026-09-30 · [Restate raises $20M Series A to make Durable Execution a building block for every backend](sources/2026-09-30-restate-series-a.md) · Stephan Ewen
+- 2026-09-17 · [Durable Execution Pricing in 2026: How Temporal, Step Functions and Others Bill You](sources/2026-09-17-diagrid-durable-execution-pricing.md) · Haziqa Sajid
 - 2026-09-09 · [The Anatomy of Harness Engineering: How to Evaluate, Iterate, and Guard AI Coding Agents](sources/2026-09-09-google-anatomy-of-harness-engineering.md) · Taylor Mullen, Christian Gunderman
+- 2026-09-02 · [Run cloud agents on machines you manage](sources/2026-09-02-cursor-self-hosted-machines.md) · Jack Pertschuk
+- 2026-08-26 · [Opening the door to agent autonomy: The architecture behind Rovo’s agent harness](sources/2026-08-26-atlassian-rovo-agent-harness.md) · Dylan Hwang, Muhammed Sit, Alexander Sumer, Alex Chen, Shubham Goel, Steven Yoo
 - 2026-08-25 · [Thinking about banning Claude Code at Shopify until it reads AGENTS.md (untitled post)](sources/2026-08-25-lutke-agents-md-split-brain.md) · Tobi Lütke
 - 2026-08-25 · [Every Agent and Headway's Eddy: one shared company agent (untitled post)](sources/2026-08-25-every-shared-company-agent.md) · Every
+- 2026-08-20 · [Temporal Agent Harness: An early look at durable agent infrastructure](sources/2026-08-20-temporal-agent-harness.md) · Cornelia Davis
+- 2026-08-18 · [How Axonius built secure multi-tenant AI agents on Bedrock AgentCore](sources/2026-08-18-aws-axonius-multi-tenant-agents.md) · Amir Krispin, Dori Shmuel, Omar Sawara, Yossi Lagstein, Yaakov Tayeb
+- 2026-08-11 · [Delegating Engineering Work To Cloud-Based Agents](sources/2026-08-11-doordash-cloud-based-agents.md) · Santosh Banda, Jeffrey Hwang, Siddarth Kodwani
+- 2026-08-10 · [How we built Linear Agent](sources/2026-08-10-linear-how-we-built-linear-agent.md) · Matthijs Wolting
+- 2026-08-06 · [Durable, flexible multi-agent systems](sources/2026-08-06-temporal-durable-flexible-multi-agent-systems.md) · Melanie Warrick
+- 2026-07-30 · [The Session You Cannot Take With You](sources/2026-07-30-earendil-session-you-cannot-take-with-you.md) · Earendil Engineering
+- 2026-07-29 · [Agency: Secure, scalable sandboxes for agents](sources/2026-07-29-sierra-agency-sandboxes-for-agents.md) · Rohith Ravi
 - 2026-07-28 · [Hand-writing better CLAUDE.md/AGENTS.md and skills (untitled post)](sources/2026-07-28-theo-rewriting-agents-md-by-hand.md) · Theo Browne
+- 2026-07-28 · [The 2026-07-28 Specification](sources/2026-07-28-mcp-2026-07-28-specification.md) · David Soria Parra, Den Delimarsky
+- 2026-07-27 · [Run Your Harness Outside the Sandbox: Why and How](sources/2026-07-27-rivet-harness-outside-the-sandbox.md) · Nathan Flurry
 - 2026-07-27 · [Standardize project context with AGENTS.md and Agent Skills](sources/2026-07-27-redhat-agents-md-and-agent-skills.md) · Dejan Bosanac
+- 2026-07-15 · [Pinecone: Harnessing the wisdom of the workforce](sources/2026-07-15-sierra-pinecone-wisdom-of-the-workforce.md) · Allen Chen, Tess Rosania
 - 2026-07-15 · [Automation is still the highest-leverage work (untitled post)](sources/2026-07-15-cherny-automation-is-the-highest-leverage.md) · Boris Cherny
 - 2026-07-09 · [New in Claude Code: /checkup](sources/2026-07-09-cherny-checkup.md) · Boris Cherny
+- 2026-07-02 · [Building an Intern](sources/2026-07-02-cramer-building-an-intern.md) · David Cramer
 - 2026-06-30 · [Wiki Memory](sources/2026-06-30-chase-wiki-memory.md) · Harrison Chase
+- 2026-06-15 · [Agent checkpointing is far from production-grade resiliency](sources/2026-06-15-restate-checkpointing-is-not-resiliency.md) · Giselle van Dongen
+- 2026-06-08 · [It’s safe to close your laptop now: Hosting coding agents on Amazon Bedrock AgentCore](sources/2026-06-08-aws-hosting-coding-agents-on-agentcore.md) · Evandro Franco, Eashan Kaushik, Kosti Vasilakakis, Mark Roy, Abhimanyu Siwach, Shreyas Subramanian
+- 2026-06-04 · [Fault Tolerance in LangGraph: Retries, Timeouts, and Error Handlers](sources/2026-06-04-langchain-fault-tolerance-in-langgraph.md) · Quanzheng Long, Sydney Runkle
+- 2026-05-28 · [Under the River](sources/2026-05-28-shopify-under-the-river.md) · Burke Libbey, Javier Moreno, River
 - 2026-05-25 · [How we contain Claude across products](sources/2026-05-25-anthropic-how-we-contain-claude.md) · Max McGuinness, Mikaela Grace, Jiri De Jonghe, Jake Eaton, Abel Ribbink
+- 2026-05-21 · [Solving the Identity Crisis for AI Agents](sources/2026-05-21-uber-solving-identity-crisis-for-ai-agents.md) · Matt Mathew, Prasad Borole, Meng Huang, Sergey Burykin, Gaurav Goel, Bayard Walsh
+- 2026-05-21 · [Introducing Nova, our internal platform for coding agents](sources/2026-05-21-dropbox-introducing-nova.md) · Mike White, Kevin Altschuler
+- 2026-05-20 · [Postgres is All You Need for Durable Workflows](sources/2026-05-20-dbos-postgres-is-all-you-need.md) · Peter Kraft
 - 2026-05-16 · [What is GBrain? (untitled post)](sources/2026-05-16-tan-gbrain.md) · Garry Tan
+- 2026-04-29 · [Your AI wants to nuke your database. Guardrails fix that.](sources/2026-04-29-railway-ai-wants-to-nuke-your-database.md) · Mahmoud Abdelwahab
+- 2026-04-28 · [The Plumbing Wars - Are Claude Managed Agents Worth It?](sources/2026-04-28-proctor-plumbing-wars.md) · David Proctor
+- 2026-04-27 · [SEP-2663: Tasks Extension](sources/2026-04-27-mcp-sep-2663-tasks-extension.md) · Luca Chang, Caitie McCaffrey
+- 2026-04-23 · [What We Learned Building Cloud Agents](sources/2026-04-23-cognition-what-we-learned-building-cloud-agents.md) · The Cognition Team
 - 2026-04-23 · [An update on recent Claude Code quality reports](sources/2026-04-23-anthropic-claude-code-quality-postmortem.md) · Anthropic
+- 2026-04-20 · [The runtime behind production deep agents](sources/2026-04-20-langchain-runtime-behind-deep-agents.md) · Sydney Runkle, Vivek Trivedy
+- 2026-04-15 · [The next evolution of the Agents SDK](sources/2026-04-15-openai-next-evolution-agents-sdk.md) · OpenAI
+- 2026-04-15 · [Project Think: building the next generation of AI agents on Cloudflare](sources/2026-04-15-cloudflare-project-think.md) · Sunil Pai, Kate Reznykova
+- 2026-04-11 · [Your harness, your memory](sources/2026-04-11-chase-your-harness-your-memory.md) · Harrison Chase
 - 2026-04-08 · [Scaling Managed Agents: Decoupling the brain from the hands](sources/2026-04-08-anthropic-managed-agents.md) · Lance Martin, Gabe Cemaj, Michael Cohen
+- 2026-04-07 · [Building Spectre](sources/2026-04-07-harvey-building-spectre.md) · Joey Wang, Gabe Pereyra
+- 2026-04-04 · [Absurd In Production](sources/2026-04-04-ronacher-absurd-in-production.md) · Armin Ronacher
 - 2026-04-04 · [LLM Wiki (idea file)](sources/2026-04-04-karpathy-llm-wiki-idea-file.md) · Andrej Karpathy
 - 2026-04-04 · [Continual learning for AI agents](sources/2026-04-04-chase-continual-learning-for-ai-agents.md) · Harrison Chase
 - 2026-04-02 · [Obsidian as a local wiki for what agents write (untitled post)](sources/2026-04-02-kepano-obsidian-as-agent-wiki.md) · kepano (Steph Ango)
 - 2026-04-02 · [LLM Knowledge Bases](sources/2026-04-02-karpathy-llm-knowledge-bases.md) · Andrej Karpathy
+- 2026-03-30 · [Announcing GA for Worker Versioning and Public Preview for Upgrade on Continue-as-New](sources/2026-03-30-temporal-worker-versioning-ga.md) · Brandon Chavis
 - 2026-03-25 · [How we built Claude Code auto mode](sources/2026-03-25-anthropic-claude-code-auto-mode.md) · John Hughes
 - 2026-03-24 · [Harness design for long-running application development](sources/2026-03-24-anthropic-harness-design-long-running-apps.md) · Prithvi Rajasekaran
+- 2026-03-17 · [Ranking Engineer Agent (REA): The Autonomous AI Agent Accelerating Meta’s Ads Ranking Innovation](sources/2026-03-17-meta-ranking-engineer-agent.md) · Ashwin Kumar, Erwin Gao, Matan Levi, Sheela Yadawad, Sherman Wong, Sneha Iyer, Vinodh Kumar Sunkara
+- 2026-03-11 · [Updating AI Agents safely in production](sources/2026-03-11-restate-updating-agents-safely.md) · Giselle van Dongen, Francesco Guardiani
+- 2026-03-09 · [Under the hood: Security architecture of GitHub Agentic Workflows](sources/2026-03-09-github-agentic-workflows-security.md) · Landon Cox, Jiaxiao Zhou
 - 2026-03-06 · [Eval awareness in Claude Opus 4.6's BrowseComp performance](sources/2026-03-06-anthropic-eval-awareness-browsecomp.md) · Russell Coleman
+- 2026-02-27 · [How we built security into Custom Agents](sources/2026-02-27-notion-security-in-custom-agents.md) · Sean Keenan, Jacob Brackett
+- 2026-02-19 · [Minions: Stripe’s one-shot, end-to-end coding agents—Part 2](sources/2026-02-19-stripe-minions-part-2.md) · Alistair Gray
 - 2026-02-05 · [Quantifying infrastructure noise in agentic coding evals](sources/2026-02-05-anthropic-infrastructure-noise.md) · Gian Segato
 - 2026-02-05 · [Building a C compiler with a team of parallel Claudes](sources/2026-02-05-anthropic-building-c-compiler.md) · Nicholas Carlini
 - 2026-01-21 · [Designing AI-resistant technical evaluations](sources/2026-01-21-anthropic-ai-resistant-evaluations.md) · Tristan Hume
+- 2026-01-12 · [Why We Built Our Own Background Agent](sources/2026-01-12-ramp-background-agent.md) · Zach Bruggeman, Jason Quense, Rahul Sengottuvelu
+- 2026-01-09 · [Code And Let Live](sources/2026-01-09-fly-code-and-let-live.md) · Kurt Mackey
 - 2026-01-09 · [Demystifying evals for AI agents](sources/2026-01-09-anthropic-demystifying-evals.md) · Mikaela Grace, Jeremy Hadfield, Rodrigo Olivares, Jiri De Jonghe
+- 2025-12-11 · [How to think about durable execution](sources/2025-12-11-hatchet-how-to-think-about-durable-execution.md) · Alexander Belanger
+- 2025-12-10 · [The Three Durable Function Forms](sources/2025-12-10-vanlightly-three-durable-function-forms.md) · Jack Vanlightly
+- 2025-12-09 · [Background Coding Agents: Predictable Results Through Strong Feedback Loops (Honk, Part 3)](sources/2025-12-09-spotify-feedback-loops-part-3.md) · Max Charas, Marc Bruggmann
+- 2025-12-04 · [The Durable Function Tree - Part 2](sources/2025-12-04-vanlightly-durable-function-tree-part-2.md) · Jack Vanlightly
 - 2025-11-26 · [Effective harnesses for long-running agents](sources/2025-11-26-anthropic-harnesses-long-running-agents.md) · Justin Young
+- 2025-11-24 · [Demystifying Determinism in Durable Execution](sources/2025-11-24-vanlightly-determinism-in-durable-execution.md) · Jack Vanlightly
 - 2025-11-24 · [Introducing advanced tool use on the Claude Developer Platform](sources/2025-11-24-anthropic-advanced-tool-use.md) · Bin Wu
+- 2025-11-06 · [1,500+ PRs Later: Spotify’s Journey with Our Background Coding Agent (Honk, Part 1)](sources/2025-11-06-spotify-background-coding-agent-part-1.md) · Max Charas, Marc Bruggmann
 - 2025-11-04 · [Code execution with MCP: Building more efficient agents](sources/2025-11-04-anthropic-code-execution-with-mcp.md) · Adam Jones, Conor Kelly
+- 2025-11-03 · [Absurd Workflows: Durable Execution With Just Postgres](sources/2025-11-03-ronacher-absurd-workflows.md) · Armin Ronacher
+- 2025-10-25 · [Agent Frameworks, Runtimes, and Harnesses- oh my!](sources/2025-10-25-chase-frameworks-runtimes-harnesses.md) · Harrison Chase
 - 2025-10-20 · [Beyond permission prompts: making Claude Code more secure and autonomous](sources/2025-10-20-anthropic-claude-code-sandboxing.md) · David Dworken, Oliver Weller-Davies
 - 2025-10-16 · [Equipping agents for the real world with Agent Skills](sources/2025-10-16-anthropic-agent-skills.md) · Barry Zhang, Keith Lazuka, Mahesh Murag
 - 2025-09-29 · [Effective context engineering for AI agents](sources/2025-09-29-anthropic-context-engineering.md) · Prithvi Rajasekaran, Ethan Dixon, Carly Ryan, Jeremy Hadfield
 - 2025-09-17 · [A postmortem of three recent issues](sources/2025-09-17-anthropic-postmortem-three-issues.md) · Sam McAllister
 - 2025-09-11 · [Writing effective tools for agents — with agents](sources/2025-09-11-anthropic-writing-tools-for-agents.md) · Ken Aizawa
+- 2025-09-04 · [Building LangGraph: Designing an Agent Runtime from first principles](sources/2025-09-04-langchain-building-langgraph.md) · Nuno Campos
+- 2025-07-28 · [Remediation: What happens after AI goes wrong?](sources/2025-07-28-vanlightly-remediation.md) · Jack Vanlightly
 - 2025-07-14 · [Context Rot: How Increasing Input Tokens Impacts LLM Performance](sources/2025-07-14-chroma-context-rot.md) · Kelly Hong, Anton Troynikov, Jeff Huber
 - 2025-06-27 · [Context engineering](sources/2025-06-27-willison-context-engineering.md) · Simon Willison
 - 2025-06-27 · [Q: Why is “error analysis” so important in AI evals, and how is it performed?](sources/2025-06-27-husain-shankar-error-analysis-faq.md) · Hamel Husain, Shreya Shankar

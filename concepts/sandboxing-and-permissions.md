@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Permissions, sandboxing and containment"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -22,6 +22,9 @@ Risk is the likelihood of a failure times its blast radius, and giving an agent 
 - Deny network by default and send all traffic through a proxy with a domain allow-list. Treat each allowed domain as a capability you are granting. [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md) · [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
 - Keep real credentials outside the sandbox. Give it a scoped stand-in and let a proxy attach the real token after checking the request. [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
 - Use a disposable environment per session where data is sensitive. [Every, Aug 2026](../sources/2026-08-25-every-shared-company-agent.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
+- Keep the agent loop outside the sandbox, with the session history, credentials and approval checks. Assume that anything reachable from inside will be leaked or abused, and that a check enforced inside can be bypassed. [Rivet, Jul 2026](../sources/2026-07-27-rivet-harness-outside-the-sandbox.md)
+- Keep whatever configures the agent out of its reach, since an agent can rewrite its own configuration. OpenAI treats the agent, its environment and its code as untrusted, and runs the gateway that configures the agent apart from the harness. [OpenAI, Nov 2026](../sources/2026-11-12-openai-securing-persistent-agents.md)
+- Start from no access and grant capabilities one at a time, instead of starting broad and taking away. [Project Think, Apr 2026](../sources/2026-04-15-cloudflare-project-think.md) · [Notion, Feb 2026](../sources/2026-02-27-notion-security-in-custom-agents.md)
 
 **Then add a gate**
 
@@ -40,6 +43,8 @@ Risk is the likelihood of a failure times its blast radius, and giving an agent 
 - Count the routes for exfiltration generously. Any network request can carry data out, and so can an image that loads or a link shown to the user. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md)
 - Load no project configuration before the trust decision. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
 
+A boundary limits what an action can reach. Approving, repeating and undoing the actions that get through is on [side effects and approvals](side-effects.md).
+
 **Fit it to the user**
 
 - Match isolation to who is supervising. Developers can handle prompts. Non-developers need a boundary that is always on. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
@@ -54,10 +59,10 @@ Risk is the likelihood of a failure times its blast radius, and giving an agent 
 
 ## Open problems
 
-Memory poisoning, trust escalation through subagent output, and agent identity. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
+Memory poisoning, trust escalation through subagent output, and agent identity. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md) Current practice on the last of these is on [agent identity and tenancy](agent-identity.md).
 
 On the provider side, the same principle appears as confidential inference: shrink the code that can see plaintext to one small attested component. [Confidential inference, Jun 2025](../sources/2025-06-18-anthropic-confidential-inference.md)
 
 ## Related
 
-[Harness](harness.md) · [MCP](mcp.md) · [Memory](memory.md) · [Running agents in production](production-operations.md)
+[Harness](harness.md) · [MCP](mcp.md) · [Memory](memory.md) · [Side effects and approvals](side-effects.md) · [Agent identity and tenancy](agent-identity.md) · [Agent platforms](agent-platforms.md) · [Running agents in production](production-operations.md)

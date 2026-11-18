@@ -8,7 +8,7 @@ published: 2026-04-08
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [context-engineering, harness, long-running-agents, mcp, memory, production-operations, sandboxing-and-permissions]
+concepts: [agent-platforms, context-engineering, durable-execution, harness, long-running-agents, mcp, memory, production-operations, sandboxing-and-permissions]
 ---
 
 # Scaling Managed Agents: Decoupling the brain from the hands
@@ -45,3 +45,4 @@ concepts: [context-engineering, harness, long-running-agents, mcp, memory, produ
 
 - Describes Anthropic's own commercial product; latency numbers are self-reported, and interface names may change.
 - Its critique of irreversible compaction pushes against the compaction-based harnesses in [earlier posts](2026-03-24-anthropic-harness-design-long-running-apps.md).
+- The product's documentation, read in November 2026, adds the limits this article leaves out, such as how long a sandbox is kept and what a stream carries: see the [Managed Agents docs note](2026-11-17-anthropic-managed-agents-overview.md).

@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Agents and workflows"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: settled
 ---
@@ -25,6 +25,7 @@ Errors also multiply along the way. At 95% accuracy per step, a task of 10 steps
 - Keep the loop simple. The model emits text or a tool call. Text ends the turn. A tool call is checked, run, and its result fed back. [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md) · [Theo, 22 Oct 2026](../sources/2026-10-22-theo-what-is-a-harness.md)
 - Give every agent stop conditions and points where a person can step in: iteration caps, and loop breakers such as stopping after three identical calls. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) · [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md)
 - Check a plan before it runs when a wrong one is expensive: reject plans that name a tool the agent lacks or run past a step limit, or have a model judge them. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
+- Mix the two in one coded workflow when some steps must always happen. Write linting, pushing and CI as fixed steps, and give the agent the steps that need judgment. Stripe does this to guarantee the required steps and to save tokens. Dropbox found that an agent left to wait for its own CI held a session for hours or validated against the wrong tests. [Stripe, Feb 2026](../sources/2026-02-19-stripe-minions-part-2.md) · [Dropbox, May 2026](../sources/2026-05-21-dropbox-introducing-nova.md) · [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md)
 - Try a thin scaffold first. A short prompt, a shell tool and an edit tool were state of the art on SWE-bench Verified in early 2025. [SWE-bench scaffold, Jan 2025](../sources/2025-01-06-anthropic-swe-bench-sonnet.md)
 - Do not use an agent for every model call. Small generation jobs such as titles and commit messages can go straight to a model API. [Theo, 9 Nov 2026](../sources/2026-11-09-theo-harness-difference-approaching-zero.md)
 - Expect agents to fit best where success can be checked and a person can oversee. Coding and customer support were the first examples. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
@@ -39,7 +40,8 @@ Errors also multiply along the way. At 95% accuracy per step, a task of 10 steps
 
 - The framing from [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) still holds, but default harnesses now ship planning, subagents and compaction. "Building an agent" increasingly means configuring an existing harness with tools, instructions and MCP servers. [Theo, 22 Oct 2026](../sources/2026-10-22-theo-what-is-a-harness.md) · [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md) See [context layer](context-layer.md).
 - For work that runs for hours, the workflow patterns come back as roles: planner, generator, evaluator. See [long-running agents](long-running-agents.md).
+- Production systems now sit between the two. One company calls its version a *blueprint*: a workflow whose nodes are either fixed code or an agent loop. [Stripe, Feb 2026](../sources/2026-02-19-stripe-minions-part-2.md) An agent cut into recorded steps can also be paused, approved and resumed midway, which a single loop in memory cannot. [Building LangGraph, Sep 2025](../sources/2025-09-04-langchain-building-langgraph.md) See [durable execution](durable-execution.md).
 
 ## Related
 
-[Harness](harness.md) · [Tool design](tool-design.md) · [Multi-agent systems](multi-agent-systems.md) · [Long-running agents](long-running-agents.md)
+[Harness](harness.md) · [Tool design](tool-design.md) · [Multi-agent systems](multi-agent-systems.md) · [Long-running agents](long-running-agents.md) · [Durable execution](durable-execution.md) · [Background agents](background-agents.md)

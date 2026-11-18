@@ -1,7 +1,7 @@
 ---
 type: playbook
 title: "Building an agent product"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 ---
 
@@ -67,15 +67,26 @@ Detail: [evals](../concepts/evals.md), [trusting eval numbers](../concepts/eval-
 
 Detail: [permissions, sandboxing and containment](../concepts/sandboxing-and-permissions.md).
 
-## 8. Ship and watch
+## 8. Decide where it runs
+
+- Skip this step while the agent is an interactive session on one machine; that is this brain's reading. Once it must run unattended, wait for people or serve several users, it needs what one vendor lists as a production runtime: durable execution, interrupt and resume, sandboxes, multi-tenancy. [Deep Agents runtime, Apr 2026](../sources/2026-04-20-langchain-runtime-behind-deep-agents.md)
+- Keep the session record outside every process and sandbox, run the loop outside the sandbox, and make workers and sandboxes disposable. [Shopify, May 2026](../sources/2026-05-28-shopify-under-the-river.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
+- Choose how a run survives a crash (recorded steps, checkpoints or a session log), then decide for each tool whether it may run twice. [Determinism, Nov 2025](../sources/2025-11-24-vanlightly-determinism-in-durable-execution.md) · [Building LangGraph, Sep 2025](../sources/2025-09-04-langchain-building-langgraph.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md) · [Durable harness, Oct 2026](../sources/2026-10-19-vercel-making-every-harness-durable.md)
+- Decide whose authority the agent acts under, and keep credentials out of the sandbox. [Uber, May 2026](../sources/2026-05-21-uber-solving-identity-crisis-for-ai-agents.md) · [Notion, Feb 2026](../sources/2026-02-27-notion-security-in-custom-agents.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
+- Rent when one lab's models are enough and the session may sit on its servers, or rent from a cloud and attach the runtime to your own network. Build when you need to switch model providers, change the platform at your product's pace, read every trace, or keep code and customer data away from any third party. Either way keep your own copy of the session log. This is this brain's reading of the positions in these sources. [Plumbing wars, Apr 2026](../sources/2026-04-28-proctor-plumbing-wars.md) · [Laminar, Oct 2026](../sources/2026-10-20-ramp-building-laminar.md) · [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md) · [Sierra, Jul 2026](../sources/2026-07-29-sierra-agency-sandboxes-for-agents.md) · [Axonius, Aug 2026](../sources/2026-08-18-aws-axonius-multi-tenant-agents.md) · [Session portability, Jul 2026](../sources/2026-07-30-earendil-session-you-cannot-take-with-you.md)
+
+Detail: [agent platforms](../concepts/agent-platforms.md), [durable execution](../concepts/durable-execution.md), [side effects and approvals](../concepts/side-effects.md), [managed agent runtimes](../concepts/managed-agent-runtimes.md), [agent identity and tenancy](../concepts/agent-identity.md), [background agents](../concepts/background-agents.md).
+
+## 9. Ship and watch
 
 - Run quality checks against the production path and gate harness changes like model changes. [Anthropic postmortem, Sep 2025](../sources/2025-09-17-anthropic-postmortem-three-issues.md) · [Claude Code postmortem, Apr 2026](../sources/2026-04-23-anthropic-claude-code-quality-postmortem.md)
 - Make runs resumable and deploys safe for agents that are mid-task. [Multi-agent research system, Jun 2025](../sources/2025-06-13-anthropic-multi-agent-research-system.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
 - Let a run pause for a person and resume: store it as a thread of events, and make asking a person an output the model can choose. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
+- Pin running agents to the release they started on, and put a queue with limits in front of unattended work. [Updating agents safely, Mar 2026](../sources/2026-03-11-restate-updating-agents-safely.md) · [Harvey talk, Nov 2026](../sources/2026-11-11-harvey-harness-has-to-finish-the-job.md)
 
 Detail: [running agents in production](../concepts/production-operations.md).
 
-## 9. Keep it improving
+## 10. Keep it improving
 
 - Turn every repeated correction into a check, a rule or a skill, and prune what stops earning its place. [Cherny, 15 Jul 2026](../sources/2026-07-15-cherny-automation-is-the-highest-leverage.md) · [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md)
 - At each model release, remove scaffolding piece by piece and keep what still carries load. [Harness design, Mar 2026](../sources/2026-03-24-anthropic-harness-design-long-running-apps.md)

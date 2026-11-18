@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Memory"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -41,6 +41,7 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 - Use files before a memory product. [Chase, Jun 2026](../sources/2026-06-30-chase-wiki-memory.md)
 - For long tasks, have the agent keep working notes outside the window and read them back after a reset. [Context engineering, Sep 2025](../sources/2025-09-29-anthropic-context-engineering.md)
 - Give each concurrent writer its own page. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+- Keep the canonical session log and long-term memory in storage you control, in a form another harness could read. What a provider stores or seals for you is the part you cannot take along. [Your harness, your memory, Apr 2026](../sources/2026-04-11-chase-your-harness-your-memory.md) · [Session portability, Jul 2026](../sources/2026-07-30-earendil-session-you-cannot-take-with-you.md)
 
 ## Risks and open questions
 
@@ -51,4 +52,4 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 
 ## Related
 
-[LLM wiki](llm-wiki.md) · [Context layer](context-layer.md) · [Context engineering](context-engineering.md) · [Compounding](compounding.md)
+[LLM wiki](llm-wiki.md) · [Context layer](context-layer.md) · [Context engineering](context-engineering.md) · [Compounding](compounding.md) · [Managed agent runtimes](managed-agent-runtimes.md)

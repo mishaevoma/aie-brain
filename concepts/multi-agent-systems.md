@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Multi-agent systems"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -31,6 +31,8 @@ More agents spend more tokens on a problem, in parallel, with each context kept 
 - Make the work separable. When every agent chased the same bug, a reference implementation used as an oracle split the problem. [C compiler, Feb 2026](../sources/2026-02-05-anthropic-building-c-compiler.md)
 - Separate the agent that builds from the agent that grades, where the task is beyond what the model does reliably alone. Below that line a grader only adds cost. See [long-running agents](long-running-agents.md). [Harness design, Mar 2026](../sources/2026-03-24-anthropic-harness-design-long-running-apps.md)
 - Resume from checkpoints, because errors compound across agents. [Multi-agent research system, Jun 2025](../sources/2025-06-13-anthropic-multi-agent-research-system.md)
+- Give a background subagent its own durable conversation and a handle, so that it can outlive the parent's turn, take follow-ups and wake the parent when it finishes. [Atlassian, Aug 2026](../sources/2026-08-26-atlassian-rovo-agent-harness.md) Or keep the call synchronous for the parent and suspend the parent's turn while it waits, so that it holds no server resources. [Linear, Aug 2026](../sources/2026-08-10-linear-how-we-built-linear-agent.md)
+- Isolate subagents at the storage level, each with its own database or session, and let the lead agent start sessions and read their status through tools. [Project Think, Apr 2026](../sources/2026-04-15-cloudflare-project-think.md) · [Ramp, Jan 2026](../sources/2026-01-12-ramp-background-agent.md)
 
 ## Risks
 
@@ -59,4 +61,4 @@ An interface can also broker between harnesses, so that an agent in one harness 
 
 ## Related
 
-[Agents and workflows](agents-and-workflows.md) · [Long-running agents](long-running-agents.md) · [Verification](verification.md) · [Context engineering](context-engineering.md)
+[Agents and workflows](agents-and-workflows.md) · [Long-running agents](long-running-agents.md) · [Verification](verification.md) · [Context engineering](context-engineering.md) · [Agent platforms](agent-platforms.md) · [Background agents](background-agents.md)

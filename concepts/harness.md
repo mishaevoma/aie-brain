@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Harness"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: contested
 ---
@@ -37,6 +37,8 @@ A teardown of eight coding harnesses finds the same parts in each [Loams, Oct 20
 
 Definitions vary in width. The narrow one is tools, a call syntax, an executor and a result path [Theo, 22 Oct 2026](../sources/2026-10-22-theo-what-is-a-harness.md). The wide one is everything in a coding agent except the model [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md). The barest comes from product builders: a prompt, a switch statement over the model's structured output, the accumulated context and a loop [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md). In eval vocabulary the *agent harness* is the scaffold under test, and the *evaluation harness* is what runs and scores the tasks [Demystifying evals, Jan 2026](../sources/2026-01-09-anthropic-demystifying-evals.md). Building and tuning this layer, including testing how it behaves, is called *harness engineering* [Google, Sep 2026](../sources/2026-09-09-google-anatomy-of-harness-engineering.md).
 
+Two neighbours are often confused with it, though one author grants that none of the three words is settled. A *framework* is a library whose value is its abstractions. A *runtime* keeps deployed agents running, durable execution above all, and a later list adds sandboxes and delegated credentials. [Frameworks, runtimes and harnesses, Oct 2025](../sources/2025-10-25-chase-frameworks-runtimes-harnesses.md) · [Deep Agents runtime, Apr 2026](../sources/2026-04-20-langchain-runtime-behind-deep-agents.md) See [agent platforms](agent-platforms.md). One workflow vendor calls agent SDKs such as the OpenAI Agents SDK the *inner harness*, and its own layer of durability and control the *outer harness*. [Temporal harness, Aug 2026](../sources/2026-08-20-temporal-agent-harness.md)
+
 ## What to do
 
 - Adopt before you build. Reconfigure an existing harness with tools, instructions and MCP servers before writing infrastructure. [Theo, 22 Oct 2026](../sources/2026-10-22-theo-what-is-a-harness.md)
@@ -58,4 +60,4 @@ This brain's reading, which is a synthesis and not a source claim: they are answ
 
 ## Related
 
-[Context layer](context-layer.md) · [Agents and workflows](agents-and-workflows.md) · [Long-running agents](long-running-agents.md) · [Evals](evals.md) · [Running agents in production](production-operations.md)
+[Context layer](context-layer.md) · [Agents and workflows](agents-and-workflows.md) · [Agent platforms](agent-platforms.md) · [Durable execution](durable-execution.md) · [Long-running agents](long-running-agents.md) · [Evals](evals.md) · [Running agents in production](production-operations.md)
