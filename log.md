@@ -122,3 +122,9 @@ Research into how agents run in production, as of November 2026: durable executi
 - .agents/skills/brain-consult/brain-root.sh
 - .agents/skills/brain-consult/references/project-review.md
 - site/agentfiles.py
+
+## [2026-11-18] edit | Check the public review entry point before merge
+
+- README.md
+- .github/workflows/lint.yml
+- site/test_review_publication.py

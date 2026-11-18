@@ -127,6 +127,8 @@ python3 tools/lint.py --ages
 
 Prints, for each concept page and playbook, how many of its cited lines rest only on sources older than a year, with the oldest and newest source date. Every page carries the date it was last edited, which says nothing about how old its evidence is. This report does.
 
+For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`. It generates the files in a temporary directory and checks that an agent can follow the index to the same review instructions as a local install. CI runs this check on pull requests.
+
 ## Licence
 
 MIT, see [LICENSE](LICENSE). It covers this repository's own text and code. The articles, posts and videos that the source notes summarise and link to remain their authors' work.
