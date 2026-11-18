@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Long-running agents"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -33,8 +33,11 @@ Given only a high-level goal, a strong model fails in predictable ways over long
 
 - Keep the full session log outside both the context window and the sandbox, make the loop stateless, and resume from the log. [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
 - Make waiting an ordinary state. Give the model outputs for asking a person and for declaring itself done, store the run as one serialisable thread of events, and resume it from a webhook when the answer comes. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
-- Treat sandboxes as disposable. A dead container should be a tool error the agent can work around. [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
+- Treat sandboxes as disposable. A dead container should be a tool error the agent can work around. [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md) Two vendors disagree and keep a durable machine that is snapshotted and woken. [Code And Let Live, Jan 2026](../sources/2026-01-09-fly-code-and-let-live.md) · [Cognition, Apr 2026](../sources/2026-04-23-cognition-what-we-learned-building-cloud-agents.md)
+- Do not keep a process alive through a long wait. Start the outside job, store its id, release the compute and resume when the result or the person's answer arrives. [Project Think, Apr 2026](../sources/2026-04-15-cloudflare-project-think.md) · [Building LangGraph, Sep 2025](../sources/2025-09-04-langchain-building-langgraph.md)
 - Cap loops: stop after repeated identical calls, and hand back to a person after a set number of denials. [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md) · [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md)
+
+How a run is recorded and resumed, and what each way of doing it costs, is on [durable execution](durable-execution.md). Where the loop and its sandboxes run is on [agent platforms](agent-platforms.md).
 
 ## Scaffolding expires
 
@@ -49,4 +52,4 @@ Given only a high-level goal, a strong model fails in predictable ways over long
 
 ## Related
 
-[Harness](harness.md) · [Verification](verification.md) · [Context engineering](context-engineering.md) · [Multi-agent systems](multi-agent-systems.md) · [Running agents in production](production-operations.md)
+[Harness](harness.md) · [Verification](verification.md) · [Context engineering](context-engineering.md) · [Multi-agent systems](multi-agent-systems.md) · [Durable execution](durable-execution.md) · [Agent platforms](agent-platforms.md) · [Background agents](background-agents.md) · [Running agents in production](production-operations.md)

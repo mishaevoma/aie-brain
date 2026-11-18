@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Human judgment and oversight"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -44,6 +44,7 @@ The test of ownership: can you explain the answer, even with the agent's help? Y
 
 - Let the domain expert judge outputs and edit prompts directly, instead of briefing engineers who translate. [Husain field guide, Mar 2025](../sources/2025-03-24-husain-field-guide-improving-ai-products.md)
 - Ask for the verdict and the reason in writing. Writing the critique makes experts state standards they had not put into words. [Husain field guide, Mar 2025](../sources/2025-03-24-husain-field-guide-improving-ai-products.md)
+Which actions need a person's approval, and how an approval can wait for days, is on [side effects and approvals](side-effects.md).
 
 **As a habit**
 
@@ -57,7 +58,8 @@ The test of ownership: can you explain the answer, even with the agent's help? Y
 - Per-action prompts are being replaced by boundaries and classifiers, because people approve nearly everything. See [permissions and sandboxing](sandboxing-and-permissions.md). [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md)
 - Approval does not disappear. For a few high-stakes actions, such as sending external email or changing production data, quick access to a person is what makes it acceptable to give the agent the tool. The request goes out as a tool call and is answered where the person already works. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
 - Unreviewed autonomous code is still a security risk. Keep a person before deployment. [C compiler, Feb 2026](../sources/2026-02-05-anthropic-building-c-compiler.md)
+- From prompting each run to being asked by agents that start themselves. Each check-in costs attention, and one measure is the share of check-ins a person acts on. [Proactive agents, Nov 2026](../sources/2026-11-17-langchain-proactive-agents.md) See [background agents](background-agents.md).
 
 ## Related
 
-[Verification](verification.md) · [Compounding](compounding.md) · [Permissions and sandboxing](sandboxing-and-permissions.md)
+[Verification](verification.md) · [Compounding](compounding.md) · [Permissions and sandboxing](sandboxing-and-permissions.md) · [Side effects and approvals](side-effects.md) · [Background agents](background-agents.md) · [Agent identity and tenancy](agent-identity.md)

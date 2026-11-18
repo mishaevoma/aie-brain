@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Verification"
-updated: 2026-11-17
+updated: 2026-11-18
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -44,6 +44,9 @@ The bottleneck has moved from writing code to being sure it is right. [Osmani, 3
 
 - Run cheap checks first, before shared review and CI. [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md)
 - Set a round limit, after which a failing check goes to a person. One team uses three. [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md)
+- Cap the expensive rounds separately. One company allows an unattended agent at most two full CI runs, after it has looped on local linters. [Stripe, Feb 2026](../sources/2026-02-19-stripe-minions-part-2.md)
+- For an agent nobody is watching, expose the checks as one tool and run them again as a condition for finishing. One team's agent does not know what the tool runs: checks are picked by what the repository contains, and their output is cut to the relevant errors. [Spotify, Dec 2025](../sources/2025-12-09-spotify-feedback-loops-part-3.md)
+- Add a judge that sees only the task and the diff, to catch work outside the task. At that company it vetoes about a quarter of sessions, and after a veto the agent corrects course about half the time. The judge itself has no evals yet. [Spotify, Dec 2025](../sources/2025-12-09-spotify-feedback-loops-part-3.md)
 - Start a new gate in observe mode and read what it would have blocked before enforcing it. [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md)
 - Measure your checks against real past bugs, with a clean control set. [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md)
 - Read the command and its output before the agent's summary. [Osmani, 3 Nov 2026](../sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md)
@@ -57,4 +60,4 @@ The bottleneck has moved from writing code to being sure it is right. [Osmani, 3
 
 ## Related
 
-[Evals](evals.md) · [Compounding](compounding.md) · [Long-running agents](long-running-agents.md) · [Human judgment](human-judgment.md) · [Skills](skills.md)
+[Evals](evals.md) · [Compounding](compounding.md) · [Long-running agents](long-running-agents.md) · [Background agents](background-agents.md) · [Human judgment](human-judgment.md) · [Skills](skills.md)

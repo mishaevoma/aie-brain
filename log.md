@@ -94,3 +94,21 @@ The README now opens with the install: `git clone` into `~/.aie-brain` plus one 
 - Disagreements now recorded side by side: one agent or several (`concepts/multi-agent-systems.md`), adopt a harness or own the loop (`concepts/harness.md`), fix eval criteria first or let them emerge (`concepts/eval-validity.md`), where evals start and what a grader returns (`concepts/evals.md`), what counts as an agent (`concepts/agents-and-workflows.md`), and a small corpus sent whole against selection (`concepts/retrieval.md`).
 - One new page, `concepts/error-analysis.md`, since the idea has a name and two notes behind it and would have overgrown the evals page. `concepts/evals.md` moved from `settled` to `evolving`. "An existing harness before your own" left the list of what the sources agree on in `overview.md` and became a live debate.
 - Anthropic now accounts for 29 of 59 sources. All nine additions are older than a year, so `--ages` went from 81 of 384 cited lines resting only on old sources to 148 of 454.
+
+## [2026-11-18] ingest | Agent platforms and durable runtimes (79 sources)
+
+- considered.md
+- glossary.md
+- index.md
+- overview.md
+- watchlist.md
+- concepts/ (16 files)
+- playbooks/building-an-agent-product.md
+- sources/ (80 files)
+
+Research into how agents run in production, as of November 2026: durable execution, agent platforms, managed runtimes, background agents, identity and tenancy. About 600 pages were captured in six discovery passes; 79 became source notes and 49 went to `considered.md` with a reason. 78 notes rest on a full reading of the source, most of them from a saved capture, and one on part of a specification. 52 were drafted by subagents and checked by the session that wrote this entry, and a script compared each note's figures, date and authors with the capture and looked for copied runs of nine or more words. Six reviewers then checked every cited line of the new and edited pages against its notes, and their 87 findings were applied: mostly figures without the company they were measured at, dropped qualifiers, and two vendors' advice merged into one. Undated documentation is dated by the day it was read, 17 November 2026, and says so under Caveats.
+
+- New concept pages: agent platforms, durable execution, side effects and approvals, managed agent runtimes, background agents, agent identity and tenancy.
+- Edited: harness, agents and workflows, verification, long-running agents, running agents in production, permissions and sandboxing, multi-agent systems, human judgment, MCP, memory. The product playbook gains a step, "Decide where it runs".
+- `overview.md`: a sixth layer for the agent platform, two items of consensus, three live debates, additions to the timeline, and a revised list of gaps. `glossary.md`: 37 terms. `watchlist.md`: feeds, open leads and gaps for this area.
+- Left open: eleven concept pages are over the guide of about 600 words, the longest about 810.
