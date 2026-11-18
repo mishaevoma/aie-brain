@@ -477,7 +477,7 @@ def repo_lock():
     except ImportError:  # not available on Windows
         yield
         return
-    name = "ai-engineering-brain-" + hashlib.sha1(str(ROOT).encode()).hexdigest()[:12] + ".lock"
+    name = "aie-brain-" + hashlib.sha1(str(ROOT).encode()).hexdigest()[:12] + ".lock"
     with open(Path(tempfile.gettempdir()) / name, "w") as handle:
         fcntl.flock(handle, fcntl.LOCK_EX)
         try:

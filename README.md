@@ -1,8 +1,34 @@
-# ai-engineering-brain
+# AI Engineering Brain
 
-A wiki of current practice for building AI products, written and maintained by AI agents and read by both agents and people.
+A wiki of current practice for building AI products, written and maintained by AI agents and read by both agents and people. Every claim links to a dated source.
 
-It exists for three things:
+## Install
+
+Clone it, then add one line to `AGENTS.md`. This works in any coding agent that reads an instruction file and can open files: Codex, Cursor, OpenCode, Claude Code and others.
+
+```bash
+git clone https://github.com/mishaevoma/aie-brain ~/.aie-brain
+```
+
+```markdown
+For anything involving LLMs or agents, consult the AI engineering brain: follow ~/.aie-brain/.agents/skills/brain-consult/SKILL.md.
+```
+
+The line can go in one project's `AGENTS.md` or in your agent's global instruction file. As of November 2026, Claude Code reads `AGENTS.md` only in a project that has no `CLAUDE.md`. Where there is one, put the line there.
+
+Or install the consult skill and let it fetch the wiki:
+
+```bash
+npx skills add mishaevoma/aie-brain
+```
+
+The [`skills`](https://github.com/vercel-labs/skills) installer asks which agents to set up, then copies `brain-consult` into the skill folder of each. Add `-g` to install it for every project. The first time the skill runs, it clones this repository into `~/.aie-brain`.
+
+Either way, the skill brings the copy in `~/.aie-brain` up to date when it runs, at most once a day. Set `AIE_BRAIN` to keep the brain somewhere else, or to point the skill at a clone you maintain yourself, which it never touches.
+
+Then ask your agent "what does the brain say about evals?" or "review this design against the brain".
+
+## What it is for
 
 1. **Building.** Turn what the best practitioners publish into concrete decisions when designing an agent, a tool, an eval or a harness.
 2. **Staying current.** Give a coding agent dated, sourced practices instead of whatever its training data happened to contain.
@@ -40,33 +66,17 @@ This is the LLM wiki pattern: raw sources, a wiki the agent owns, and a schema f
 
 ## Using it
 
-**Ask it a question.** Open this folder in a coding agent and ask. The agent reads `index.md`, then the pages that fit, and answers with citations. The `brain-consult` skill describes how.
+**Ask it a question.** Ask from any project where the brain is installed, or open this folder in a coding agent and ask. The agent reads `index.md`, then the pages that fit, and answers with citations. The `brain-consult` skill describes how.
 
 **Review a design.** Ask the agent to review an architecture or a repository setup against the brain. It walks the matching playbook step by step and says, for each step, whether the design agrees with the brain, falls short of it, or lies outside what the brain covers (`brain-consult`, "Review a whole design").
 
-**Use it from another project.** There are three ways. The first is to add the folder to a session:
+**Connect it another way.** Link the consult skill from a clone instead of copying it, and one `git pull` updates the skill and the wiki together:
 
 ```bash
-claude --add-dir /path/to/ai-engineering-brain
+ln -s ~/.aie-brain/.agents/skills/brain-consult ~/.claude/skills/brain-consult
 ```
 
-The second is to link the consult skill from a local clone, so every session has it. The skill finds the brain through the link:
-
-```bash
-ln -s /path/to/ai-engineering-brain/.agents/skills/brain-consult ~/.claude/skills/brain-consult
-```
-
-The third is to install a copy of the consult skill with the open `skills` installer. Only `brain-consult` is offered; the editing skills are marked internal:
-
-```bash
-npx skills add mishaevoma/ai-engineering-brain --skill brain-consult -g
-```
-
-A copied skill is not connected to a clone. Set `AIE_BRAIN` to the path of a local clone so the skill can find it. Without one it clones the repository, or reads the public copy over HTTPS.
-
-For tools without skills, add one line to that project's `AGENTS.md`: "For anything involving LLMs or agents, consult the AI engineering brain at /path/to/ai-engineering-brain, starting at index.md."
-
-Nothing has to be installed. An agent that is only given this repository's address can clone it, read `AGENTS.md`, then `index.md`, and follow `.agents/skills/brain-consult/SKILL.md` as written.
+In Claude Code, `claude --add-dir ~/.aie-brain` adds the folder to a single session. And nothing has to be installed at all: an agent that is only given this repository's address can clone it, read `AGENTS.md`, then `index.md`, and follow `.agents/skills/brain-consult/SKILL.md` as written.
 
 **Cite it.** The brain changes. An answer that will be kept should name the version it read, which `git log -1 --format='%h %cs'` prints.
 
