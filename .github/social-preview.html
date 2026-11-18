@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<!--
+  Source of .github/social-preview.png, the image set under Settings > General > Social preview.
+  It is a fixed 1280 x 640 canvas. Render it with headless Chrome from the repository root:
+
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+      --force-device-scale-factor=1 --window-size=1280,640 --virtual-time-budget=8000 \
+      --screenshot=.github/social-preview.png .github/social-preview.html
+
+  The fonts (Instrument Serif, Instrument Sans, Geist Mono; SIL Open Font License) load from Google Fonts.
+  Every line of text on the card is taken from the wiki: the dates and names are real source notes,
+  the page is concepts/verification.md, and the three verdicts are the ones brain-consult gives.
+-->
+<head>
+<meta charset="utf-8">
+<title>AI Engineering Brain: social preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=block" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F0E7;
+    --sheet: #FBF9F3;
+    --ink: #17160F;
+    --ink-2: #55524A;
+    --ink-3: #8C887C;
+    --rule: #D5CFC0;
+    --accent: #C4401A;
+    --accent-on-ink: #F08A5D;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "Geist Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 640px; }
+  body {
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* ---------- header ---------- */
+  header { position: absolute; left: 64px; top: 50px; right: 64px; }
+  .repo {
+    font: 500 14px/1 var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .repo b { font-weight: 500; color: var(--accent); }
+  h1 {
+    margin-top: 18px;
+    font: 400 94px/0.98 var(--serif);
+    letter-spacing: -0.012em;
+  }
+  .tagline {
+    margin-top: 16px;
+    font: 400 27px/1.3 var(--sans);
+    letter-spacing: -0.003em;
+    color: var(--ink-2);
+  }
+
+  /* ---------- the three stages ---------- */
+  .flow {
+    position: absolute; left: 64px; right: 64px; bottom: 50px; height: 308px;
+    display: grid;
+    grid-template-columns: 318px 99px 318px 99px 318px;
+  }
+  .stage { display: flex; flex-direction: column; }
+  .label {
+    height: 14px;
+    font: 500 13px/14px var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .label b { font-weight: 500; color: var(--accent); margin-right: 10px; }
+  .body { margin-top: 20px; height: 274px; position: relative; }
+
+  /* 01: the ledger of dated sources */
+  .ledger {
+    height: 100%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+  }
+  .ledger div {
+    height: 30.4px;
+    display: flex; align-items: center; gap: 16px;
+    border-top: 1px solid var(--rule);
+    font: 400 15px/1 var(--sans);
+    white-space: nowrap;
+  }
+  .ledger time { font: 400 13px/1 var(--mono); color: var(--accent); letter-spacing: 0.01em; }
+  .ledger i { font-style: normal; color: var(--ink-3); }
+
+  /* 02: one page of the wiki, with the others behind it */
+  .pages { position: absolute; inset: 0; }
+  .pages::before, .pages::after {
+    content: ""; position: absolute; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper);
+  }
+  .pages::before { left: 16px; right: 0; top: 0; bottom: 16px; }
+  .pages::after { left: 8px; right: 8px; top: 8px; bottom: 8px; background: #F7F4EC; }
+  .page {
+    position: absolute; left: 0; right: 16px; top: 16px; bottom: 0; z-index: 1;
+    border: 1px solid #C9C2B1; border-radius: 5px; background: var(--sheet);
+    padding: 17px 20px 0;
+  }
+  .path { font: 400 12px/1 var(--mono); color: var(--ink-3); letter-spacing: 0.01em; }
+  .page h2 { margin-top: 9px; font: 400 35px/1 var(--serif); letter-spacing: -0.005em; }
+  .meta { margin-top: 10px; display: flex; align-items: center; gap: 10px; font: 400 11.5px/1 var(--mono); color: var(--ink-3); }
+  .chip { padding: 4px 7px 4px; border: 1px solid var(--rule); border-radius: 99px; color: var(--ink-2); }
+  .claims { margin-top: 13px; border-top: 1px solid var(--rule); }
+  .claims p { padding: 9px 0 0; font: 400 13.5px/1.3 var(--sans); color: var(--ink); }
+  .claims cite { display: block; margin-top: 3px; font: 400 11.5px/1 var(--mono); font-style: normal; color: var(--accent); }
+
+  /* 03: the answer */
+  .answer {
+    position: absolute; inset: 0;
+    border-radius: 5px; background: var(--ink); color: #F3F0E7;
+    padding: 21px 22px 0;
+  }
+  .prompt { font: 400 12.5px/1.45 var(--mono); color: #A39E90; }
+  .prompt b { font-weight: 400; color: var(--accent-on-ink); margin-right: 8px; }
+  .verdict { margin-top: 15px; padding-top: 15px; border-top: 1px solid #3A382F; }
+  .verdict + .verdict { margin-top: 14px; padding-top: 14px; }
+  .verdict .v { display: flex; align-items: baseline; justify-content: space-between; }
+  .verdict .v b { font: 600 19px/1 var(--sans); letter-spacing: -0.005em; }
+  .verdict .v span { font: 400 11.5px/1 var(--mono); color: var(--accent-on-ink); }
+  .verdict p { margin-top: 6px; font: 400 13.5px/1.3 var(--sans); color: #C9C4B5; }
+  .verdict.silent .v b { color: #A39E90; }
+  .verdict.silent .v span { color: #8C887C; }
+
+  /* the two verbs between the stages */
+  .step { position: relative; }
+  .step span {
+    position: absolute; left: 0; right: 0; top: 150px; text-align: center;
+    font: 500 12.5px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .step svg { position: absolute; left: 21px; top: 171px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="repo">mishaevoma <b>/</b> aie-brain</div>
+  <h1>AI Engineering Brain</h1>
+  <p class="tagline">A dated, sourced wiki of AI engineering practice that coding agents consult.</p>
+</header>
+
+<div class="flow">
+
+  <section class="stage">
+    <div class="label"><b>01</b>Raw sources</div>
+    <div class="body">
+      <div class="ledger">
+        <div><time>2026-11-17</time><span>Osmani <i>· verification</i></span></div>
+        <div><time>2026-11-13</time><span>Anthropic <i>· safety evaluations</i></span></div>
+        <div><time>2026-11-06</time><span>Anthropic <i>· agent memory</i></span></div>
+        <div><time>2026-10-30</time><span>Theo Browne <i>· harnesses</i></span></div>
+        <div><time>2026-10-18</time><span>Loams <i>· harness teardowns</i></span></div>
+        <div><time>2026-09-09</time><span>Google <i>· harness engineering</i></span></div>
+        <div><time>2026-07-27</time><span>Red Hat <i>· AGENTS.md and skills</i></span></div>
+        <div><time>2026-06-30</time><span>Harrison Chase <i>· wiki memory</i></span></div>
+        <div><time>2026-04-04</time><span>Karpathy <i>· LLM wiki</i></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="step">
+    <span>ingest</span>
+    <svg width="57" height="12" viewBox="0 0 57 12" fill="none" stroke="#17160F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h54M50 1l5 5-5 5"/></svg>
+  </div>
+
+  <section class="stage">
+    <div class="label"><b>02</b>Compiled wiki</div>
+    <div class="body">
+      <div class="pages">
+        <article class="page">
+          <div class="path">concepts/verification.md</div>
+          <h2>Verification</h2>
+          <div class="meta"><span class="chip">evolving</span><span>reviewed 2026-11-17</span></div>
+          <div class="claims">
+            <p>Define “done” before the work starts.<cite>Osmani, 3 Nov 2026</cite></p>
+            <p>Run the real thing, end to end.<cite>Osmani, 17 Nov 2026</cite></p>
+            <p>Separate the judge from the judged.<cite>Harness design, Mar 2026</cite></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="step">
+    <span>consult</span>
+    <svg width="57" height="12" viewBox="0 0 57 12" fill="none" stroke="#17160F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h54M50 1l5 5-5 5"/></svg>
+  </div>
+
+  <section class="stage">
+    <div class="label"><b>03</b>Cited answer</div>
+    <div class="body">
+      <div class="answer">
+        <div class="prompt"><b>›</b>review my setup against the brain</div>
+        <div class="verdict">
+          <div class="v"><b>aligned</b><span>instruction-files · Oct 2026</span></div>
+          <p>Short AGENTS.md that routes to skills.</p>
+        </div>
+        <div class="verdict">
+          <div class="v"><b>gap</b><span>verification · Nov 2026</span></div>
+          <p>Nothing checks the work before “done”.</p>
+        </div>
+        <div class="verdict silent">
+          <div class="v"><b>silent</b><span>no page</span></div>
+          <p>Voice agents: nothing in the brain yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
