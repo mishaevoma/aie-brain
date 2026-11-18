@@ -21,11 +21,19 @@ An agent may call a tool, skip it or misuse it, and it decides from the descript
 - Offer fewer, higher-level tools built around tasks, not thin wrappers over API endpoints. Prefer `search_contacts` to `list_contacts`. [Writing tools for agents, Sep 2025](../sources/2025-09-11-anthropic-writing-tools-for-agents.md)
 - Give each tool a distinct purpose. If an engineer could not say which tool applies, the agent cannot either. [Context engineering, Sep 2025](../sources/2025-09-29-anthropic-context-engineering.md)
 - Group tools under shared prefixes by service or resource, and test which naming form your model handles best. [Writing tools for agents, Sep 2025](../sources/2025-09-11-anthropic-writing-tools-for-agents.md)
+- Treat a tool call as a proposal. The model emits structured output, and your code decides whether and how to act on it. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
+- Mark each tool as a read-only action or a write action. The write actions are where approval has to be decided. See [permissions and sandboxing](sandboxing-and-permissions.md). [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
+
+**Choosing the set**
+
+- Settle the tool set by experiment. More tools give more capability and are harder to use well. Remove one tool at a time, and drop any that the results do not miss. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
+- Log every tool call with its parameters and output, and watch which tools are called and in what order. Tools that usually run together are candidates to merge. A tool the agent keeps misusing is a candidate to replace. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
 
 **Inputs**
 
 - Write descriptions as you would brief a new hire: formats, jargon, how resources relate. Use unambiguous parameter names such as `user_id`. [Writing tools for agents, Sep 2025](../sources/2025-09-11-anthropic-writing-tools-for-agents.md) · [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
 - Make mistakes hard to make (poka-yoke). Requiring absolute paths ended a whole class of errors. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) · [SWE-bench scaffold, Jan 2025](../sources/2025-01-06-anthropic-swe-bench-sonnet.md)
+- Check the arguments yourself. A function-calling API can guarantee that the function exists, not that the parameter values are right. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
 - Add one to five realistic example calls for conventions a schema cannot express. In Anthropic's internal tests this raised accuracy on complex parameters from 72% to 90%. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
 
 **Outputs**
@@ -40,7 +48,9 @@ An agent may call a tool, skip it or misuse it, and it decides from the descript
 
 **Large tool sets and large data**
 
+- Count your tools. Choosing among them gets harder as the number grows, and sooner on small models, so pick a tool loadout per task. In one paper DeepSeek-v3 needed its tools narrowed above 30 and almost always failed beyond 100. In another, Llama 3.1 8b failed a benchmark with 46 tools and passed with 19. [How to fix your context, Jun 2025](../sources/2025-06-26-breunig-how-to-fix-your-context.md)
 - Use deferred tool loading once definitions pass about 10K tokens: the model searches for tools and loads only the ones it needs. The threshold is Anthropic's guidance for its own tool-search feature. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md)
+- Do not have a model copy long text exactly. Pass it by reference or move it in code. In one test of copying, fidelity fell as the text grew in every model scored. [Context rot, Jul 2025](../sources/2025-07-14-chroma-context-rot.md)
 - Use programmatic tool calling when results are bulky or calls depend on each other: the model calls tools from code and returns aggregates. [Advanced tool use, Nov 2025](../sources/2025-11-24-anthropic-advanced-tool-use.md) · [Code execution with MCP, Nov 2025](../sources/2025-11-04-anthropic-code-execution-with-mcp.md)
 
 **Improving tools**

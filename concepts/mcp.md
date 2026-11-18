@@ -28,6 +28,7 @@ MCP is how an agent reaches your database, issue tracker or analytics without cu
 ## Security
 
 - A remote server's tools can change after you approved them. Treat anything outside an audited directory as untrusted, and remember that an audited connector does not make the data it returns trustworthy. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
+- Judge the connected tools together, not one server at a time. Mixing servers is how the lethal trifecta gets assembled: one reads private data, another fetches text an attacker wrote, a third can send. A single server can also hold all three. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md) See [permissions and sandboxing](sandboxing-and-permissions.md).
 - Keep credentials away from both the sandbox and the harness: route calls through a proxy that fetches tokens from a vault. [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
 - Inspect tool results before they reach the model where you can. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
 

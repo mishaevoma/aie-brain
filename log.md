@@ -62,3 +62,35 @@ An agent used the brain to review a product design end to end and reported what 
 - tools/lint.py
 
 Built in parallel with the edit above, from the same starting point, and merged with it afterwards. Where both had built the same thing, the names already published were kept: the `AIE_BRAIN` variable, the "By decision" section of `index.md` (it took over the rows of this change's decision table), and `--ages` with `--old-days` in the lint. `--old-days` now also sets the age at which a concept page whose newest source is old raises a warning.
+
+## [2026-11-17] edit | Install in one line, MIT licence, social preview image
+
+- LICENSE
+- README.md
+- .agents/skills/brain-consult/SKILL.md
+- .agents/skills/brain-consult/brain-root.sh
+- .github/social-preview.html
+- .github/social-preview.png
+- tools/lint.py
+
+The README now opens with the install: `git clone` into `~/.aie-brain` plus one line for `AGENTS.md`, then `npx skills add mishaevoma/aie-brain`. `brain-root.sh` clones the brain on first use, into `~/.aie-brain` or into `AIE_BRAIN`, and brings that copy up to date at most once a day. Files use the repository's new name, `aie-brain`.
+
+- Checked: the script in a throwaway home under three shells (33 checks), and one first use by a fresh agent that had only the installed skill folder. Its remarks on wording went into `SKILL.md`.
+- Not checked: `npx skills add` itself was not run. The skill folder was compared with the installer's own rules instead.
+
+## [2026-11-17] ingest | Nine sources from outside Anthropic
+
+- README.md
+- glossary.md
+- index.md
+- overview.md
+- watchlist.md
+- concepts/ (15 files)
+- playbooks/building-an-agent-product.md
+- sources/ (9 files)
+
+- The notes: Chip Huyen on agents (January 2025), 12-factor agents (March 2025), Hamel Husain's field guide (March 2025) and the FAQ entry on error analysis he wrote with Shreya Shankar (June 2025), Cognition against multi-agent designs (June 2025), Simon Willison on the lethal trifecta and on the term context engineering (June 2025), Drew Breunig on fixing a context (June 2025), and Chroma's context rot report (July 2025).
+- How they were read: all nine in full, from saved copies of the pages. Five by the maintaining agent. Four long ones by reader agents with a second pass over every figure, after which the maintaining agent checked a sample of each note's figures against the saved text. Charts were not visible in the saved copies, so the Chroma note gives directions and the few rates stated in prose.
+- Disagreements now recorded side by side: one agent or several (`concepts/multi-agent-systems.md`), adopt a harness or own the loop (`concepts/harness.md`), fix eval criteria first or let them emerge (`concepts/eval-validity.md`), where evals start and what a grader returns (`concepts/evals.md`), what counts as an agent (`concepts/agents-and-workflows.md`), and a small corpus sent whole against selection (`concepts/retrieval.md`).
+- One new page, `concepts/error-analysis.md`, since the idea has a name and two notes behind it and would have overgrown the evals page. `concepts/evals.md` moved from `settled` to `evolving`. "An existing harness before your own" left the list of what the sources agree on in `overview.md` and became a live debate.
+- Anthropic now accounts for 29 of 59 sources. All nine additions are older than a year, so `--ages` went from 81 of 384 cited lines resting only on old sources to 148 of 454.

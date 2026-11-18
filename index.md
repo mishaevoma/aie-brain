@@ -25,7 +25,7 @@ Start from the question you are facing. Each line names the pages to read, the m
 - How many tools, and when to load them on demand? [Tool design](concepts/tool-design.md), [MCP](concepts/mcp.md).
 - How do I connect an outside system? [MCP](concepts/mcp.md), [Tool design](concepts/tool-design.md).
 - How can the agent act without a person approving each step? [Permissions, sandboxing and containment](concepts/sandboxing-and-permissions.md), [Human judgment and oversight](concepts/human-judgment.md).
-- How do I know it works, before launch and after? [Evals](concepts/evals.md), [Trusting eval numbers](concepts/eval-validity.md), [Running agents in production](concepts/production-operations.md).
+- How do I know it works, before launch and after? [Error analysis](concepts/error-analysis.md), [Evals](concepts/evals.md), [Trusting eval numbers](concepts/eval-validity.md), [Running agents in production](concepts/production-operations.md).
 - Does a benchmark number mean anything? [Trusting eval numbers](concepts/eval-validity.md).
 - Should it remember anything between sessions? [Memory](concepts/memory.md), [LLM wiki](concepts/llm-wiki.md).
 - One agent or several? [Multi-agent systems](concepts/multi-agent-systems.md).
@@ -45,6 +45,7 @@ Start from the question you are facing. Each line names the pages to read, the m
 - The agent picks the wrong tool, or misuses one. [Tool design](concepts/tool-design.md).
 - Quality drops in long sessions. [Context engineering](concepts/context-engineering.md).
 - Quality changed after launch. [Running agents in production](concepts/production-operations.md).
+- Quality is poor and you cannot say why. [Error analysis](concepts/error-analysis.md), then [Evals](concepts/evals.md).
 
 ## Playbooks
 
@@ -69,24 +70,25 @@ One page per idea: definition, what to do, where sources disagree.
 - [Instruction files](concepts/instruction-files.md) — `AGENTS.md` and `CLAUDE.md`: keep short, use as an index, one source of truth.
 - [Skills](concepts/skills.md) — procedures loaded on demand, how to write and prune them.
 - [MCP](concepts/mcp.md) — connecting outside tools and data, what it costs in context, security.
-- [Tool design](concepts/tool-design.md) — writing tools for a model: shape, inputs, outputs, edits, large tool sets.
+- [Tool design](concepts/tool-design.md) — writing tools for a model: shape, choosing the set, inputs, outputs, edits, large tool sets.
 - [Memory](concepts/memory.md) — layers, dreaming, when and where to write, risks.
 
 **Information**
 
-- [Context engineering](concepts/context-engineering.md) — context as a budget, compaction, notes, subagents.
+- [Context engineering](concepts/context-engineering.md) — context as a budget, how a long context fails, compaction, notes, subagents.
 - [Retrieval](concepts/retrieval.md) — cached prompt, hybrid search, agent-driven search, compiled wiki.
 - [LLM wiki](concepts/llm-wiki.md) — the pattern this repository follows, and its limits.
 
 **Scale**
 
-- [Multi-agent systems](concepts/multi-agent-systems.md) — when several agents pay off, delegation, coordination, risks.
+- [Multi-agent systems](concepts/multi-agent-systems.md) — when several agents pay off and when one thread is better, delegation, coordination, risks.
 - [Long-running agents](concepts/long-running-agents.md) — state on disk, evaluators, scaffolding that expires, cost.
 - [Running agents in production](concepts/production-operations.md) — regressions, deploys, infrastructure at agent volume.
 
 **Quality**
 
 - [Verification](concepts/verification.md) — evidence as the condition for done, tests that are hard to fool, checks as a system.
+- [Error analysis](concepts/error-analysis.md) — reading real interactions and counting what fails, before deciding what to measure.
 - [Evals](concepts/evals.md) — vocabulary, graders, how to start, behavioural evals.
 - [Trusting eval numbers](concepts/eval-validity.md) — scaffold, infrastructure, leaks, saturation, statistics.
 - [Compounding](concepts/compounding.md) — turning corrections into checks, rules and skills, and pruning them.
@@ -150,11 +152,20 @@ Newest first. Each note is our own summary with a link to the original.
 - 2025-09-29 · [Effective context engineering for AI agents](sources/2025-09-29-anthropic-context-engineering.md) · Prithvi Rajasekaran, Ethan Dixon, Carly Ryan, Jeremy Hadfield
 - 2025-09-17 · [A postmortem of three recent issues](sources/2025-09-17-anthropic-postmortem-three-issues.md) · Sam McAllister
 - 2025-09-11 · [Writing effective tools for agents — with agents](sources/2025-09-11-anthropic-writing-tools-for-agents.md) · Ken Aizawa
+- 2025-07-14 · [Context Rot: How Increasing Input Tokens Impacts LLM Performance](sources/2025-07-14-chroma-context-rot.md) · Kelly Hong, Anton Troynikov, Jeff Huber
+- 2025-06-27 · [Context engineering](sources/2025-06-27-willison-context-engineering.md) · Simon Willison
+- 2025-06-27 · [Q: Why is “error analysis” so important in AI evals, and how is it performed?](sources/2025-06-27-husain-shankar-error-analysis-faq.md) · Hamel Husain, Shreya Shankar
+- 2025-06-26 · [How to Fix Your Context](sources/2025-06-26-breunig-how-to-fix-your-context.md) · Drew Breunig
 - 2025-06-26 · [Desktop Extensions: One-click MCP server installation for Claude Desktop](sources/2025-06-26-anthropic-desktop-extensions.md) · Anthropic
 - 2025-06-18 · [Confidential Inference via Trusted Virtual Machines](sources/2025-06-18-anthropic-confidential-inference.md) · Anthropic
+- 2025-06-16 · [The lethal trifecta for AI agents: private data, untrusted content, and external communication](sources/2025-06-16-willison-lethal-trifecta.md) · Simon Willison
 - 2025-06-13 · [How we built our multi-agent research system](sources/2025-06-13-anthropic-multi-agent-research-system.md) · Jeremy Hadfield, Barry Zhang, Kenneth Lien, Florian Scholz, Jeremy Fox, Daniel Ford
+- 2025-06-12 · [Don’t Build Multi-Agents](sources/2025-06-12-cognition-dont-build-multi-agents.md) · Walden Yan
 - 2025-04-18 · [Claude Code: Best practices for agentic coding](sources/2025-04-18-anthropic-claude-code-best-practices.md) · Boris Cherny
+- 2025-03-30 · [12-Factor Agents - Principles for building reliable LLM applications](sources/2025-03-30-humanlayer-12-factor-agents.md) · Dex Horthy
+- 2025-03-24 · [A Field Guide to Rapidly Improving AI Products](sources/2025-03-24-husain-field-guide-improving-ai-products.md) · Hamel Husain
 - 2025-03-20 · [The "think" tool: Enabling Claude to stop and think in complex tool use situations](sources/2025-03-20-anthropic-think-tool.md) · Anthropic
+- 2025-01-07 · [Agents](sources/2025-01-07-huyen-agents.md) · Chip Huyen
 - 2025-01-06 · [Raising the bar on SWE-bench Verified with Claude 3.5 Sonnet](sources/2025-01-06-anthropic-swe-bench-sonnet.md) · Erik Schluntz
 - 2024-12-19 · [Building effective agents](sources/2024-12-19-anthropic-building-effective-agents.md) · Erik S., Barry Zhang
 - 2024-09-19 · [Introducing Contextual Retrieval](sources/2024-09-19-anthropic-contextual-retrieval.md) · Daniel Ford

@@ -12,7 +12,7 @@ status: evolving
 
 ## Why it matters
 
-Risk is the likelihood of a failure times its blast radius, and giving an agent more access raises the second. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md) Asking a person to approve each action does not hold up: Claude Code users accepted about 93% of permission prompts, and people who approve nearly everything stop reading what they approve, which is called approval fatigue. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md) · [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md)
+Risk is the likelihood of a failure times its blast radius, and giving an agent more access raises the second. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md) In early 2025 the usual control was still a person: risky write actions were approved or carried out by hand. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md) Asking a person to approve each action does not hold up: Claude Code users accepted about 93% of permission prompts, and people who approve nearly everything stop reading what they approve, which is called approval fatigue. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md) · [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md)
 
 ## What to do
 
@@ -26,15 +26,18 @@ Risk is the likelihood of a failure times its blast radius, and giving an agent 
 **Then add a gate**
 
 - A model-based gate is a second layer, never the boundary. The classifier behind Claude Code's auto mode misses 17% of real overeager actions at a 0.4% false-positive rate. Every vendor that ships such a gate says the same. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md) · [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md) · [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md)
+- Do not let a detection product stand in for the boundary either. No filter stops injected instructions every time, and one that catches 95% of attacks fails by the standard of application security. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md)
 - Make the judge reasoning-blind: show it only the user's words and the proposed action. Hide the agent's reasoning and tool output, so neither can argue its case or carry an injection. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md)
 - Use a cheap filter that leans towards blocking, and escalate only flagged cases to a slower pass. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md)
 - Return a denial as something the agent can read and route around, and hand back to a person after a set number of denials. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md) · [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md)
+- Keep a person's approval for the few high-stakes write actions, and let code, not the model, decide which calls wait for it. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md) · [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
 - Drop broad allow rules, such as blanket shell access, when approvals are automatic. [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md)
 
 **Treat content as untrusted**
 
-- Repository instruction files, tool results and data from connectors are all input an attacker can write. Instructions hidden there are a prompt injection. [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md) · [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
-- Avoid the lethal trifecta: access to private data, exposure to untrusted content and a way to send data out, all in one agent. [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md)
+- Repository instruction files, tool results, web pages, email and data from connectors are all input an attacker can write. A model cannot reliably tell instructions hidden there from yours, which is a prompt injection. It is a different problem from jailbreaking, where someone talks the model itself into misbehaving. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md) · [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md) · [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
+- Avoid the lethal trifecta: access to private data, exposure to untrusted content and a way to send data out, all in one agent. For each agent, list which of the three it has, and remove one. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md) · [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md)
+- Count the routes for exfiltration generously. Any network request can carry data out, and so can an image that loads or a link shown to the user. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md)
 - Load no project configuration before the trust decision. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
 
 **Fit it to the user**
@@ -46,6 +49,7 @@ Risk is the likelihood of a failure times its blast radius, and giving an agent 
 ## Evidence
 
 - Moving from prompts to a sandbox cut permission prompts by 84% internally. [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md)
+- Data theft through injected instructions keeps being shown against shipped products. One list has 14 cases going back to April 2023, and 3 more from the weeks before it was written. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md)
 - In an internal test, a pasted prompt sent out cloud credentials 24 times out of 25. Only network and filesystem limits could stop it. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
 
 ## Open problems

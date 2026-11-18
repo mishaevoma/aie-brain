@@ -8,7 +8,7 @@ published: 2026-01-09
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [eval-validity, evals, harness]
+concepts: [error-analysis, eval-validity, evals, harness]
 ---
 
 # Demystifying evals for AI agents

@@ -37,6 +37,7 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 - Give a capable model a memory folder and say what memory is for. Do not prescribe rigid rules: a "record only failures" rule cut the benefit sharply. Older models need explicit steps instead. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Run an offline pass that checks notes against the record. One wrong note kept trapping an agent until it was corrected. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Keep the always-loaded layer to a short index. Preloaded notes cost tokens and spread their errors. Claude Code loads only the first 200 lines or 25 KB of its memory index. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+- Select what to recall instead of replaying the whole history. On a chat-memory benchmark, models from four vendors all answered better from the relevant parts than from the full history. [Context rot, Jul 2025](../sources/2025-07-14-chroma-context-rot.md)
 - Use files before a memory product. [Chase, Jun 2026](../sources/2026-06-30-chase-wiki-memory.md)
 - For long tasks, have the agent keep working notes outside the window and read them back after a reset. [Context engineering, Sep 2025](../sources/2025-09-29-anthropic-context-engineering.md)
 - Give each concurrent writer its own page. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)

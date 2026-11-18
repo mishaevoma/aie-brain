@@ -90,13 +90,13 @@ In Claude Code, `claude --add-dir ~/.aie-brain` adds the folder to a single sess
 
 ## What is in it
 
-Seeded on 17 November 2026 with 50 sources: all 29 articles on Anthropic's engineering blog, plus 21 articles, posts and one video from Addy Osmani, Boris Cherny, Theo Browne, Dan Shipper, Harrison Chase, Andrej Karpathy, Google, Red Hat, Loams and others. From these: 20 concept pages, 3 playbooks, and a glossary of about 80 terms.
+Seeded on 17 November 2026 with 50 sources: all 29 articles on Anthropic's engineering blog, plus 21 articles, posts and one video from Addy Osmani, Boris Cherny, Theo Browne, Dan Shipper, Harrison Chase, Andrej Karpathy, Google, Red Hat, Loams and others. Nine sources from outside Anthropic were added next: Chip Huyen, HumanLayer's 12-factor agents, Cognition, Drew Breunig, Simon Willison, Chroma, and Hamel Husain with Shreya Shankar. From all of these: 21 concept pages, 3 playbooks, and a glossary of about 90 terms.
 
 ## What to keep in mind
 
 - **Summaries, not copies.** The sources are other people's copyrighted work and this repository is public. Each note is a short summary in our own words with a link. Read the original for anything that matters.
 - **Models wrote this.** Source notes were written by AI agents, most of them reading articles through a fetch tool, with two passes per article. Each note says how much of the original it is based on. Check numbers against the original before you rely on them.
-- **It has a slant.** Most sources come from Anthropic or from people who build on Claude. The gaps are listed at the end of [overview.md](overview.md).
+- **It has a slant.** About half of the sources are Anthropic's, and several of the others come from people who build on Claude. The gaps are listed at the end of [overview.md](overview.md).
 - **It dates quickly.** Every source note carries its publication date and every concept page the date it was last updated. `python3 tools/lint.py --ages` shows which pages rest on old sources.
 
 ## Checks

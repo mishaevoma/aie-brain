@@ -14,17 +14,26 @@ status: settled
 
 Choosing between a single call, a workflow and an agent is the first design decision in an AI product. It sets cost, latency and how far an error can spread before anyone notices.
 
+Errors also multiply along the way. At 95% accuracy per step, a task of 10 steps succeeds 60% of the time and one of 100 steps 0.6%. That is arithmetic, assuming independent steps and no recovery, not a measurement. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
+
 ## What to do
 
 - Start with one model call that has retrieval, tools and examples (the *augmented LLM*). Add structure only when measurement shows a gain. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
 - Pick the least autonomous pattern that solves the task. Workflows suit well-defined tasks where predictability matters. Agents suit open-ended ones. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
+- Mix the two when only part of the path is open. Keep the known steps in code and put a short agent loop, a micro agent, where the route depends on feedback such as a person's reply or a failed call. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
 - Know the five workflow patterns before inventing one: prompt chaining, routing, parallelization (sectioning or voting), orchestrator-workers, evaluator-optimizer. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
 - Keep the loop simple. The model emits text or a tool call. Text ends the turn. A tool call is checked, run, and its result fed back. [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md) · [Theo, 22 Oct 2026](../sources/2026-10-22-theo-what-is-a-harness.md)
 - Give every agent stop conditions and points where a person can step in: iteration caps, and loop breakers such as stopping after three identical calls. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) · [Loams, Oct 2026](../sources/2026-10-18-loams-coding-agent-harnesses.md)
+- Check a plan before it runs when a wrong one is expensive: reject plans that name a tool the agent lacks or run past a step limit, or have a model judge them. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md)
 - Try a thin scaffold first. A short prompt, a shell tool and an edit tool were state of the art on SWE-bench Verified in early 2025. [SWE-bench scaffold, Jan 2025](../sources/2025-01-06-anthropic-swe-bench-sonnet.md)
 - Do not use an agent for every model call. Small generation jobs such as titles and commit messages can go straight to a model API. [Theo, 9 Nov 2026](../sources/2026-11-09-theo-harness-difference-approaching-zero.md)
 - Expect agents to fit best where success can be checked and a person can oversee. Coding and customer support were the first examples. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
-- If you adopt a framework, read what it actually sends. Frameworks speed up the start and hide the prompts and responses. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md)
+- If you adopt a framework, read what it actually sends. Frameworks speed up the start and hide the prompts and responses. Check first that you can edit the exact prompt and pause between the choice of a tool and its execution. One builder saw teams reach 70-80% quality on a framework and then start over, because improving it meant reverse-engineering its prompts and control flow. [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) · [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
+
+## Where sources differ
+
+- **What counts as an agent.** One wider definition takes in anything that senses an environment and acts on it through tools, ChatGPT and RAG pipelines included. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md) Another calls a mostly deterministic product with a short loop inside it an agent. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md) This brain's reading: keep the narrow sense, because the split between workflow and agent is what the design decision turns on.
+- **A thin loop, or structure around it.** A short prompt with a shell tool and an edit tool topped a coding benchmark in early 2025. [SWE-bench scaffold, Jan 2025](../sources/2025-01-06-anthropic-swe-bench-sonnet.md) In the same months, builders of customer-facing features reported that a plain loop over a prompt and a bag of tools broke down past 10-20 turns, and that 90% success was not enough to ship. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md) A design of that time kept planning apart from execution, with a validator between them. [Huyen, Jan 2025](../sources/2025-01-07-huyen-agents.md) The yardsticks differ: one is a benchmark score, the other the reliability a customer-facing feature needs.
 
 ## What is changing
 

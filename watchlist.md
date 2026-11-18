@@ -21,6 +21,12 @@ Last checked: 2026-11-17 (seed).
 | kepano | https://x.com/kepano | Obsidian as the reading side of agent-written wikis. |
 | Garry Tan | https://x.com/garrytan | GBrain, a large personal knowledge system. |
 | Tobi Lütke | https://x.com/tobi | How a large engineering organisation standardises agent configuration. |
+| Simon Willison | https://simonwillison.net | Names things early (prompt injection, the lethal trifecta) and follows agent security and tooling week by week. |
+| Hamel Husain | https://hamel.dev | Eval practice from consulting work: error analysis, judges, annotation. The evals FAQ written with Shreya Shankar is kept current. |
+| Drew Breunig | https://www.dbreunig.com | How contexts fail and how to manage them, with pointers to the papers behind each claim. |
+| Chip Huyen | https://huyenchip.com/blog | Long, structured essays from her book on AI engineering. |
+| Cognition | https://cognition.com/blog | A coding-agent builder's view from outside the labs. |
+| Chroma research | https://www.trychroma.com/research | Measured studies of retrieval and long-context behaviour across many models. |
 
 ## Open leads
 
@@ -33,10 +39,14 @@ Things the ingested sources cite or imply that are not in the brain yet.
 - Anthropic's post on how code review works there, cited by Addy Osmani.
 - The Agent Skills specification (agentskills.io) and the `AGENTS.md` specification.
 - Current Claude Code documentation on instruction files and skills, which changes faster than blog posts.
-- Simon Willison on the lethal trifecta, cited by Loams.
-- The context rot research cited in Anthropic's context engineering article.
 - Cloudflare's "Code Mode" write-up, cited in the code execution article.
 - The work behind the terms in Addy Osmani's essay: cognitive surrender (Shaw and Nave), and Anthropic's research on the paradox of supervision.
+- Drew Breunig's earlier post "How Long Contexts Fail", where the four context failure modes are argued.
+- The two papers behind the tool-count figures, "RAG MCP" and "Less is More", cited by Drew Breunig.
+- The paper of six design patterns against prompt injection and Google DeepMind's CaMeL, both cited by Simon Willison.
+- The rest of Hamel Husain and Shreya Shankar's evals FAQ. Only its entry on error analysis is in the brain.
+- Hamel Husain's longer pieces on judges, "Creating a LLM-as-a-Judge That Drives Business Results" and "Your AI Product Needs Evals", and the paper behind criteria drift, "Who Validates the Validators?" by Shankar and others.
+- A re-run of Chroma's context rot tests on models released after July 2025. The code is public.
 
 ## Gaps to fill
 

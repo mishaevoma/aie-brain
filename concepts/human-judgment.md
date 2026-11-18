@@ -40,6 +40,11 @@ The test of ownership: can you explain the answer, even with the agent's help? Y
 - Review intent and architecture, and expect to say no more often. On one team where a model wrote most of the code, engineers set the architecture and regularly rejected approaches. [Source control, Oct 2026](../sources/2026-10-13-anthropic-redesigning-source-control.md)
 - Let failures route your attention: checks that still fail after a few rounds, and changes that match a known risk. [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md)
 
+**When a product's output is what is judged**
+
+- Let the domain expert judge outputs and edit prompts directly, instead of briefing engineers who translate. [Husain field guide, Mar 2025](../sources/2025-03-24-husain-field-guide-improving-ai-products.md)
+- Ask for the verdict and the reason in writing. Writing the critique makes experts state standards they had not put into words. [Husain field guide, Mar 2025](../sources/2025-03-24-husain-field-guide-improving-ai-products.md)
+
 **As a habit**
 
 - Watch the orchestration tax: the gap between what your agents produce and what you would put your name on. If work piles up unchecked, tighten the checks or slow down. [Osmani, 3 Nov 2026](../sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md)
@@ -50,6 +55,7 @@ The test of ownership: can you explain the answer, even with the agent's help? Y
 
 - From approving each step to watching and interrupting. Experienced users auto-approve about twice as often as new ones and interrupt more. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
 - Per-action prompts are being replaced by boundaries and classifiers, because people approve nearly everything. See [permissions and sandboxing](sandboxing-and-permissions.md). [Auto mode, Mar 2026](../sources/2026-03-25-anthropic-claude-code-auto-mode.md)
+- Approval does not disappear. For a few high-stakes actions, such as sending external email or changing production data, quick access to a person is what makes it acceptable to give the agent the tool. The request goes out as a tool call and is answered where the person already works. [12-Factor Agents, Mar 2025](../sources/2025-03-30-humanlayer-12-factor-agents.md)
 - Unreviewed autonomous code is still a security risk. Keep a person before deployment. [C compiler, Feb 2026](../sources/2026-02-05-anthropic-building-c-compiler.md)
 
 ## Related
