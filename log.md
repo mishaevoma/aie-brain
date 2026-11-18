@@ -128,3 +128,8 @@ Research into how agents run in production, as of November 2026: durable executi
 - README.md
 - .github/workflows/lint.yml
 - site/test_review_publication.py
+
+## [2026-11-18] edit | Show the first review and put the change beside its check
+
+- README.md
+- .agents/skills/brain-consult/references/project-review.md
