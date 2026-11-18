@@ -51,7 +51,7 @@ A wiki of current practice for building AI products. Agents write and maintain i
 
 Procedures live in `.agents/skills/` (linked from `.claude/skills/`) and load when needed.
 
-- `brain-consult`: answer a question, or review a plan or a whole design, against the brain. Read-only, and installable in other projects.
+- `brain-consult`: review the current project, compare a design with the brain, or answer a focused question. The project review is read-only and works by URL or from an installed skill.
 - `brain-ingest`: add a source and fold it into the wiki, or record that it adds nothing.
 - `brain-lint`: health check, mechanical and by judgement.
 - `brain-refresh`: look for new material from the watchlist.
@@ -61,4 +61,4 @@ Procedures live in `.agents/skills/` (linked from `.claude/skills/`) and load wh
 Every push to `main` publishes the wiki at https://mishaevoma.github.io/aie-brain/ (`.github/workflows/pages.yml`). Settings and build scripts are in `site/`.
 
 - Every `.md` file becomes a public page unless `site/quartz.config.yaml` lists it under `ignorePatterns`. Add any new file or folder that is not a wiki page to that list.
-- An agent that cannot clone reads `llms.txt` on the site, and any page as raw markdown at its address plus `.md`.
+- For a project review by URL, start at `review.md` on the site. For a wiki question, start at `llms.txt`. Published wiki pages have raw Markdown copies at their addresses plus `.md`.

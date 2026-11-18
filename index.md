@@ -8,6 +8,7 @@ Read this first. It lists every page with one line on what it holds. "By decisio
 
 ## Start here
 
+- To review your project, open your coding agent in its checkout and ask it to follow the [project review skill](https://mishaevoma.github.io/aie-brain/review.md).
 - [Overview](overview.md) — the stack, what the sources agree on, live debates, how the picture moved, known gaps.
 - [Glossary](glossary.md) — the shared vocabulary, one line per term.
 

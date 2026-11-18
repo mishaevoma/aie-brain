@@ -112,3 +112,13 @@ Research into how agents run in production, as of November 2026: durable executi
 - Edited: harness, agents and workflows, verification, long-running agents, running agents in production, permissions and sandboxing, multi-agent systems, human judgment, MCP, memory. The product playbook gains a step, "Decide where it runs".
 - `overview.md`: a sixth layer for the agent platform, two items of consensus, three live debates, additions to the timeline, and a revised list of gaps. `glossary.md`: 37 terms. `watchlist.md`: feeds, open leads and gaps for this area.
 - Left open: eleven concept pages are over the guide of about 600 words, the longest about 810.
+
+## [2026-11-18] edit | Launch a sourced project review from a URL or an installed skill
+
+- AGENTS.md
+- README.md
+- index.md
+- .agents/skills/brain-consult/SKILL.md
+- .agents/skills/brain-consult/brain-root.sh
+- .agents/skills/brain-consult/references/project-review.md
+- site/agentfiles.py

@@ -1,32 +1,52 @@
 # AI Engineering Brain
 
-A wiki of current practice for building AI products, written and maintained by AI agents and read by both agents and people. Every claim links to a dated source.
+Use the brain to review how coding agents work in your repository or how your product uses LLMs. The review pairs evidence from your project with dated engineering sources, then recommends what to change first and how to check the result.
 
-## Install
+## Review your project
 
-Clone it, then add one line to `AGENTS.md`. This works in any coding agent that reads an instruction file and can open files: Codex, Cursor, OpenCode, Claude Code and others.
+Open your coding agent in the project you want reviewed and paste this prompt.
 
-```bash
+```text
+Review this project using https://mishaevoma.github.io/aie-brain/review.md
+```
+
+This works with an agent that can read your project and fetch public Markdown. The review runs in your current session and returns its findings in chat. You can also give it the [skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md).
+
+For a narrower pass, add a focus such as “just the steps from a clean checkout to a passing test” or “what happens if the worker retries a customer action?”
+
+## Install for repeated use
+
+Run this from the project directory.
+
+```sh
+npx skills add mishaevoma/aie-brain --skill brain-consult
+```
+
+Select your coding agent when prompted. For a user-wide install, add `-g`. Open a new agent session in the project and ask it to use the skill.
+
+```text
+Use brain-consult to review this project.
+```
+
+To update an existing project install, run `npx skills update brain-consult -p`.
+
+The installed skill locates the wiki on first use. With Git and a POSIX shell, it can clone the wiki into `~/.aie-brain` and reuse it on later runs. You can also point `AIE_BRAIN` at an existing checkout. With web access alone, the agent can read the public wiki.
+
+### Use an instruction file
+
+For an agent that reads project instructions, clone the wiki once.
+
+```sh
 git clone https://github.com/mishaevoma/aie-brain ~/.aie-brain
 ```
 
+Add this line to the project's `AGENTS.md` or the instruction file your agent reads.
+
 ```markdown
-For anything involving LLMs or agents, consult the AI engineering brain: follow ~/.aie-brain/.agents/skills/brain-consult/SKILL.md.
+For an AI engineering question or project review, follow ~/.aie-brain/.agents/skills/brain-consult/SKILL.md.
 ```
 
-The line can go in one project's `AGENTS.md` or in your agent's global instruction file. As of November 2026, Claude Code reads `AGENTS.md` only in a project that has no `CLAUDE.md`. Where there is one, put the line there.
-
-Or install the consult skill and let it fetch the wiki:
-
-```bash
-npx skills add mishaevoma/aie-brain
-```
-
-The [`skills`](https://github.com/vercel-labs/skills) installer asks which agents to set up, then copies `brain-consult` into the skill folder of each. Add `-g` to install it for every project. The first time the skill runs, it clones this repository into `~/.aie-brain`.
-
-Either way, the skill brings the copy in `~/.aie-brain` up to date when it runs, at most once a day. Set `AIE_BRAIN` to keep the brain somewhere else, or to point the skill at a clone you maintain yourself, which it never touches.
-
-Then ask your agent "what does the brain say about evals?" or "review this design against the brain".
+If your team already includes the wiki as a submodule, use its project-relative path in that line.
 
 ## What it is for
 
@@ -68,15 +88,7 @@ This is the LLM wiki pattern: raw sources, a wiki the agent owns, and a schema f
 
 **Ask it a question.** Ask from any project where the brain is installed, or open this folder in a coding agent and ask. The agent reads `index.md`, then the pages that fit, and answers with citations. The `brain-consult` skill describes how.
 
-**Review a design.** Ask the agent to review an architecture or a repository setup against the brain. It walks the matching playbook step by step and says, for each step, whether the design agrees with the brain, falls short of it, or lies outside what the brain covers (`brain-consult`, "Review a whole design").
-
-**Connect it another way.** Link the consult skill from a clone instead of copying it, and one `git pull` updates the skill and the wiki together:
-
-```bash
-ln -s ~/.aie-brain/.agents/skills/brain-consult ~/.claude/skills/brain-consult
-```
-
-In Claude Code, `claude --add-dir ~/.aie-brain` adds the folder to a single session. And nothing has to be installed at all: an agent that is only given this repository's address can clone it, read `AGENTS.md`, then `index.md`, and follow `.agents/skills/brain-consult/SKILL.md` as written.
+**Review a design.** Give the agent a design document or a planned change and ask for a review. It compares the decisions in the plan against the relevant playbook, identifies trade-offs, and tells you what evidence would resolve an open question.
 
 **Cite it.** The brain changes. An answer that will be kept should name the version it read, which `git log -1 --format='%h %cs'` prints.
 

@@ -43,14 +43,15 @@ refresh() {
 
 found() {
   refresh "$1"
-  (cd "$1" && pwd -P)
-  exit 0
+  cd "$1" && pwd -P
+  exit $?
 }
 
 # Clone the brain to $1. The clone is made beside $1 and moved into place when it is complete,
 # so an interrupted run leaves nothing that looks like a copy.
 clone_to() {
   if [ -e "$1" ] && { [ ! -d "$1" ] || [ -n "$(ls -A "$1" 2>/dev/null)" ]; }; then
+    is_brain "$1" && return 0 # another first run may have just finished
     say "'$1' exists and is not the brain. Move it away, or set AIE_BRAIN to another folder."
     return 1
   fi
@@ -59,27 +60,29 @@ clone_to() {
     return 1
   fi
   say "no copy of the brain on this machine yet; cloning $REPO into $1"
-  tmp="$1.cloning.$$"
-  if ! { mkdir -p "$(dirname "$1")" &&
-    git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=30 clone --quiet --depth 1 "$REPO" "$tmp"; } >&2; then
-    rm -rf "$tmp"
+  parent=$(dirname "$1")
+  mkdir -p "$parent" || return 1
+  staging=$(mktemp -d "$parent/.aie-brain-install.XXXXXXXX") || return 1
+  clone="$staging/$(basename "$1")"
+  if ! git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=30 clone --quiet --depth 1 "$REPO" "$clone" >&2; then
+    rm -rf "$staging"
     say "the clone failed."
     return 1
   fi
-  if ! is_brain "$tmp"; then
-    rm -rf "$tmp"
+  if ! is_brain "$clone"; then
+    rm -rf "$staging"
     say "$REPO is not the brain."
     return 1
   fi
-  date +%Y-%m-%d > "$tmp/$STAMP"
-  if [ -d "$1" ]; then rmdir "$1" 2>/dev/null; fi
-  if [ -e "$1" ] || ! mv "$tmp" "$1"; then
-    rm -rf "$tmp" # another run got there first, or the folder cannot be written
-    if ! is_brain "$1"; then
-      say "could not put the clone at '$1'."
-      return 1
-    fi
+  date +%Y-%m-%d > "$clone/$STAMP"
+  # Move into the parent under the final basename. If another run wins the
+  # rename, mv fails instead of nesting this clone inside the winning clone.
+  if ! mv "$clone" "$parent/" 2>/dev/null && ! is_brain "$1"; then
+    rm -rf "$staging"
+    say "could not put the clone at '$1'."
+    return 1
   fi
+  rm -rf "$staging"
 }
 
 if [ -n "$AIE_BRAIN" ]; then
