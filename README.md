@@ -1,38 +1,46 @@
 # AI Engineering Brain
 
-Use the brain to review how coding agents work in your repository or how your product uses LLMs. The review pairs evidence from your project with dated engineering sources, then recommends what to change first and how to check the result.
+Does your coding agent run the right tests? Could your AI worker email a customer twice on retry? The brain is a wiki your agent uses to answer questions like these. It traces a workflow through your project, compares the code with dated engineering sources, and gives you a recommendation you can verify.
 
-## Review your project
+## Get your first review
 
-Open your coding agent in the project you want reviewed and paste this prompt.
+Open your coding agent **in the project you want reviewed**. With access to your checkout and public Markdown, it can run the review without an install. Paste this into chat.
 
 ```text
-Review this project using https://mishaevoma.github.io/aie-brain/review.md
+Review this project using
+https://mishaevoma.github.io/aie-brain/review.md
 ```
 
-This works with an agent that can read your project and fetch public Markdown. The review runs in your current session and returns its findings in chat. You can also give it the [skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md).
+The review is read-only. The result appears in the same chat, under your agent’s usual data settings and model usage.
 
-For a narrower pass, add a focus such as “just the steps from a clean checkout to a passing test” or “what happens if the worker retries a customer action?”
+### What comes back
 
-## Install for repeated use
+On a small Python demo project, the first review found a misleading green test run. Here’s the finding, shortened.
 
-Run this from the project directory.
+> **Fix the test command in `AGENTS.md`.** Its `-s test` argument sent discovery into Python’s own test suite. On this machine 49 tests ran and the command passed. None exercised the project.
+>
+> **Change** the directory to `tests` in `AGENTS.md`, line 2. Keep the existing formatter test. [Osmani on what a green check proves, 3 Nov 2026](sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md)
+>
+> **Check** with `python3 -m unittest discover -s tests -v`. Look for `test_minutes.Headings.test_trim` and `Ran 1 test`. Both appeared in the review run.
+
+You can inspect the evidence, narrow the review (“follow one customer email through a retry”), or tell the same agent “make that change and run the check.” A review of this wiki led to a check for broken links in the published skill. [See the finding and merged fix](https://github.com/mishaevoma/aie-brain/pull/5)
+
+If your agent can reach GitHub but can't open the review URL, use the same prompt with [the skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md).
+
+## Keep it in your agent
+
+For repeat reviews, install the skill from your project directory with Node.js and npm. On first use it can download the wiki to `~/.aie-brain` using Git and a POSIX shell. A web-enabled agent can also consult the public copy.
 
 ```sh
 npx skills add mishaevoma/aie-brain --skill brain-consult
 ```
 
-Select your coding agent when prompted. For a user-wide install, add `-g`. Open a new agent session in the project and ask it to use the skill.
+Select your agent, start a new session in the same project, and say **“Use brain-consult to review this project.”** You can also point it at a design document or ask a focused question such as “Do we need a second agent for this step?”
 
-```text
-Use brain-consult to review this project.
-```
+<details>
+<summary>Global install, updates, and existing wiki checkouts</summary>
 
-To update an existing project install, run `npx skills update brain-consult -p`.
-
-The installed skill locates the wiki on first use. With Git and a POSIX shell, it can clone the wiki into `~/.aie-brain` and reuse it on later runs. You can also point `AIE_BRAIN` at an existing checkout. With web access alone, the agent can read the public wiki.
-
-### Use an instruction file
+Add `-g` to the install command to use the skill across projects. Update a project install with `npx skills update brain-consult -p`. Set `AIE_BRAIN` to the path of a wiki checkout you already maintain.
 
 For an agent that reads project instructions, clone the wiki once.
 
@@ -46,89 +54,22 @@ Add this line to the project's `AGENTS.md` or the instruction file your agent re
 For an AI engineering question or project review, follow ~/.aie-brain/.agents/skills/brain-consult/SKILL.md.
 ```
 
-If your team already includes the wiki as a submodule, use its project-relative path in that line.
+For a team using a wiki submodule, substitute its project-relative path.
 
-## What it is for
+</details>
 
-1. **Building.** Turn what the best practitioners publish into concrete decisions when designing an agent, a tool, an eval or a harness.
-2. **Staying current.** Give a coding agent dated, sourced practices instead of whatever its training data happened to contain.
-3. **A shared vocabulary.** When a person and their AI tools say "harness", "skill" or "context engineering", they mean the same thing, at the same level of abstraction.
+## Read the wiki
 
-## Where to start
+Start with a decision such as “How do I know the agent did the right thing?” The index takes you to a playbook or concept, then to a dated source note and the original publication. Agents maintain the summaries. Check the original when a number or assumption matters to your design. The overview records disagreements and gaps in coverage.
 
-| If you want | Open |
-|---|---|
-| The big picture in five minutes | [overview.md](overview.md) |
-| What a term means here | [glossary.md](glossary.md) |
-| Everything, one line per page | [index.md](index.md) |
-| A step-by-step guide | [playbooks/](playbooks/) |
+[Browse the wiki](https://mishaevoma.github.io/aie-brain/) · [Index by decision](index.md#by-decision) · [Overview](overview.md) · [Glossary](glossary.md) · [Markdown index for agents](https://mishaevoma.github.io/aie-brain/llms.txt)
 
-## How it is organised
+## Work on the wiki
 
-```
-AGENTS.md      rules for agents working here (CLAUDE.md imports it)
-index.md       every page in one line, and "By decision": from a question to its pages
-overview.md    the stack, consensus, live debates, gaps
-glossary.md    the shared vocabulary
-concepts/      one page per idea, every claim linked to a source note
-playbooks/     task-shaped guides built from the concepts
-sources/       one note per source: our own summary plus the link
-considered.md  sources that were looked at and left out, with the reason
-raw/           local full-text captures (gitignored)
-log.md         what was ingested and changed, and when
-watchlist.md   where new material comes from
-tools/lint.py  checks, generated parts and log entries
-.agents/skills procedures: consult, ingest, lint, refresh
-site/          website build: Quartz settings and two scripts
-```
+In a wiki checkout, ask your agent to **ingest a source** by URL, **refresh** the watchlist, or **lint** the wiki. To cite a review later, keep the wiki revision that the agent reports. [Repository guide](AGENTS.md) · [Watchlist](watchlist.md) · [Sources considered](considered.md) · [Change log](log.md)
 
-This is the LLM wiki pattern: raw sources, a wiki the agent owns, and a schema file that tells it how to maintain the wiki. See [concepts/llm-wiki.md](concepts/llm-wiki.md).
-
-## Using it
-
-**Ask it a question.** Ask from any project where the brain is installed, or open this folder in a coding agent and ask. The agent reads `index.md`, then the pages that fit, and answers with citations. The `brain-consult` skill describes how.
-
-**Review a design.** Give the agent a design document or a planned change and ask for a review. It compares the decisions in the plan against the relevant playbook, identifies trade-offs, and tells you what evidence would resolve an open question.
-
-**Cite it.** The brain changes. An answer that will be kept should name the version it read, which `git log -1 --format='%h %cs'` prints.
-
-**Add a source.** Give the agent a link, or drop a file into `raw/`, and say "ingest this". It writes the source note, updates every page the source touches, and logs the change (`brain-ingest`).
-
-**Keep it fresh.** Ask "what's new?" and the agent checks the watchlist and proposes what to ingest (`brain-refresh`). What it looks at and leaves out goes into `considered.md`, so nothing is weighed twice. Ask it to lint and it looks for broken links, stale pages and contradictions (`brain-lint`).
-
-**Read it yourself.** On the website, https://mishaevoma.github.io/aie-brain/, which has search, backlinks and previews of cited sources. Or on GitHub, or by opening the folder as an Obsidian vault.
-
-**Read it without cloning.** An agent that can only fetch web pages starts at https://mishaevoma.github.io/aie-brain/llms.txt. Every page is also served as raw markdown at its address plus `.md`.
-
-## What is in it
-
-Seeded on 17 November 2026 with 50 sources: all 29 articles on Anthropic's engineering blog, plus 21 articles, posts and one video from Addy Osmani, Boris Cherny, Theo Browne, Dan Shipper, Harrison Chase, Andrej Karpathy, Google, Red Hat, Loams and others. Nine sources from outside Anthropic were added next: Chip Huyen, HumanLayer's 12-factor agents, Cognition, Drew Breunig, Simon Willison, Chroma, and Hamel Husain with Shreya Shankar. From all of these: 21 concept pages, 3 playbooks, and a glossary of about 90 terms.
-
-## What to keep in mind
-
-- **Summaries, not copies.** The sources are other people's copyrighted work and this repository is public. Each note is a short summary in our own words with a link. Read the original for anything that matters.
-- **Models wrote this.** Source notes were written by AI agents, most of them reading articles through a fetch tool, with two passes per article. Each note says how much of the original it is based on. Check numbers against the original before you rely on them.
-- **It has a slant.** About half of the sources are Anthropic's, and several of the others come from people who build on Claude. The gaps are listed at the end of [overview.md](overview.md).
-- **It dates quickly.** Every source note carries its publication date and every concept page the date it was last updated. `python3 tools/lint.py --ages` shows which pages rest on old sources.
-
-## Checks
-
-```bash
-python3 tools/lint.py
-```
-
-Standard library only. Add `--sync` to regenerate the source list in `index.md` and the backlinks in source notes. Add `--log "ingest | Title"` to append the `log.md` entry once the checks pass.
-
-The lint enforces the freshness rules: every "What to do" bullet cites a source note, every citation shows the note's publication date, and pages that have not been reviewed for 120 days are flagged.
-
-```bash
-python3 tools/lint.py --ages
-```
-
-Prints, for each concept page and playbook, how many of its cited lines rest only on sources older than a year, with the oldest and newest source date. Every page carries the date it was last edited, which says nothing about how old its evidence is. This report does.
-
-For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`. It generates the files in a temporary directory and checks that an agent can follow the index to the same review instructions as a local install. CI runs this check on pull requests.
+Run `python3 tools/lint.py` to check citations and links. Use `--ages` to inspect the age of the evidence. For a wiki edit, `--sync --log "edit | Title"` regenerates the index and backlinks and records the change. For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`. Both checks use the Python standard library.
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE). It covers this repository's own text and code. The articles, posts and videos that the source notes summarise and link to remain their authors' work.
+The repository's own text and code use the [MIT licence](LICENSE). The original articles, posts and videos remain their authors’ work.
