@@ -13,16 +13,20 @@ Read this first. It lists every page with one line on what it holds. "By decisio
 
 ## By decision
 
-Start from the question you are facing. Each line names the pages to read, the most useful first.
+Start from the question you are facing. Each line names the pages to read, the most useful first. Read those, not the whole wiki.
 
 **Building an AI product**
 
+- Where do I start? [Building an agent product](playbooks/building-an-agent-product.md).
 - One model call, a workflow or an agent? [Agents and workflows](concepts/agents-and-workflows.md), then step 1 of [Building an agent product](playbooks/building-an-agent-product.md).
 - Build a harness or adopt one? [Harness](concepts/harness.md), [Context layer](concepts/context-layer.md).
 - What rides in every prompt, and what is loaded on demand? [Context engineering](concepts/context-engineering.md), [Retrieval](concepts/retrieval.md), [Skills](concepts/skills.md).
+- RAG, search or a compiled wiki? [Retrieval](concepts/retrieval.md), [LLM wiki](concepts/llm-wiki.md).
 - How many tools, and when to load them on demand? [Tool design](concepts/tool-design.md), [MCP](concepts/mcp.md).
+- How do I connect an outside system? [MCP](concepts/mcp.md), [Tool design](concepts/tool-design.md).
 - How can the agent act without a person approving each step? [Permissions, sandboxing and containment](concepts/sandboxing-and-permissions.md), [Human judgment and oversight](concepts/human-judgment.md).
 - How do I know it works, before launch and after? [Evals](concepts/evals.md), [Trusting eval numbers](concepts/eval-validity.md), [Running agents in production](concepts/production-operations.md).
+- Does a benchmark number mean anything? [Trusting eval numbers](concepts/eval-validity.md).
 - Should it remember anything between sessions? [Memory](concepts/memory.md), [LLM wiki](concepts/llm-wiki.md).
 - One agent or several? [Multi-agent systems](concepts/multi-agent-systems.md).
 - A task that runs for hours, or waits for a person? [Long-running agents](concepts/long-running-agents.md), [Running agents in production](concepts/production-operations.md).
@@ -35,6 +39,12 @@ Start from the question you are facing. Each line names the pages to read, the m
 - The same correction keeps coming back. [Compounding](concepts/compounding.md).
 - How do I review what agents produce, and how many can I run? [Reviewing agent work](playbooks/reviewing-agent-work.md), [Human judgment and oversight](concepts/human-judgment.md), [Multi-agent systems](concepts/multi-agent-systems.md).
 - Which commands may it run without asking? [Permissions, sandboxing and containment](concepts/sandboxing-and-permissions.md).
+
+**When something goes wrong**
+
+- The agent picks the wrong tool, or misuses one. [Tool design](concepts/tool-design.md).
+- Quality drops in long sessions. [Context engineering](concepts/context-engineering.md).
+- Quality changed after launch. [Running agents in production](concepts/production-operations.md).
 
 ## Playbooks
 
@@ -90,6 +100,7 @@ One page per idea: definition, what to do, where sources disagree.
 
 - [Log](log.md) — what was ingested and changed, and when.
 - [Watchlist](watchlist.md) — where new material comes from, and open leads.
+- [Considered, not ingested](considered.md) — sources that were looked at and left out, with the reason.
 - [AGENTS.md](AGENTS.md) — the rules for agents working in this repository.
 
 ## Sources

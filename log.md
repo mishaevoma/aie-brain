@@ -2,6 +2,8 @@
 
 Append-only, newest at the bottom. Every entry starts with `## [YYYY-MM-DD] operation | title`, so `grep "^## \[" log.md | tail` shows recent activity. Operations: `init`, `ingest`, `lint`, `refresh`, `edit`.
 
+Entries are written by `python3 tools/lint.py --sync --log "operation | title"`, which lists the files changed since the last commit. Add a line of explanation under an entry by hand when the title is not enough.
+
 ## [2026-11-17] init | Repository created
 
 Structure, schema (`AGENTS.md`), four skills (`brain-consult`, `brain-ingest`, `brain-lint`, `brain-refresh`) and `tools/lint.py`.
@@ -40,3 +42,23 @@ An agent used the brain to review a product design end to end and reported what 
 - `tools/lint.py --sync` passes with no errors and no warnings. It moved one backlink: the contextual retrieval note is now also used by the context engineering page.
 - `--ages` at its default of 365 days: 81 of 384 cited lines rest only on sources older than a year. Tool design (11 of 16 lines) and context engineering (10 of 17) lean on old sources the most.
 - The figures on the edited lines were confirmed in their source notes. They were not checked again against the original articles.
+
+## [2026-11-17] edit | Freshness lint, log command, ledger, decision table, installable consult skill
+
+- AGENTS.md
+- README.md
+- considered.md
+- index.md
+- .agents/skills/brain-consult/SKILL.md
+- .agents/skills/brain-consult/brain-root.sh
+- .agents/skills/brain-ingest/SKILL.md
+- .agents/skills/brain-ingest/concept-template.md
+- .agents/skills/brain-lint/SKILL.md
+- .agents/skills/brain-refresh/SKILL.md
+- concepts/ (20 files)
+- playbooks/building-an-agent-product.md
+- playbooks/reviewing-agent-work.md
+- playbooks/setting-up-a-repo-for-coding-agents.md
+- tools/lint.py
+
+Built in parallel with the edit above, from the same starting point, and merged with it afterwards. Where both had built the same thing, the names already published were kept: the `AIE_BRAIN` variable, the "By decision" section of `index.md` (it took over the rows of this change's decision table), and `--ages` with `--old-days` in the lint. `--old-days` now also sets the age at which a concept page whose newest source is old raises a warning.

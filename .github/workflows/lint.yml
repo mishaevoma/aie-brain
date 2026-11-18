@@ -1,0 +1,20 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check the brain
+        run: python3 tools/lint.py
+      - name: Check that generated parts are up to date
+        run: |
+          python3 tools/lint.py --sync
+          git diff --exit-code

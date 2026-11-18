@@ -5,11 +5,15 @@ description: Answer a question, or review a plan or a whole design, using the AI
 
 # Consult the brain
 
+Consulting is read-only. It never changes the brain.
+
 ## 1. Find it
 
-If the current project has `index.md`, `glossary.md` and `concepts/` at its root, you are in the brain. Otherwise run `sh brain-root.sh` from this skill's folder. It prints the brain's root: the folder named in `AIE_BRAIN` if that is set, otherwise the folder this skill was installed from.
+Run `sh brain-root.sh` from this skill's folder. It prints the root of a local copy of the brain. It looks in three places: the folder named in the `AIE_BRAIN` environment variable, the repository this skill is linked from, and the current folder and its parents.
 
-If the brain is not on this machine, clone it and read from the clone: `git clone --depth 1 https://github.com/mishaevoma/ai-engineering-brain`. Nothing needs installing. This file is the whole procedure, and reading it is enough to follow it.
+If it finds none, clone the brain and read from the clone: `git clone --depth 1 https://github.com/mishaevoma/ai-engineering-brain`, then set `AIE_BRAIN` to the clone. Where cloning is not possible, read the public copy. Start at `https://raw.githubusercontent.com/mishaevoma/ai-engineering-brain/main/index.md`. Every path in the index is relative to `https://raw.githubusercontent.com/mishaevoma/ai-engineering-brain/main/`. Say in your answer that you used the public copy.
+
+Nothing needs installing. This file is the whole procedure, and reading it is enough to follow it.
 
 ## 2. Read as little as answers the question
 
@@ -17,6 +21,8 @@ If the brain is not on this machine, clone it and read from the clone: `git clon
 2. The one to three concept pages or the playbook that fit.
 3. A source note only for detail, a number, or a point the page marks as disputed.
 4. The original URL only when the note is not enough.
+
+Do not load the whole wiki.
 
 ## 3. Review a whole design
 
@@ -47,4 +53,4 @@ A review of an architecture or a repository setup is many questions at once, so 
   - Two pages that pull apart are reconciled on the concept page: both positions with their sources and dates, then a line labelled as this brain's reading.
   - A synthesis worth keeping becomes a section on a concept page, or a playbook when it is shaped like a task.
 - Keep anything about the user's own project in that project. This repository is public: record what you learned in general terms, with no names, architecture or data from the work you were consulting for.
-- Change the brain only when the user agrees, and then follow `brain-ingest` or edit the page and append to `log.md`.
+- Changing the brain is a separate job, done in the brain's own repository with its `brain-ingest` skill, and only when the user agrees.

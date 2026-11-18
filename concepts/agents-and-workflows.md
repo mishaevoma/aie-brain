@@ -2,6 +2,7 @@
 type: concept
 title: "Agents and workflows"
 updated: 2026-11-17
+reviewed: 2026-11-17
 status: settled
 ---
 
