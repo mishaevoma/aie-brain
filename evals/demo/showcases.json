@@ -1,42 +1,46 @@
 {
   "prompt": "Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md",
-  "typing_steps": 3,
-  "end": ["3 real reviews. 3 upgrades.", "Each one dated, cited and checkable."],
+  "typing_steps": 2,
+  "stack": ["harness", "tools", "memory", "context", "evals", "containment"],
+  "end": ["One paste. Your project against the whole stack.", "Every upgrade dated, cited and checkable."],
   "scenes": [
     {
-      "theme": "agent approach",
+      "primitive": "harness",
+      "part": "the loop",
       "accent": "#8fd19e",
       "project": "~/src/release-crew",
       "credit": "runs/2026-11-19-published-codex/04-multi-agent",
-      "title": "Give the writer the real PRs, simplify the chain",
+      "gist": "Start simple: a workflow before an agent.",
       "rows": [
-        ["found", "<code>crew.py:28</code> 4 agents in a fixed order"],
+        ["code", "<code>crew.py:28</code> 4 agents, always in the same order"],
         ["check", "does the writer see /v1/export? <span class=\"out\">False</span>"],
-        ["source", "Osmani, 3 Nov 2026 · <b>16 days old</b> <i>+1 older, labelled</i>"]
+        ["source", "Anthropic, Dec 2024 <i>(older, still valid)</i> + Osmani, <b>3 Nov 2026</b>"]
       ]
     },
     {
-      "theme": "tool calling",
+      "primitive": "tools",
+      "part": "side effects",
       "accent": "#f5d547",
       "project": "~/src/refund-desk",
       "credit": "runs/2026-11-19-published-codex/03-tool-agent",
-      "title": "Prevent duplicate payments after a timeout",
+      "gist": "An action that changes the world needs a plan for running twice.",
       "rows": [
-        ["found", "<code>agent.py:16</code> retries every tool, no key"],
+        ["code", "<code>agent.py:16</code> retries every tool, writes carry no key"],
         ["check", "commit, then timeout → <span class=\"out\">retry: error 3</span>"],
-        ["source", "Temporal, 4 Nov 2026 · <b>15 days old</b>"]
+        ["source", "Temporal, <b>4 Nov 2026</b> · 15 days old"]
       ]
     },
     {
-      "theme": "memory",
+      "primitive": "memory",
+      "part": "context layer",
       "accent": "#b8a1ff",
       "project": "~/src/study-buddy",
       "credit": "runs/2026-11-19-showcase-memory-codex/08-memory-agent",
-      "title": "Swap append-only notes for a small profile",
+      "gist": "Keep what is always loaded small, and correct notes against evidence.",
       "rows": [
-        ["found", "<code>memory.py:16</code> loads every note, drops none"],
+        ["code", "<code>memory.py:16</code> loads every note, drops none"],
         ["check", "<code>load_all()</code> → <span class=\"out\">12 notes, one ×3, a March exam</span>"],
-        ["source", "Anthropic, 6 Nov 2026 · <b>13 days old</b>"]
+        ["source", "Anthropic, <b>6 Nov 2026</b> · 13 days old"]
       ]
     }
   ]

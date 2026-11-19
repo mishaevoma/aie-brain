@@ -10,7 +10,7 @@ The wiki promises this: your coding agent reviews your app against a dated, cite
 | `score.py` | Checks what a machine can check and writes the scorecard |
 | [`scorecard.md`](scorecard.md) | The latest full run |
 | `runs/` | One folder per run: each review, a trace of the agent's steps, timings, grades |
-| `demo/` | Builds the GIF in the README from three real findings: agent approach, tool calling, memory |
+| `demo/` | Builds the GIF in the README: three upgrades named by primitive (harness, tools, memory), with evidence from real reviews |
 
 ## Run it
 

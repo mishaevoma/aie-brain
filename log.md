@@ -160,3 +160,12 @@ Research into how agents run in production, as of November 2026: durable executi
 - README.md
 - .github/review-demo.gif
 - evals/ (11 files)
+
+## [2026-11-19] edit | Demo GIF names the primitive and the gist of each upgrade
+
+- README.md
+- .github/review-demo.gif
+- evals/README.md
+- evals/demo/demo.html
+- evals/demo/make_gif.py
+- evals/demo/showcases.json
