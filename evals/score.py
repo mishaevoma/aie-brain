@@ -174,7 +174,7 @@ def scorecard(run: Path, checks: list[dict], old_days: int) -> str:
     for row in scores:
         by_fixture.setdefault(row["fixture"], []).append(row)
 
-    products = [c["fixture"] for c in checks if c["fixture"][:2] in {"01", "02", "03", "04", "05"}]
+    products = [c["fixture"] for c in checks if "control" not in c["fixture"] and "seeded" not in c["fixture"]]
     control = next((c["fixture"] for c in checks if "control" in c["fixture"]), None)
     seeded = next((c["fixture"] for c in checks if "seeded" in c["fixture"]), None)
     found = sorted({i for row in by_fixture.get(seeded, []) for i in row["ids"].split() if i.startswith("S")})

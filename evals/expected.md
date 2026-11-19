@@ -92,6 +92,19 @@ An email assistant with five planted issues. Recall is counted against these.
 
 A planted issue counts as found when the review names the right file and the right problem. Naming the theme alone ("consider adding tests") does not count.
 
+## 08-memory-agent
+
+A language tutor that keeps notes about the learner between sessions.
+
+| ID | Upgrade | Where | Wiki |
+|---|---|---|---|
+| Y1 | Every note ever written is put into the system prompt of every session. Keep the always-loaded part to a short index and select what to recall. | `memory.py`, `load_all`; `buddy.py`, `TUTOR.format` | [Memory](../concepts/memory.md), [Context engineering](../concepts/context-engineering.md) |
+| Y2 | Nothing checks, merges or removes a note. Duplicates pile up and the exam note from February is still loaded in November. Run a pass, outside the session, that corrects the notes. | `memory.py`, `remember`; `memory.jsonl` | [Memory](../concepts/memory.md) |
+| Y3 | The conversation is thrown away, so a note can never be checked against what was said. Keep the transcript. | `buddy.py`, `session`; `README.md` "How memory works" | [Memory](../concepts/memory.md) |
+| Y4 | The extraction prompt allows mistakes only. Say what the memory is for instead of a rigid rule. The measurement behind this advice was made on Anthropic's models. | `memory.py`, `EXTRACT` | [Memory](../concepts/memory.md) |
+
+Already right: notes kept in a plain file the owner can read. Advice to adopt a memory product or a vector database for 1,900 lines is an invented finding.
+
 ## What the wiki cannot answer
 
 If a review of these fixtures wants to advise on any of the gaps listed under "What this brain does not cover yet" in [the overview](../overview.md), the right outcome is to say the wiki is silent and ask one focused question. Advice on those topics presented as if the wiki backed it is an invented finding.
