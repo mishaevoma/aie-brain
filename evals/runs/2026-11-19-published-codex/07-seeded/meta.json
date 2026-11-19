@@ -1,0 +1,26 @@
+{
+  "fixture": "07-seeded",
+  "fixture_revision": "7e322cb",
+  "agent": "codex",
+  "agent_version": "codex-cli 0.169.0-alpha.11.1",
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "via": "url",
+  "network_approved": true,
+  "prompt": "Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md",
+  "wiki_revision": "9b70bc0 2026-11-19",
+  "date": "2026-11-19",
+  "seconds_total": 107.5,
+  "seconds_to_review": 107.2,
+  "steps": 29,
+  "usage": {
+    "input_tokens": 320193,
+    "cached_input_tokens": 258304,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 3925,
+    "reasoning_output_tokens": 228
+  },
+  "read_only": true,
+  "left_behind": [],
+  "exit_code": 0
+}

@@ -1,0 +1,41 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.7s  says  I’ll read the review instructions and inspect the project, then report findings with file references and supporting evidence. … (126 chars)
+    7.5s  step  shell exit=1: /bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"' -g '"'!package-lock.json'"' -g '"'!pnpm-lock.yaml'"' -g '"'!yarn.lock'"'"
+    8.9s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   15.0s  step  shell exit=0: /bin/zsh -lc "ls -la && rg --files --hidden -g '"'!.git'"' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"'"
+   15.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   20.7s  step  shell exit=0: /bin/zsh -lc 'cat README.md crew.py test_crew.py prs.json && git status --short'
+   20.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/references/project-review.md'
+   24.2s  says  I’m using the linked brain-consult review procedure from the published wiki. The code has an unbounded revision loop, and the critic never sees the original pull requests. I’ll check those failure pat … (256 chars)
+   27.6s  step  shell exit=0: /bin/zsh -lc "python3 -B -m unittest -v && nl -ba crew.py && git ls-files && python3 -B - <<'PY'
+from pathlib import Path
+for p in Path.cwd().parents:
+ f=p/'AGENTS.md'
+ if f.is_file():
+  print(str(f)); print(f.read_text())
+PY"
+   27.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/upgrading-an-agent-app.md && curl -fsSL https://mishaevoma.github.io/aie-brain/revision.txt'
+   34.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md'
+   34.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/agents-and-workflows.md'
+   34.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md'
+   34.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/multi-agent-systems.md'
+   34.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/verification.md'
+   34.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md'
+   34.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-17-osmani-claude-code-team-verification.md'
+   44.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/agents-and-workflows.md'
+   44.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/overview.md'
+   44.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2024-12-19-anthropic-building-effective-agents.md'
+   44.9s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+import json
+import crew
+from test_crew import ScriptedClient
+prs = json.load(open('prs.json'))
+c = ScriptedClient(['NOT APPROVED: missing breaking change'])
+print('negative verdict returned notes:', bool(crew.run(prs, c)))
+c = ScriptedClient(['APPROVED
+   53.1s  says  The two existing tests pass, but a scripted critic saying “NOT APPROVED” still causes the app to return the notes. Repeated rejection also runs past ten rounds with no limit. The fake-client checks co … (312 chars)
+   55.4s  step  shell exit=0: /bin/zsh -lc "python3 -B -c 'import crew; from test_crew import ScriptedClient; print(crew.run([], ScriptedClient([\"NOT APPROVED\"])))'
+python3 -B -c 'import crew; from test_crew import ScriptedClient; crew.run([], ScriptedClient([\"Fix it\"] * 10))'
+python3 -B -c 'import crew,json; f
+   87.9s  says  The project needs four upgrades. **The most urgent bug is that “NOT APPROVED” is treated as approval.** Both existing tests pass, but neither checks factual accuracy. … (6250 chars)

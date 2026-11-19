@@ -19,21 +19,19 @@ The review is read-only. The result appears in the same chat, under your agent�
 
 On a small support agent that issues refunds, the review led with this upgrade. Here it is, shortened.
 
-> **Upgrade 1: Make refunds and emails safe to retry.**
+> **1. Prevent duplicate payments after a timeout.** `agent.py:16` retries every exception from every tool. `tools.py:42` sends writes without an idempotency key. A payment can commit before its response is lost, and the retry can then pay again.
 >
-> **Change.** `agent.py:16` retries every tool the same way, and `tools.py:42` sends the refund with no key. Keep the retry for reads. Give each write one operation ID, and have the payments service drop a repeat.
+> **Change.** Keep bounded retries for reads. For refunds and emails, require the receiver to deduplicate on a stable operation identifier that survives retries and queue redelivery.
 >
-> **Why.** A write can succeed just before the timeout that loses its response, so the retry repeats it. [Side effects and approvals](concepts/side-effects.md) · [Running durable agents, Oct 2026](sources/2026-10-15-vercel-running-durable-agents.md) · [original](https://vercel.com/kb/guide/durable-ai-agents)
+> **Check.** The simulation prints `retry: error 3`: three simulated commits, then an error. Add a commit-then-timeout test and a redelivery test. Both must produce exactly one external effect.
 >
-> **Check.** A fake refund that records the call and then times out is sent 3 times today. After the change it is sent once.
+> **Why and evidence.** [Side effects](concepts/side-effects.md), [Temporal source note](sources/2026-11-04-temporal-deciding-what-survives-failure.md), [original publication](https://temporal.io/blog/durable-execution-means-deciding-what-survives-failure), 4 November 2026, 15 days old.
 >
-> **Evidence.** Published 15 October 2026, 35 days old.
->
-> **Effort and impact.** Small to stop the unsafe retry, medium to deduplicate across services. Prevents a customer being refunded twice.
+> **Effort and impact.** Small immediate retry-policy change, moderate work for durable deduplication. Prevents duplicate refunds and messages.
 
 Every upgrade carries those five parts, and a source older than 12 months is labelled as older. You can inspect the evidence, narrow the review (“follow one customer email through a retry”), or reply “make upgrade 1 and run the check.” When nothing needs upgrading, the review says so.
 
-The review is tested on seven sample projects. One has planted issues and one has no AI at all. [See the latest scorecard](evals/scorecard.md)
+The review is tested on seven sample projects. One has planted issues and one has no AI at all. The example above is from [that run](evals/runs/2026-11-19-published-codex/03-tool-agent/review.md). [See the latest scorecard](evals/scorecard.md)
 
 Some agents cannot read the review URL with their web tool: Codex fails to open the site, and Claude Code gets a summary in place of the file. Both then fetch it with `curl`, so allow that command when your agent asks. If your agent can reach GitHub but not the site, use the same prompt with [the skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md). An agent with no network access at all cannot load the review, and should tell you so.
 

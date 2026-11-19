@@ -1,15 +1,15 @@
 {
   "project": "~/src/refund-desk",
-  "credit": "a real finding: evals/runs/2026-11-19-local-codex/03-tool-agent",
+  "credit": "from evals/runs/2026-11-19-published-codex/03-tool-agent",
   "prompt": "Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md",
   "typing_steps": 4,
   "status": ["reading agent.py, tools.py, worker.py, test_agent.py …", "python3 -B -m unittest -v  →  4 tests OK"],
-  "title": "<span>Upgrade 1:</span> Make refunds and emails safe to retry",
+  "title": "<span>Upgrade 1:</span> Prevent duplicate payments",
   "parts": [
-    ["Change", "<code>agent.py:16</code> <code>tools.py:42</code> Replace blanket retries with read and write policies. Give each write a stable ID the receiver deduplicates on."],
-    ["Check", "fake refund, then <code>TimeoutError</code> → <span class=\"out\">retry: error effects: 3</span> · after the change: exactly one refund"],
-    ["Why", "Side effects and approvals → source note → Vercel, <span class=\"date\">Running durable agents</span>"],
-    ["Evidence", "published <span class=\"date\">2026-10-15</span>, 35 days old"],
-    ["Effort", "small to stop unsafe retries · prevents duplicate refunds and messages"]
+    ["Change", "<code>agent.py:16</code> retry reads only, deduplicate writes"],
+    ["Check", "commit, then timeout → <span class=\"out\">retry: error 3</span>, expect 1"],
+    ["Why", "Side effects → source note → Temporal"],
+    ["Evidence", "published <span class=\"date\">4 November 2026</span>, 15 days old"],
+    ["Effort", "small · prevents duplicate refunds and messages"]
   ]
 }

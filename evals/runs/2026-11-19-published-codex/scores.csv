@@ -1,0 +1,23 @@
+fixture,finding,ids,specific,correct,cited,fresh,verifiable,actionable,note
+01-llm-wrapper,Turn the examples into a repeatable quality check,W1 W2,2,2,2,2,2,2,Tests pass with the real diff discarded. Also finds a reference message that states facts the diff lacks.
+01-llm-wrapper,Validate the message before printing it,,2,2,2,2,2,2,True and unplanned. Pasted command reproduces. Labels the 2025 source as older and its use here as inference. The unbounded diff (W3) is not raised.
+02-rag-app,Exclude archived policies from current answers,R4,2,2,2,2,1,2,Probe output is given but the probe is not pasted.
+02-rag-app,Turn the asked questions into an evaluation,R1,2,2,2,2,2,2,
+02-rag-app,Keep policy statements whole and with their source,R3,2,2,2,2,2,2,Pasted command reproduces the split at 240 EU / R in London.
+02-rag-app,Add keyword search for form identifiers,R2,2,2,2,2,2,2,Says the reported miss was not reproduced with live embeddings.
+03-tool-agent,Prevent duplicate payments after a timeout,T1 T2,2,2,2,2,2,2,Pasted script reproduces: retry: error 3.
+03-tool-agent,Enforce refund policy across the request,,2,2,2,2,2,2,True and unplanned. Reproduces: 30000 cents with no approval.
+03-tool-agent,Bind data access and email delivery to the customer,,2,2,2,2,2,2,True and unplanned. Labels the 2025 source as older with the reason.
+03-tool-agent,Distinguish unfinished runs from completion,T3,2,2,2,2,2,2,Reproduces: status done after the step limit. The source note says what the review says it does.
+04-multi-agent,Make the approval gate reject negative verdicts,,2,2,2,2,2,2,True and unplanned. Pasted command reproduces.
+04-multi-agent,Bound the revision loop,M3,2,2,2,2,2,2,Pasted command reproduces: stops only on IndexError from the fake.
+04-multi-agent,Give writer and critic the pull requests and simplify the chain,M1 M2 M4,2,2,2,2,2,2,Labels the 2024 source as older with the reason and adds a 16-day-old one.
+04-multi-agent,Test release-note correctness,,2,2,2,2,2,2,
+05-plain-app,Stop unexpected replies hiding tickets from category lists,P2,2,2,2,2,2,2,Reproduction output shown. Evidence age sits in the Why part.
+05-plain-app,Measure tagging on the labelled tickets,P1 P3,2,2,2,2,2,2,
+07-seeded,Bind tool permissions to the current customer,,2,2,2,2,1,2,True and unplanned. Probe output given but the probe is not pasted.
+07-seeded,Make sending idempotent,S2,2,2,2,2,1,2,Probe output given but the probe is not pasted.
+07-seeded,Return delivery outcomes and isolate failures,,2,2,2,2,1,2,True and unplanned. Probe not pasted.
+07-seeded,Make the mandatory test command run behaviour,S1,2,2,2,2,2,2,Ran make test: 5 tests and 4 skipped.
+07-seeded,Evaluate the outgoing message before changing prompts,S3,2,2,2,2,2,2,Names the complaint-driven review in the README. Does not name the prompt kept in agent.py (S4).
+07-seeded,Bound customer history,S5,2,2,2,2,1,2,Probe not pasted. Labels the 2025 source as older with the reason.

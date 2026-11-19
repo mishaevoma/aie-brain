@@ -1,0 +1,14 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    5.8s  says  I’ll read the review instructions and inspect the project, then report findings with supporting tests or code references. … (121 chars)
+    7.9s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g '"'!**/__pycache__/**'"' -g '"'!**/.git/**'"'"
+    9.2s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   13.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   14.0s  step  shell exit=0: /bin/zsh -lc 'git status --short; cat AGENTS.md README.md slugkit/core.py slugkit/__init__.py tests/test_core.py pyproject.toml'
+   19.5s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/references/project-review.md'
+   19.7s  step  shell exit=0: /bin/zsh -c "rg --files --hidden -g '"'!.git/**'"'; python3 -m unittest discover -s tests -v"
+   23.6s  says  This project has no AI feature, so the requested review applies to its coding-agent setup. I’m using the published brain-consult instructions; all nine tests pass, and I’m checking the repository guid … (233 chars)
+   26.0s  step  shell exit=0: /bin/zsh -c "cat .github/workflows/ci.yml; git ls-files; git status --short --untracked-files=all; find slugkit tests -name '*.pyc' -ls"
+   26.1s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/setting-up-a-repo-for-coding-agents.md; curl -fsSL https://mishaevoma.github.io/aie-brain/revision.txt'
+   34.3s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/verification.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/instruction-files.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-17-osmani-claude-code-team-verification.md; curl -
+   44.8s  says  This project has no AI feature, and I found no necessary upgrades to its coding-agent setup. … (1806 chars)

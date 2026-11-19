@@ -1,0 +1,5 @@
+agent,model,fixture,started_without_questions,first_finding_seconds,note
+Claude Code (subagent),claude-sonnet-5-5,07-seeded,yes,55,WebFetch returned a summary and the agent fetched raw text with curl as the skill says. Found S1 S2 S3 S4 S5. Tree untouched. Not a clean paste: started in another folder and told the fixture's path. Review in runs/2026-11-19-published-claude-code.
+Claude Code (subagent),claude-sonnet-5-5,06-no-ai-control,yes,34,Says there is no AI feature and nothing to upgrade and offers one question. Tree untouched. Same caveat.
+Cursor,,,not run,,No command-line agent on this machine. Needs a person to paste the line.
+Web-only agent,,,not run,,Needs a person's go-ahead to send the prompt in a chat product.

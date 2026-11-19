@@ -74,6 +74,8 @@ Cursor,its default,07-seeded,yes,95,found S1 S2 S5
 
 A permission prompt to fetch the URL is not a question. A question about setup, paths or what to review is.
 
+A smoke check that could not be a clean paste says so in its note. Use `not run` in `started_without_questions` for an agent that is still owed, so the scorecard keeps showing it.
+
 ## When to stop
 
 One full run has to show all of these. `score.py --write` works them out and prints them at the top of the scorecard.

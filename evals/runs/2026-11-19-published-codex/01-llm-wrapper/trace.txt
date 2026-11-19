@@ -1,0 +1,26 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.3s  says  I’ll read the review guidelines and inspect the project, then report actionable findings with file references. … (110 chars)
+    6.5s  step  shell exit=1: /bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"' -g '"'!package-lock.json'"' -g '"'!uv.lock'"' -g '"'!yarn.lock'"'"
+    8.2s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   14.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   14.7s  step  shell exit=0: /bin/zsh -lc "ls -la && rg --files -g '"'!node_modules'"' -g '"'!.git'"'"
+   20.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt'
+   20.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md'
+   20.8s  step  shell exit=0: /bin/zsh -lc 'git status --short && nl -ba commitmsg.py && nl -ba test_commitmsg.py && cat README.md && for f in examples/*; do echo "$f"; cat "$f"; done'
+   25.8s  says  I’m using the linked brain-consult review procedure, with the published wiki and its raw GitHub procedure. This is a small, single-call CLI; I’m checking output quality and validation, including wheth … (250 chars)
+   28.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md'
+   28.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/upgrading-an-agent-app.md'
+   28.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/revision.txt && python3 -B -m unittest -v && git ls-files'
+   44.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md'
+   44.2s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+import unittest
+from unittest.mock import patch
+import commitmsg
+import test_commitmsg
+with patch.object(commitmsg, 'build_prompt', return_value='imperative mood diff --git a/x b/x'):
+    result = unittest.TextTestRunner(verbosity=1).run(unittest.defau
+   52.2s  says  All three tests pass, but they also pass when I replace the prompt builder in memory with a constant that discards the input diff. The generator also accepts empty replies and subjects that violate it … (367 chars)
+   53.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/production-operations.md'
+   53.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2025-09-17-anthropic-postmortem-three-issues.md && git status --short'
+   74.8s  says  The single-call design fits this tool. **Two worthwhile upgrades:** make quality checks repeatable, and enforce the output rules already promised by the prompt. … (3843 chars)

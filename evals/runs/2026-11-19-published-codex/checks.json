@@ -1,0 +1,348 @@
+[
+  {
+    "fixture": "01-llm-wrapper",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 74.8,
+    "seconds_total": 75.1,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/evals.md",
+      "concepts/production-operations.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2025-09-17-anthropic-postmortem-three-issues.md",
+        "published": "2025-09-17",
+        "age_days": 428,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 3,
+    "bad_locations": [],
+    "parts_missing": []
+  },
+  {
+    "fixture": "02-rag-app",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 79.8,
+    "seconds_total": 80.2,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/context-engineering.md",
+      "concepts/evals.md",
+      "concepts/retrieval.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2024-09-19-anthropic-contextual-retrieval.md",
+        "published": "2024-09-19",
+        "age_days": 791,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2025-07-14-chroma-context-rot.md",
+        "published": "2025-07-14",
+        "age_days": 493,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 14,
+    "bad_locations": [],
+    "parts_missing": []
+  },
+  {
+    "fixture": "03-tool-agent",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 100.8,
+    "seconds_total": 101.1,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/sandboxing-and-permissions.md",
+      "concepts/side-effects.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2025-06-16-willison-lethal-trifecta.md",
+        "published": "2025-06-16",
+        "age_days": 521,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-08-10-linear-how-we-built-linear-agent.md",
+        "published": "2026-08-10",
+        "age_days": 101,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-04-temporal-deciding-what-survives-failure.md",
+        "published": "2026-11-04",
+        "age_days": 15,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 16,
+    "bad_locations": [],
+    "parts_missing": []
+  },
+  {
+    "fixture": "04-multi-agent",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 87.9,
+    "seconds_total": 88.3,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/agents-and-workflows.md",
+      "concepts/evals.md",
+      "concepts/verification.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2024-12-19-anthropic-building-effective-agents.md",
+        "published": "2024-12-19",
+        "age_days": 700,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md",
+        "published": "2026-11-03",
+        "age_days": 16,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-17-osmani-claude-code-team-verification.md",
+        "published": "2026-11-17",
+        "age_days": 2,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 3,
+    "bad_locations": [],
+    "parts_missing": []
+  },
+  {
+    "fixture": "05-plain-app",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 60.5,
+    "seconds_total": 60.8,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/evals.md",
+      "concepts/tool-design.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2025-03-30-humanlayer-12-factor-agents.md",
+        "published": "2025-03-30",
+        "age_days": 599,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 2,
+    "bad_locations": [],
+    "parts_missing": [
+      "evidence age"
+    ]
+  },
+  {
+    "fixture": "06-no-ai-control",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 44.8,
+    "seconds_total": 45.2,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/instruction-files.md",
+      "concepts/verification.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2026-07-27-redhat-agents-md-and-agent-skills.md",
+        "published": "2026-07-27",
+        "age_days": 115,
+        "old": false,
+        "labelled_older": true,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-11-17-osmani-claude-code-team-verification.md",
+        "published": "2026-11-17",
+        "age_days": 2,
+        "old": false,
+        "labelled_older": true,
+        "original_given": false
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [
+      "sources/2026-07-27-redhat-agents-md-and-agent-skills.md",
+      "sources/2026-11-17-osmani-claude-code-team-verification.md"
+    ],
+    "originals_without_note": [],
+    "locations": 0,
+    "bad_locations": [],
+    "parts_missing": [
+      "change",
+      "why",
+      "check",
+      "evidence age",
+      "effort and impact",
+      "next step"
+    ]
+  },
+  {
+    "fixture": "07-seeded",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 107.2,
+    "seconds_total": 107.5,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/context-engineering.md",
+      "concepts/evals.md",
+      "concepts/sandboxing-and-permissions.md",
+      "concepts/side-effects.md",
+      "concepts/verification.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2025-09-29-anthropic-context-engineering.md",
+        "published": "2025-09-29",
+        "age_days": 416,
+        "old": true,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-05-25-anthropic-how-we-contain-claude.md",
+        "published": "2026-05-25",
+        "age_days": 178,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-04-temporal-deciding-what-survives-failure.md",
+        "published": "2026-11-04",
+        "age_days": 15,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-17-osmani-claude-code-team-verification.md",
+        "published": "2026-11-17",
+        "age_days": 2,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 9,
+    "bad_locations": [],
+    "parts_missing": []
+  }
+]

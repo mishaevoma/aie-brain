@@ -1,0 +1,36 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.5s  says  I’ll read the review instructions and inspect the project, then report concrete findings with file references. … (111 chars)
+    7.6s  step  shell exit=1: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!package-lock.json'"' -g '"'!uv.lock'"' -g '"'!pnpm-lock.yaml'"' -g '"'!yarn.lock'"' -g '"'!poetry.lock'"' -g '"'!*.ipynb'"'"
+    8.8s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   13.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   13.2s  step  shell exit=0: /bin/zsh -lc "ls -la; rg --files --hidden -g '"'!.git'"' -g '"'!node_modules'"'"
+   18.2s  step  shell exit=0: /bin/zsh -lc "git status --short; for f in README.md ingest.py qa.py test_qa.py data/asked.csv docs/security.md docs/expenses.md docs/leave.md docs/archive/expenses-2024.md; do printf '\\n%s\\n' \""'$f"; nl -ba "$f"; done'
+   18.2s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/references/project-review.md'
+   18.3s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/index.md'
+   25.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md'
+   25.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/retrieval.md'
+   25.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/upgrading-an-agent-app.md'
+   25.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/revision.txt'
+   25.2s  step  shell exit=0: /bin/zsh -lc 'python3 -B -m unittest -v; git ls-files; for p in /AGENTS.md /private/AGENTS.md /private/tmp/AGENTS.md ../AGENTS.md ../../AGENTS.md; do if test -f "$p"; then cat "$p"; fi; done'
+   29.8s  says  I’m using the linked brain-consult procedure from the published wiki. All five unit tests pass, but none checks retrieval or answer quality. I also found that ingestion includes the superseded expense … (370 chars)
+   39.2s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2025-07-14-chroma-context-rot.md'
+   39.2s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md'
+   39.3s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/context-engineering.md'
+   39.3s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2024-09-19-anthropic-contextual-retrieval.md'
+   39.5s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from pathlib import Path
+from unittest.mock import patch
+from collections import Counter
+import csv, ingest, qa
+for parent in Path.cwd().parents:
+    p = parent / 'AGENTS.md'
+    if p.is_file():
+        print('INSTRUCTIONS', p, p.read_text())
+with patc
+   48.4s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import patch
+import unittest, ingest, qa
+with patch.object(qa, 'retrieve', side_effect=AssertionError('retrieval disabled')), patch.object(qa, 'answer', side_effect=AssertionError('answers disabled')):
+    result = unittest.TextTestR
+   79.8s  says  The main upgrade is to keep superseded policies out of current-policy answers. I found four worthwhile changes. All five tests pass, but they also pass with retrieval and answering disabled. … (6489 chars)

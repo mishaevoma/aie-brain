@@ -148,3 +148,9 @@ Research into how agents run in production, as of November 2026: durable executi
 - site/quartz.config.yaml
 - site/test_review_publication.py
 - tools/lint.py
+
+## [2026-11-19] edit | Scorecard from the published review, with the README example and GIF from that run
+
+- README.md
+- .github/review-demo.gif
+- evals/ (32 files)

@@ -1,0 +1,25 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.4s  says  I’ll read the review instructions and inspect the project, then report concrete findings with file references. … (110 chars)
+    6.5s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g 'package.json' -g 'README*' -g '"'!node_modules'"' -g '"'!package-lock.json'"'"
+    7.8s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   11.8s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   11.9s  step  shell exit=0: /bin/zsh -c "ls -la; rg --files -g '"'!node_modules'"' -g '"'!.git'"'"
+   15.9s  step  shell exit=0: /bin/zsh -c 'cat README.md app/*.py tests/*.py data/labelled_tickets.csv; git status --short; git log -3 --oneline'
+   15.9s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/references/project-review.md'
+   20.5s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/upgrading-an-agent-app.md; curl -fsSL https://mishaevoma.github.io/aie-brain/revision.txt; git ls-files; python3 -B -m unittest discover -s tests -v'
+   24.9s  says  I’m applying the linked Brain review procedure from its published website. All five existing tests pass, but they only exercise canned model replies. I also found that an unexpected reply can be store … (340 chars)
+   28.9s  step  shell exit=0: /bin/zsh -c "nl -ba app/tagging.py; nl -ba app/cli.py; nl -ba tests/test_tagging.py; rg --files --hidden -g AGENTS.md -g '"'!.git'"' .."
+   28.9s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/tool-design.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md; curl -fsSL https://mishaevo
+   38.7s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2025-03-30-humanlayer-12-factor-agents.md'
+   38.9s  step  shell exit=0: /bin/zsh -c "python3 -B - <<'PY'
+from pathlib import Path
+for directory in [Path.cwd(), *Path.cwd().parents]:
+    p = directory / 'AGENTS.md'
+    if p.exists():
+        print(str(p), p.read_text())
+PY
+python3 -B - <<'PY'
+from types import SimpleNamespace as NS
+from unittest.mock import
+   60.5s  says  Two upgrades are worth making: validate categories before saving tickets, and turn the 40 labelled tickets into a quality check. All five existing tests pass. No project files were changed. … (3941 chars)

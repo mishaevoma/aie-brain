@@ -23,7 +23,7 @@ verifiable, actionable, note. Each dimension is 0, 1 or 2. `ids` holds the expec
 finding matches, separated by spaces. A review with no finding has no row.
 
 smoke.csv has one row per one-paste smoke check on another agent: agent, model, fixture,
-started_without_questions (yes or no), first_finding_seconds, note.
+started_without_questions (yes, no, or "not run" for an agent still owed), first_finding_seconds, note.
 
 Standard library only.
 """
@@ -186,8 +186,10 @@ def scorecard(run: Path, checks: list[dict], old_days: int) -> str:
     wrote = [c["fixture"] for c in checks if not c["read_only"]]
     stale = sorted({s for c in checks for s in c["old_unlabelled"]})
     broken = sorted({b for c in checks for b in c["broken_links"]})
-    smoke_agents = sorted({row["agent"] for row in smoke})
-    smoke_failed = [f"{row['agent']} on {row['fixture']}" for row in smoke if row["started_without_questions"].strip().lower() != "yes"]
+    ran = [row for row in smoke if row["started_without_questions"].strip().lower() != "not run"]
+    smoke_agents = sorted({row["agent"] for row in ran})
+    smoke_missing = sorted({row["agent"] for row in smoke} - set(smoke_agents))
+    smoke_failed = [f"{row['agent']} on {row['fixture']}" for row in ran if row["started_without_questions"].strip().lower() != "yes"]
 
     def tick(ok: bool) -> str:
         return "yes" if ok else "**no**"
@@ -211,8 +213,10 @@ def scorecard(run: Path, checks: list[dict], old_days: int) -> str:
         f"{len(products) - len(without_two)} of {len(products)}"
         + (f" (missing: {', '.join(without_two)})" if without_two else "") + f" | {tick(not without_two)} |",
         f"| No finding scores 0 | {len(zeros)} at 0" + (f" ({'; '.join(zeros)})" if zeros else "") + f" | {tick(not zeros)} |",
-        f"| One-paste smoke check on other agents | {len(smoke)} run on {', '.join(smoke_agents) or 'none'}"
-        + (f"; failed: {'; '.join(smoke_failed)}" if smoke_failed else "") + f" | {tick(bool(smoke) and not smoke_failed)} |",
+        f"| One-paste smoke check on other agents | {len(ran)} run on {', '.join(smoke_agents) or 'none'}"
+        + (f"; failed: {'; '.join(smoke_failed)}" if smoke_failed else "")
+        + (f"; not run: {', '.join(smoke_missing)}" if smoke_missing else "")
+        + f" | {tick(bool(ran) and not smoke_failed and not smoke_missing)} |",
         f"| Links to the wiki resolve | {len(broken)} broken" + (f" ({', '.join(broken)})" if broken else "") + f" | {tick(not broken)} |",
         f"| Sources older than {old_days} days are labelled as older | {len(stale)} unlabelled"
         + (f" ({', '.join(stale)})" if stale else "") + f" | {tick(not stale)} |",
