@@ -13,7 +13,7 @@ The wiki promises this: your coding agent reviews your app against a dated, cite
 
 ## Run it
 
-You need a coding agent's command-line tool that is logged in on this machine. `run.py` drives Codex (`codex exec`) or Claude Code (`claude -p`). Python is standard library only.
+You need a coding agent's command-line tool that is logged in on this machine. `run.py` drives Codex (`codex exec`) or Claude Code (`claude -p`). Every run so far used Codex. The Claude Code path is written but has only been tried as far as a login error, so check its first run by hand. Python is standard library only.
 
 ```sh
 python3 evals/run.py --label full                        # all fixtures, Codex, the published URL

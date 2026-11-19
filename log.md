@@ -178,3 +178,11 @@ Research into how agents run in production, as of November 2026: durable executi
 - evals/demo/demo.html
 - evals/demo/make_gif.py
 - evals/demo/showcases.json
+
+## [2026-11-19] edit | README shows the concept graph as a dependency wheel
+
+- README.md
+- .github/knowledge-graph.gif
+- evals/README.md
+- site/graph_gif.html
+- site/graph_gif.py

@@ -1,0 +1,127 @@
+<!doctype html>
+<!-- The dependency wheel drawn by graph_gif.py. That script writes window.DATA before this
+     script runs, then calls draw(t) for t from 0 to 1 and captures each frame. -->
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 960px; height: 540px; overflow: hidden; background: #0a0c0f; }
+  svg { display: block; font-family: "SF Mono", Menlo, Consolas, monospace; }
+</style>
+<body><svg id="s" width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const D = window.DATA;
+const PALETTE = ["#8fd19e", "#b8a1ff", "#7fd6e8", "#f5a05a", "#7fb7ff", "#f5d547", "#ff8f8f", "#d8d8d8"];
+const COLOR = Object.fromEntries(D.groups.map((g, i) => [g, PALETTE[i % PALETTE.length]]));
+const NS = "http://www.w3.org/2000/svg", svg = document.getElementById("s");
+const el = (name, attrs, parent, text) => {
+  const n = document.createElementNS(NS, name);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text !== undefined) n.textContent = text;
+  (parent || svg).appendChild(n);
+  return n;
+};
+const ease = x => { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); };
+const byId = Object.fromEntries(D.concepts.map(c => [c.id, c]));
+const linked = {};
+D.concepts.forEach(c => linked[c.id] = new Set());
+D.edges.forEach(([a, b]) => { linked[a].add(b); linked[b].add(a); });
+
+// ---- geometry: concepts on a ring in the order of index.md, one arc per group
+const CX = 480, CY = 214, RR = 108, GAP = 0.09;
+const unit = (2 * Math.PI - GAP * D.groups.length) / D.concepts.length;
+const angle = {}, arcs = [];
+let a = -Math.PI / 2 + GAP / 2;
+for (const group of D.groups) {
+  const first = a;
+  D.concepts.filter(c => c.group === group).forEach(c => { angle[c.id] = a + unit / 2; a += unit; });
+  arcs.push([group, first, a]);
+  a += GAP;
+}
+const at = (id, r) => [CX + r * Math.cos(angle[id]), CY + r * Math.sin(angle[id])];
+const barOf = c => c.sources * 1.15;
+
+// ---- labels: horizontal, spread down each side so none overlap, joined to their concept by a line
+const label = {};
+for (const side of [1, -1]) {
+  const items = D.concepts.filter(c => (Math.cos(angle[c.id]) >= 0 ? 1 : -1) === side)
+    .map(c => ({c, y: CY + (RR + 30) * Math.sin(angle[c.id])})).sort((p, q) => p.y - q.y);
+  const step = 15.5, top = 62, bottom = 338;
+  items.forEach((it, i) => { if (i) it.y = Math.max(it.y, items[i - 1].y + step); });
+  const over = items.length ? items[items.length - 1].y - bottom : 0;
+  if (over > 0) for (let i = items.length - 1; i >= 0; i--) items[i].y = Math.min(items[i].y, i === items.length - 1 ? bottom : items[i + 1].y - step);
+  items.forEach((it, i) => { if (i === 0) it.y = Math.max(it.y, top); else it.y = Math.max(it.y, items[i - 1].y + step); });
+  items.forEach(it => label[it.c.id] = {x: CX + side * (RR + 78), y: it.y, side});
+}
+
+// ---- drawn once
+const defs = el("defs", {});
+defs.innerHTML = `
+  <radialGradient id="bg" cx="50%" cy="40%" r="80%"><stop offset="0" stop-color="#141920"/><stop offset="1" stop-color="#07090b"/></radialGradient>
+  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.8" fill="#1c232c"/></pattern>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter>`;
+el("rect", {width: 960, height: 540, fill: "url(#bg)"});
+el("rect", {width: 960, height: 540, fill: "url(#dots)"});
+el("text", {x: 30, y: 32, fill: "#e8e8ea", "font-size": 14, "font-weight": 700, "letter-spacing": 1.4}, null, "aie-brain");
+el("text", {x: 120, y: 32, fill: "#77808c", "font-size": 12}, null,
+   `${D.concepts.length} concepts · ${D.edges.length} links between them · ${D.sources} dated sources, newest ${D.date}`);
+for (const [group, from, to] of arcs) {
+  const p = t => [CX + (RR - 10) * Math.cos(t), CY + (RR - 10) * Math.sin(t)], [x1, y1] = p(from + 0.02), [x2, y2] = p(to - 0.02);
+  el("path", {d: `M${x1} ${y1} A${RR - 10} ${RR - 10} 0 ${to - from > Math.PI ? 1 : 0} 1 ${x2} ${y2}`, fill: "none", stroke: COLOR[group], "stroke-width": 3});
+}
+const chordPath = (p, q) => { const [x1, y1] = at(p, RR - 15), [x2, y2] = at(q, RR - 15); return `M${x1} ${y1} Q${CX} ${CY} ${x2} ${y2}`; };
+D.edges.forEach(([p, q]) => el("path", {d: chordPath(p, q), fill: "none", stroke: "#8fa3b8", "stroke-opacity": 0.11, "stroke-width": 1}));
+const legendX = 706, legendY = 384;
+D.groups.forEach((group, i) => {
+  el("circle", {cx: legendX, cy: legendY + i * 17, r: 4, fill: COLOR[group]});
+  el("text", {x: legendX + 12, y: legendY + i * 17 + 4, fill: "#8b93a0", "font-size": 11.5}, null, group.toLowerCase());
+});
+el("text", {x: legendX - 6, y: legendY + D.groups.length * 17 + 10, fill: "#5f6873", "font-size": 10.5}, null, "bar: a concept's sources.");
+el("text", {x: legendX - 6, y: legendY + D.groups.length * 17 + 24, fill: "#5f6873", "font-size": 10.5}, null, "bright part: last 12 months.");
+const live = el("g", {});
+
+// ---- drawn for every frame
+function draw(t) {
+  t = Math.min(0.99999, Math.max(0, t));
+  const n = D.focus.length, seg = Math.floor(t * n), u = t * n - seg;
+  const focusId = D.focus[seg], focus = byId[focusId], previous = D.focus[(seg + n - 1) % n];
+  const rise = ease(u / 0.28), fall = 1 - ease(u / 0.14);
+  const lit = id => id === focusId || linked[focusId].has(id);
+  live.replaceChildren();
+  const add = (name, attrs, text) => el(name, attrs, live, text);
+
+  for (const other of linked[previous]) if (fall > 0)
+    add("path", {d: chordPath(previous, other), fill: "none", stroke: "#f4f6f8", "stroke-opacity": 0.75 * fall, "stroke-width": 1.2});
+  for (const other of linked[focusId]) {
+    const d = chordPath(focusId, other);
+    add("path", {d, fill: "none", stroke: COLOR[byId[other].group], "stroke-opacity": 0.6, "stroke-width": 5, filter: "url(#soft)", pathLength: 1, "stroke-dasharray": `${rise} 1`});
+    const line = add("path", {d, fill: "none", stroke: "#f4f6f8", "stroke-opacity": 0.92, "stroke-width": 1.3, pathLength: 1, "stroke-dasharray": `${rise} 1`});
+    if (u > 0.3) {  // a dot travels from the focused concept to each linked one
+      const total = line.getTotalLength(), where = ((u - 0.3) / 0.7 * 1.4) % 1, p = line.getPointAtLength(total * where);
+      add("circle", {cx: p.x, cy: p.y, r: 2.4, fill: "#ffffff", "fill-opacity": Math.sin(Math.PI * where)});
+    }
+  }
+  for (const c of D.concepts) {
+    const on = lit(c.id), isFocus = c.id === focusId, glow = on ? rise : 0, [x, y] = at(c.id, RR), bar = barOf(c), color = COLOR[c.group];
+    const [bx1, by1] = at(c.id, RR + 8), [bx2, by2] = at(c.id, RR + 8 + bar), [fx, fy] = at(c.id, RR + 8 + bar * c.fresh / c.sources);
+    add("line", {x1: bx1, y1: by1, x2: bx2, y2: by2, stroke: "#3a434e", "stroke-width": 4, "stroke-opacity": 0.55 + 0.45 * glow});
+    add("line", {x1: bx1, y1: by1, x2: fx, y2: fy, stroke: color, "stroke-width": 4, "stroke-opacity": 0.5 + 0.5 * glow});
+    add("circle", {cx: x, cy: y, r: isFocus ? 4 + 2 * rise : 4, fill: color, "fill-opacity": 0.5 + 0.5 * glow, stroke: "#fff", "stroke-width": isFocus ? 1.6 * rise : 0});
+    const L = label[c.id], [ex, ey] = at(c.id, RR + 12 + bar);
+    add("polyline", {points: `${ex},${ey} ${L.x - L.side * 20},${L.y - 4} ${L.x - L.side * 5},${L.y - 4}`, fill: "none", stroke: on ? color : "#39424d", "stroke-opacity": 0.35 + 0.5 * glow, "stroke-width": 1});
+    const grey = 122 + Math.round(120 * glow);
+    add("text", {x: L.x, y: L.y, "text-anchor": L.side > 0 ? "start" : "end", fill: `rgb(${grey},${grey + 6},${grey + 12})`,
+                 "font-size": isFocus ? 12.5 + rise : 12, "font-weight": isFocus ? 700 : 400}, c.id);
+  }
+  // the readout for the focused concept
+  const x = 30, y = 372, color = COLOR[focus.group];
+  add("rect", {x, y, width: 640, height: 140, rx: 6, fill: "#0c1014", "fill-opacity": 0.85, stroke: "#27303a"});
+  add("text", {x: x + 16, y: y + 32, fill: color, "font-size": 22, "font-weight": 700}, "> " + focus.id);
+  add("text", {x: x + 624, y: y + 32, fill: "#8b93a0", "font-size": 12, "text-anchor": "end"}, `${focus.group.toLowerCase()} · status: ${focus.status}`);
+  const words = focus.definition.split(" "), lines = [""];
+  for (const w of words) { if ((lines[lines.length - 1] + " " + w).trim().length > 78) lines.push(""); lines[lines.length - 1] = (lines[lines.length - 1] + " " + w).trim(); }
+  if (lines.length > 2) lines[1] = lines[1].slice(0, 76) + "…";
+  lines.slice(0, 2).forEach((line, i) => add("text", {x: x + 16, y: y + 60 + i * 19, fill: "#d7d9dd", "font-size": 12.5}, line));
+  add("text", {x: x + 16, y: y + 112, fill: "#f2f3f5", "font-size": 12},
+      `${focus.sources} sources · ${focus.fresh} from the last 12 months · newest ${focus.newest} · linked to ${linked[focusId].size} concepts`);
+}
+draw(Number(new URLSearchParams(location.search).get("t") || 0.08));
+</script></body>

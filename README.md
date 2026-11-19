@@ -2,6 +2,10 @@
 
 A dated, cited wiki of AI engineering practice, compiled into high-signal knowledge your agent can load. It is a compounding, agent-maintained wiki in the Karpathy LLM-wiki pattern: immutable dated sources, cited playbooks, and a freshness linter that flags stale or unbacked claims. Your agent reviews a project against that evidence and returns findings you can verify. A green test run that tested nothing is the kind of miss it catches.
 
+![The wiki's concept pages on a ring, grouped as in the index. A chord joins two concepts when one page links to the other. One concept is in focus at a time: its links light up and its definition, status and source counts show underneath.](.github/knowledge-graph.gif)
+
+The wiki's concept pages and the links between them, drawn from the files by `site/graph_gif.py`. The bar beside a concept counts the dated sources its page cites, and the bright part is the sources from the last 12 months.
+
 ## Get your first review
 
 Open your coding agent **in the project you want reviewed**. With access to your checkout and public Markdown, it can run the review without an install. Paste this into chat.
@@ -74,7 +78,7 @@ Start with a decision such as “How do I know the agent did the right thing?”
 
 In a wiki checkout, ask your agent to **ingest a source** by URL, **refresh** the watchlist, or **lint** the wiki. To cite a review later, keep the wiki revision that the agent reports. [Repository guide](AGENTS.md) · [Watchlist](watchlist.md) · [Sources considered](considered.md) · [Change log](log.md)
 
-Run `python3 tools/lint.py` to check citations and links. Use `--ages` to inspect the age of the evidence. For a wiki edit, `--sync --log "edit | Title"` regenerates the index and backlinks and records the change. For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`, then rerun the review on the sample projects as [the eval runbook](evals/README.md) describes. All of it uses the Python standard library.
+Run `python3 tools/lint.py` to check citations and links. After adding or linking concept pages, `python3 site/graph_gif.py` redraws the graph at the top of this page (it needs Chrome and ffmpeg). Use `--ages` to inspect the age of the evidence. For a wiki edit, `--sync --log "edit | Title"` regenerates the index and backlinks and records the change. For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`, then rerun the review on the sample projects as [the eval runbook](evals/README.md) describes. All of it uses the Python standard library.
 
 ## Licence
 
