@@ -1,6 +1,6 @@
 # AI Engineering Brain
 
-Does your coding agent run the right tests? Could your AI worker email a customer twice on retry? The brain is a wiki your agent uses to answer questions like these. It traces a workflow through your project, compares the code with dated engineering sources, and gives you a recommendation you can verify.
+A dated, cited wiki of AI engineering practice, compiled into high-signal knowledge your agent can load. It is a compounding, agent-maintained wiki in the Karpathy LLM-wiki pattern: immutable dated sources, cited playbooks, and a freshness linter that flags stale or unbacked claims. Your agent reviews a project against that evidence and returns findings you can verify. A green test run that tested nothing is the kind of miss it catches.
 
 ## Get your first review
 
