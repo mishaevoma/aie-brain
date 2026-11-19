@@ -1,0 +1,41 @@
+[
+  {
+    "fixture": "08-memory-agent",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 65.8,
+    "seconds_total": 66.2,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/evals.md",
+      "concepts/memory.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-06-anthropic-components-of-agent-memory.md",
+        "published": "2026-11-06",
+        "age_days": 13,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 4,
+    "bad_locations": [],
+    "parts_missing": []
+  }
+]

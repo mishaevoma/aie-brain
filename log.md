@@ -154,3 +154,9 @@ Research into how agents run in production, as of November 2026: durable executi
 - README.md
 - .github/review-demo.gif
 - evals/ (32 files)
+
+## [2026-11-19] edit | Demo GIF shows three real upgrades, with a memory fixture behind the third
+
+- README.md
+- .github/review-demo.gif
+- evals/ (11 files)

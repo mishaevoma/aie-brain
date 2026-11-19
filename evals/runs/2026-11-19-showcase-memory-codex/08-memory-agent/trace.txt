@@ -1,0 +1,21 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.9s  says  I’ll read the review instructions and inspect the project, then report findings with file references. … (102 chars)
+    7.2s  step  shell exit=1: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"' -g '"'!package-lock.json'"' -g '"'!yarn.lock'"'"
+    8.5s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   11.6s  step  shell exit=0: /bin/zsh -lc "ls -la; rg --files --hidden -g '"'!.git'"'"
+   11.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   16.4s  step  shell exit=0: /bin/zsh -lc 'git status --short; for f in README.md buddy.py memory.py test_memory.py memory.jsonl; do echo "$f"; nl -ba "$f"; done'
+   16.5s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/references/project-review.md'
+   21.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/upgrading-an-agent-app.md'
+   21.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/revision.txt; python3 -B -m unittest -v; git ls-files'
+   27.4s  says  I’m applying the linked brain-consult procedure from the published wiki. All three tests pass, but they only verify canned replies and file storage. The code also confirms the README’s main problems:  … (401 chars)
+   30.2s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/memory.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-06-anthropic-components-of-agent-memory.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md; curl -fsSL https://mish
+   38.4s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+import memory
+from collections import Counter
+notes = memory.load_all().splitlines()
+counts = Counter(line.split('] ', 1)[1] for line in notes)
+print(f'Loaded {len(notes)} notes; repeated wann/wenn note: {counts[\"Mixes up wann and wenn\"]}')
+print(f'E
+   65.8s  says  The main upgrade is to make memory reflect the learner’s **current state**. The code confirms the README’s complaints, although this checkout contains 12 notes rather than the reported 1,900. I treate … (4777 chars)

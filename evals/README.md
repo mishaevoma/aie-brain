@@ -1,16 +1,16 @@
 # Review evals
 
-The wiki promises this: your coding agent reviews your app against a dated, cited knowledge base and shows what to upgrade. This folder tests that promise on seven small projects and keeps the result.
+The wiki promises this: your coding agent reviews your app against a dated, cited knowledge base and shows what to upgrade. This folder tests that promise on eight small projects and keeps the result.
 
 | Path | Holds |
 |---|---|
-| `fixtures/` | Seven small projects: five AI apps, one with no AI, one with planted issues |
+| `fixtures/` | Eight small projects: six AI apps, one with no AI, one with planted issues |
 | [`expected.md`](expected.md) | The answer key: upgrades a maintainer would accept, per fixture, with IDs |
 | `run.py` | Runs the review on the fixtures with a headless agent |
 | `score.py` | Checks what a machine can check and writes the scorecard |
 | [`scorecard.md`](scorecard.md) | The latest full run |
 | `runs/` | One folder per run: each review, a trace of the agent's steps, timings, grades |
-| `demo/` | Builds the ten-second GIF in the README from one real finding |
+| `demo/` | Builds the GIF in the README from three real findings: agent approach, tool calling, memory |
 
 ## Run it
 
@@ -82,7 +82,7 @@ One full run has to show all of these. `score.py --write` works them out and pri
 
 - At least 4 of the 5 planted issues on `07-seeded` are found, with the right file and the right problem.
 - No finding on `06-no-ai-control`.
-- Every product fixture (01 to 05) has a finding that scores 2.
+- Every product fixture, which is every fixture but the control and the seeded one, has a finding that scores 2.
 - No finding scores 0.
 - The one-paste smoke check passes on Claude Code, Codex, Cursor and one web-only agent.
 - `python3 tools/lint.py` is clean, every wiki link in a review resolves, and every source older than 365 days is labelled as older where it is cited. `python3 tools/lint.py --ages` shows the same ages per page.

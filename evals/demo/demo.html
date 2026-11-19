@@ -4,52 +4,69 @@
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; width: 960px; height: 540px; background: #161618; overflow: hidden; }
-  body { font: 22px/1.45 "SF Mono", Menlo, Consolas, monospace; color: #d4d4d4; padding: 24px 34px; }
-  .bar { color: #646464; font-size: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; }
-  .you { color: #ebebec; border: 1px solid #393639; border-radius: 10px; padding: 10px 16px; margin-bottom: 14px; min-height: 104px; white-space: pre-wrap; }
-  .you .who { color: #646464; font-size: 15px; display: block; margin-bottom: 2px; }
+  body { font: 22px/1.45 "SF Mono", Menlo, Consolas, monospace; color: #d4d4d4; padding: 22px 34px; --accent: #7b97aa; }
+  .top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 18px; height: 34px; }
+  .badge { background: var(--accent); color: #161618; font-weight: 700; border-radius: 6px; padding: 2px 12px; letter-spacing: 1px; }
+  .theme { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+  .project { margin-left: auto; color: #8a8a8a; }
+  .you { color: #ebebec; border: 1px solid #393639; border-radius: 10px; padding: 9px 16px; margin-bottom: 20px; min-height: 100px; white-space: pre-wrap; font-size: 21px; }
+  .you .who { color: #646464; font-size: 15px; display: block; margin-bottom: 1px; }
   .caret { display: inline-block; width: 11px; height: 23px; background: #7b97aa; vertical-align: -3px; }
-  .status { color: #84a59d; font-size: 19px; min-height: 28px; margin-bottom: 10px; }
-  h1 { font: 700 29px/1.25 -apple-system, "Helvetica Neue", Arial, sans-serif; color: #ebebec; margin: 0 0 16px; }
-  h1 span { color: #7b97aa; }
-  .part { display: flex; gap: 14px; margin: 0 0 12px; font-size: 21px; white-space: nowrap; }
-  .part b { flex: 0 0 118px; color: #7b97aa; font-weight: 600; }
-  .part.new b { color: #fff236; }
-  .part p { margin: 0; flex: 1; }
-  code { color: #ebebec; background: #26262a; border-radius: 4px; padding: 1px 6px; }
-  .out { color: #84a59d; }
-  .date { color: #ebebec; border-bottom: 1px solid #7b97aa; }
+  .label { color: var(--accent); font-size: 17px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+  h1 { font: 700 31px/1.25 -apple-system, "Helvetica Neue", Arial, sans-serif; color: #ffffff; margin: 0 0 22px; white-space: nowrap; }
+  .row { display: flex; gap: 14px; margin: 0 0 14px; font-size: 22px; white-space: nowrap; }
+  .row > b { flex: 0 0 104px; color: var(--accent); font-weight: 600; }
+  .row p { margin: 0; flex: 1; }
+  .row p b { color: #ffffff; }
+  .row p i { color: #8a8a8a; font-style: normal; font-size: 19px; }
+  code { color: #ebebec; background: #2a2a2f; border-radius: 4px; padding: 1px 7px; }
+  .out { color: var(--accent); }
   .hidden { visibility: hidden; }
-  .foot { position: absolute; left: 34px; right: 34px; bottom: 16px; color: #646464; font-size: 15px; display: flex; justify-content: space-between; }
+  .gone { display: none; }
+  #end { text-align: center; padding-top: 50px; }
+  #end p { font: 700 36px/1.4 -apple-system, "Helvetica Neue", Arial, sans-serif; color: #ffffff; margin: 0; }
+  #end p + p { font-weight: 400; font-size: 26px; color: #d4d4d4; margin-top: 10px; }
+  .pips span { display: inline-block; width: 14px; height: 14px; border-radius: 7px; margin: 26px 7px 0; }
+  .foot { position: absolute; left: 34px; right: 34px; bottom: 16px; color: #646464; font-size: 15px; display: flex; justify-content: space-between; white-space: nowrap; }
 </style>
 <body>
-<div class="bar"><span id="project"></span><span>coding agent</span></div>
-<div class="you"><span class="who">you</span><span id="typed"></span><span class="caret" id="caret"></span></div>
-<div class="status" id="status"></div>
-<h1 id="title" class="hidden"></h1>
-<div id="parts"></div>
+<div class="top"><span class="badge hidden" id="badge"></span><span class="theme" id="theme"></span><span class="project" id="project"></span></div>
+<div class="you"><span class="who">you, in your coding agent</span><span id="typed"></span><span class="caret" id="caret"></span></div>
+<div id="scene" class="hidden"><div class="label">upgrade</div><h1 id="title"></h1><div id="rows"></div></div>
+<div id="end" class="gone"><p id="end1"></p><p id="end2"></p><div class="pips" id="pips"></div></div>
 <div class="foot"><span id="credit"></span><span>mishaevoma.github.io/aie-brain</span></div>
 <script>
-  // window.DEMO is written by make_gif.py from finding.json.
+  // window.DEMO is written by make_gif.py from showcases.json.
+  // Steps: typing_steps of the pasted lines, then two per scene (the finding, then its check and source), then the end card.
   const step = Number(new URLSearchParams(location.search).get("step") || 0);
-  const d = window.DEMO;
-  const typing = d.typing_steps;                       // steps spent typing the pasted lines
-  const firstPart = typing + d.status.length + 1;      // step at which the first part shows
-  document.getElementById("project").textContent = d.project;
-  document.getElementById("credit").textContent = d.credit;
-  const shown = Math.ceil(d.prompt.length * Math.min(step + 1, typing) / typing);
-  document.getElementById("typed").textContent = d.prompt.slice(0, shown);
-  if (step >= typing) document.getElementById("caret").remove();
-  const statusIndex = Math.min(step - typing, d.status.length - 1);
-  if (step >= typing) document.getElementById("status").textContent = d.status[statusIndex];
-  const title = document.getElementById("title");
-  title.innerHTML = d.title;
-  if (step >= firstPart - 1) title.classList.remove("hidden");
-  d.parts.forEach(([label, html], i) => {
-    const row = document.createElement("div");
-    row.className = "part" + (step === firstPart + i ? " new" : "") + (step < firstPart + i ? " hidden" : "");
-    row.innerHTML = `<b>${label}</b><p>${html}</p>`;
-    document.getElementById("parts").appendChild(row);
-  });
+  const d = window.DEMO, typing = d.typing_steps, scenes = d.scenes;
+  const typed = Math.ceil(d.prompt.length * Math.min(step + 1, typing) / typing);
+  document.getElementById("typed").textContent = d.prompt.slice(0, typed);
+  const k = step - typing;
+  if (k >= 0) document.getElementById("caret").remove();
+  if (k >= 0 && k < scenes.length * 2) {
+    const scene = scenes[Math.floor(k / 2)], phase = k % 2;
+    document.body.style.setProperty("--accent", scene.accent);
+    const badge = document.getElementById("badge");
+    badge.textContent = `LEVEL UP ${Math.floor(k / 2) + 1}/${scenes.length}`;
+    badge.classList.remove("hidden");
+    document.getElementById("theme").textContent = scene.theme;
+    document.getElementById("project").textContent = scene.project;
+    document.getElementById("credit").textContent = "real review · " + scene.credit;
+    document.getElementById("title").textContent = scene.title;
+    scene.rows.forEach(([label, html], i) => {
+      const row = document.createElement("div");
+      row.className = "row" + (phase === 0 && i > 0 ? " hidden" : "");
+      row.innerHTML = `<b>${label}</b><p>${html}</p>`;
+      document.getElementById("rows").appendChild(row);
+    });
+    document.getElementById("scene").classList.remove("hidden");
+  } else if (k >= scenes.length * 2) {
+    document.getElementById("scene").classList.add("gone");
+    document.getElementById("end").classList.remove("gone");
+    document.getElementById("end1").textContent = d.end[0];
+    document.getElementById("end2").textContent = d.end[1];
+    document.getElementById("pips").innerHTML = scenes.map(s => `<span style="background:${s.accent}"></span>`).join("");
+  }
 </script>
 </body>

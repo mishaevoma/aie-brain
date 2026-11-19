@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Render the 10-second review demo to a GIF.
+"""Render the review demo to a GIF: three real upgrades, about eleven seconds.
 
-The words on screen come from finding.json, which is copied by hand from one real review in
-evals/runs/ (its `credit` line says which). Each step of demo.html is captured with headless
-Chrome and the frames are joined with ffmpeg. Both have to be installed.
+The words on screen come from showcases.json, which is copied by hand from real reviews in
+evals/runs/ (each scene's `credit` says which). Each step of demo.html is captured with
+headless Chrome and the frames are joined with ffmpeg. Both have to be installed.
 
 Usage: python3 evals/demo/make_gif.py [output.gif]     (default: .github/review-demo.gif)
 """
@@ -18,14 +18,13 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 CHROME = shutil.which("google-chrome") or shutil.which("chromium") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SIZE = (960, 540)
-TYPING, STATUS, PART, LAST = 0.35, 0.7, 1.05, 2.4  # seconds each kind of step stays on screen
+TYPING, FOUND, PROOF, LAST = 0.3, 0.8, 2.2, 1.4  # seconds each kind of step stays on screen
 
 
 def main() -> int:
     output = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / ".github" / "review-demo.gif"
-    demo = json.loads((HERE / "finding.json").read_text(encoding="utf-8"))
-    holds = [TYPING] * demo["typing_steps"] + [STATUS] * len(demo["status"]) + [STATUS] + [PART] * len(demo["parts"])
-    holds[-1] = LAST
+    demo = json.loads((HERE / "showcases.json").read_text(encoding="utf-8"))
+    holds = [TYPING] * demo["typing_steps"] + [FOUND, PROOF] * len(demo["scenes"]) + [LAST]
     with tempfile.TemporaryDirectory() as temp:
         temp = Path(temp)
         page = temp / "demo.html"
@@ -50,7 +49,7 @@ def main() -> int:
         output.parent.mkdir(parents=True, exist_ok=True)
         subprocess.run(
             ["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(temp / "frames.txt"),
-             "-vf", "fps=10,split[a][b];[a]palettegen=max_colors=48[p];[b][p]paletteuse=dither=none",
+             "-vf", "fps=10,split[a][b];[a]palettegen=max_colors=64[p];[b][p]paletteuse=dither=none",
              "-loop", "0", str(output)],
             check=True,
         )

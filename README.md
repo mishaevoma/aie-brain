@@ -15,7 +15,9 @@ The review is read-only. The result appears in the same chat, under your agent�
 
 ### What comes back
 
-![A review in ten seconds: the pasted line, then one upgrade with its change, check, source, evidence age and effort](.github/review-demo.gif)
+![Three real reviews in eleven seconds. An agent chain whose writer never saw the facts, a refund tool that could pay twice, and a memory that never drops a note. Each upgrade shows the file and line, a check and a dated source.](.github/review-demo.gif)
+
+Each scene is from a real review of a sample project: [the agent chain](evals/runs/2026-11-19-published-codex/04-multi-agent/review.md), [the refund tool](evals/runs/2026-11-19-published-codex/03-tool-agent/review.md) and [the memory](evals/runs/2026-11-19-showcase-memory-codex/08-memory-agent/review.md).
 
 On a small support agent that issues refunds, the review led with this upgrade. Here it is, shortened.
 
@@ -31,7 +33,7 @@ On a small support agent that issues refunds, the review led with this upgrade. 
 
 Every upgrade carries those five parts, and a source older than 12 months is labelled as older. You can inspect the evidence, narrow the review (“follow one customer email through a retry”), or reply “make upgrade 1 and run the check.” When nothing needs upgrading, the review says so.
 
-The review is tested on seven sample projects. One has planted issues and one has no AI at all. The example above is from [that run](evals/runs/2026-11-19-published-codex/03-tool-agent/review.md). [See the latest scorecard](evals/scorecard.md)
+The review is tested on a set of sample projects. One has planted issues and one has no AI at all. [See the latest scorecard](evals/scorecard.md)
 
 Some agents cannot read the review URL with their web tool: Codex fails to open the site, and Claude Code gets a summary in place of the file. Both then fetch it with `curl`, so allow that command when your agent asks. If your agent can reach GitHub but not the site, use the same prompt with [the skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md). An agent with no network access at all cannot load the review, and should tell you so.
 

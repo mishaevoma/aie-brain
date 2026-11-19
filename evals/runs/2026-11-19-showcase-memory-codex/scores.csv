@@ -1,0 +1,4 @@
+fixture,finding,ids,specific,correct,cited,fresh,verifiable,actionable,note
+08-memory-agent,Replace append-only recall with a small maintained profile,Y1 Y2 Y3,2,2,2,2,1,2,The counts are right (12 notes and the wann/wenn note three times and the March exam note still loaded). The probe is described but not pasted.
+08-memory-agent,Let the extractor keep goals preferences and progress,Y4,2,2,2,2,1,2,Says the measurement behind the advice was made on Anthropic's models. No command for the check.
+08-memory-agent,Test learning across sessions,,2,2,2,2,2,2,True and unplanned. Ran the test command: 3 passed.

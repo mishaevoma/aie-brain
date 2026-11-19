@@ -11,6 +11,7 @@ One folder per run of `evals/run.py`. Local paths are replaced with `<work>` (th
 | `2026-11-19-local-codex-installed` | same | the skill installed in the fixture | Same three leading upgrades as the URL-style run on `03-tool-agent`, and no install offer, as intended. |
 | `2026-11-19-published-codex` | same | published URL, wiki `9b70bc0` | **The run behind the scorecard.** 4 of 5 planted issues, every product fixture has a finding at 2, no finding at 0, control clean, slowest review 107 s, every tree untouched. |
 | `2026-11-19-published-claude-code` | Claude Code subagent, claude-sonnet-5-5 | published URL, wiki `9b70bc0` | Smoke check on two fixtures. WebFetch returned a summary of the skill, and the agent fetched raw text with `curl` as the skill says. All five planted issues found, control clean. Not a clean paste: the subagent started in another folder and was told the fixture's path, so there is no `meta.json` here. |
+| `2026-11-19-showcase-memory-codex` | Codex, gpt-6-astra, medium | published URL, wiki `a046fde` | The new memory fixture, `08-memory-agent`, alone. The review finds all four expected upgrades from the memory page with no change to the wiki or the skill. The scorecard's full run was made before this fixture existed, so the next full run is the first to count it. |
 
 ## Seen, not yet fixed
 
