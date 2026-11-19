@@ -1,37 +1,63 @@
 # Review a project with the brain
 
-The person should leave knowing what already works, what to change first, and how to tell if the change helped.
+The person should leave with at least one upgrade they can make today: what to change and where, why, how to check it, how old the evidence is, and what it costs and buys. When nothing needs upgrading, they should leave knowing that, and what it rests on.
 
-## Establish the scope from the project
+The review is read-only. Write nothing to the project and leave its folder as you found it. If you run one of its commands, keep it from leaving files behind, for example `python3 -B` or `PYTHONDONTWRITEBYTECODE=1` for Python. Do not run project setup, live services, or anything that changes state.
 
-Read the project brief or README, applicable agent instructions, and a short listing of tracked files. Honor a named directory, design document or question. If you have no access to the target, ask for the project path or the relevant files. The brain checkout is a valid target only when the user is reviewing the brain itself.
+## Start from the project
 
-Choose the playbook from “By decision” in the wiki index.
+Read the README, the agent instructions that apply, and a short listing of tracked files. Honor a named directory, design document or question. If you cannot reach the target, ask for its path or the relevant files. The brain checkout is a target only when the person is reviewing the brain itself.
 
-- **How coding agents work here.** Use `playbooks/setting-up-a-repo-for-coding-agents.md`. Follow the path a contributor takes from opening the repo to proving a change works. This applies even if the project itself has no AI features.
-- **What the AI feature does for a user.** Use `playbooks/building-an-agent-product.md`. Trace a representative request from the entry point through the model and tools to the user-visible result. Include the repo setup when the user asks for both or when it materially affects the product finding.
-- **A proposed design.** Use the playbook that fits the proposal. Compare its stated choices and trade-offs. Identify which claims rely on future implementation or a measurement.
+Then pick the pages. Paths are relative to the wiki root.
 
-Infer audience, deployment stage and consequences from the project. Name the assumption if stage is unclear. For a local experiment, look for the cheapest way to prove its core behavior. For a service handling real users or external actions, follow the relevant permissions, failure, retry, evaluation and recovery paths. Deployment context and impact determine which playbook steps apply.
+- **The project already calls a model.** Use `playbooks/upgrading-an-agent-app.md`. Its checks say what to look for in code. One model call in an ordinary app counts.
+- **How coding agents work in this repository.** Use `playbooks/setting-up-a-repo-for-coding-agents.md`. Follow the path from opening the repository to proving a change works. This applies to a project with no AI feature too.
+- **A design or a plan.** Use `playbooks/building-an-agent-product.md` and compare the stated choices. Say which claims wait on an implementation or a measurement.
+- **Something already going wrong.** "When something goes wrong" in `index.md` names the page.
 
-## Compare actual behavior with the sources
+A project with both an AI feature and agent instructions gets both, the product first. Infer the audience, the stage and what a failure costs from the project, and name the assumption if the stage is unclear. Stage decides which checks apply: a local experiment needs the cheapest proof of its core behaviour, and a service that acts for real users needs the failure, retry, approval and evaluation paths followed.
 
-1. Walk the relevant playbook steps. For each material claim, inspect the artifact that would prove it. Follow a README command to its script and CI invocation, or a tool call to its permission check and failure handling. Distinguish the behavior you observed, documented intent, and checks you only read. Never imply a check ran unless you ran it. Avoid running project setup, live services or actions that change state during a review.
-2. Check for an equivalent before calling something missing. A Make target and CI job may already provide the verification a playbook describes as a skill. Look for contrary evidence. Session permissions describe the current agent session. Look for repo-owned configuration before crediting the project with those controls. If settings live elsewhere, identify what would settle the question.
-3. Read the relevant concept page and its supporting source note for each reported comparison. Note the exact project location, the source's publication date and which recommendation it supports. Qualify disputed or evolving guidance, older evidence (roughly six months or more), and vendor-specific results when they affect the decision. Where practices disagree, explain which condition fits here. Label your own design suggestions as judgment.
-4. Distinguish supported agreement (**aligned**), a demonstrated discrepancy (**gap**), a question the wiki does not cover (**silent**), and missing project evidence (**unverified**). Keep these distinctions in plain language. Use the labels when a user requests verdicts. In a design review, identify proposed behavior as such.
-5. Prioritize discrepancies by their consequence on the traced path, the evidence and the effort to fix them. Prefer an existing working mechanism when it meets the goal. Group closely related issues under the change that would resolve them.
+## Scan first, then go deep
 
-## Write the review for the maintainer
+Aim to have the first upgrade written within about three minutes. Do not read the whole wiki.
 
-Give the person a first action they could take directly from chat. Open with a short bold sentence naming the decision and its user-visible outcome in their project's terms. In the next sentence, pin it to the path you traced and what you observed. Name the conditions of the observation when they matter, such as a simulated retry.
+1. **Scan.** Read the files on the path a request takes: the entry point, each model call, the tools, the tests and the test command. Walk every check of the playbook against them and note each candidate with its file and line. Run the documented test command if it is safe, and read what it printed.
+2. **Rank.** Order candidates by what a failure costs the user, then by how little work the change is. The highest impact for the least effort goes first.
+3. **Go deep on what you will report.** For each, read the concept page the playbook step names and the source note behind the advice. Confirm the problem in the code, and look for an equivalent before calling something missing: a Make target and a CI job may already do what a playbook calls a skill. Settings of your own session are not the project's.
+4. **Keep what is true, backed and worth doing.** A candidate that is not true of this code, has no page of the wiki behind it, or would not be worth the maintainer's time is dropped, not reported.
 
-Keep the handoff together.
+Tell apart what you observed, what the project documents and what you only read. Never imply a check ran unless you ran it.
 
-- **Change.** Point to the exact file and line or named section, explain the cause, and give the smallest edit or decision that addresses it. Mention a working part when it helps the maintainer keep the change small.
-- **Check.** Put the command they can run, or a clearly proposed test, on its own line with the expected observable result. Say what you verified yourself. When the choice depends on an unknown, make checking that condition the first action.
-- Attach the project location to the observation and a dated source to the advice it supports. Use short link text such as an author's name and publication date. Link the concept when its synthesis or a trade-off matters. Cite shared evidence once for related points.
+## What each upgrade must carry
 
-Use one compact finding for one problem. Fold its regression test into the same finding. Add a second finding when it leads to a different consequential action, and lead with the most important. Use plain headings for longer reviews and omit empty sections. When the inspected path already works and you find no material discrepancy, say what to keep, which check supports it and the boundary of that conclusion. A clean result is a complete review. In a design-only review, give the observation that would validate the proposal.
+Report every upgrade that passes step 4, the most valuable first. Each one is a different change. Fold a regression test into the upgrade it protects. Use this shape, one or two lines per part.
 
-Close with a short provenance line giving the wiki revision (`git -C <wiki-root> log -1 --format='%h %cs'`) or published copy and date consulted. Include a scope limit only when it changes what the maintainer can conclude.
+> **Upgrade 1: <the change, and what the user gets from it>.** One sentence on what you observed on the path you traced.
+>
+> - **Change.** The file and line, or the named section, and the smallest edit or decision that fixes it. Name a working part worth keeping.
+> - **Why.** What the wiki says, linked three ways: the wiki page, the dated source note, and the original publication from that note's `url:` field.
+> - **Check.** On its own line, a command that shows the problem today and what it prints. Run it when that is safe, and paste the line you ran. Then the command or exact test that passes once the change is made, with the result to expect. Say which of the two you ran.
+> - **Evidence.** The date the source was published and its age. Whose models or product a figure was measured on, when a figure matters.
+> - **Effort and impact.** How much work the change is, and what it prevents or enables for the user.
+
+**Evidence age.** Advice should rest on a source published in the last 12 months. When the only source is older, either add a newer source from the same wiki page that says the same, or label it "older, still valid" and give the reason: the page that carries it has `status: settled`, or its `reviewed:` date shows it was re-read against newer sources. Never present older evidence as current. Qualify contested or evolving pages, and say which condition fits this project where sources disagree.
+
+**Your own judgment.** When the wiki is silent on what you found, say so, and label the advice as yours. Check "What this brain does not cover yet" in `overview.md` before treating a topic as covered.
+
+## When there is nothing to upgrade
+
+Say so in the first sentence. Name what to keep and the check that supports it, and the limit of that conclusion. Then offer one focused question the person could ask next, in their project's terms. A clean result is a complete review.
+
+A project with no AI feature has no agent app to upgrade. Say that first, review only how coding agents work in it, and do not stretch the product playbooks over it.
+
+Never fill a review. A recommendation with no location in this project is not a finding. A playbook step the project has no use for is not a gap.
+
+## Close with the next step
+
+End with three short lines.
+
+- The offer: the person can reply "make upgrade 1 and run the check" and you will do it. Until they do, change nothing.
+- For repeat reviews, if this skill is not installed in the project: `npx skills add mishaevoma/aie-brain --skill brain-consult`.
+- Provenance: the wiki revision (`git -C <wiki-root> log -1 --format='%h %cs'`, or the line in `revision.txt` of the published copy) and the date you consulted it. Add a scope limit only when it changes what the maintainer can conclude.
+
+Use plain headings in a longer review and omit empty sections. Use the verdict words **aligned**, **gap**, **silent** and **unverified** when the person asks for verdicts. In a design-only review, give the observation that would validate the proposal.

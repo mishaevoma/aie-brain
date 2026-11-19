@@ -5,7 +5,8 @@ For every page Quartz published, copy the page's markdown source next to it, so
 that <page URL>.md returns the raw file. Then write llms.txt (the wiki's index.md
 with absolute links to those raw files) and llms-full.txt (overview, glossary,
 playbooks and concepts in one file). Publish the consult skill at review.md so
-a coding agent can read the same procedure directly from a URL.
+a coding agent can read the same procedure directly from a URL, and revision.txt
+(short commit and its date) so a review of the published copy can say what it read.
 
 Usage: python3 site/agentfiles.py <wiki dir> <built site dir> <site URL>
 Standard library only.
@@ -14,6 +15,7 @@ import pathlib
 import posixpath
 import re
 import shutil
+import subprocess
 import sys
 
 SUMMARY = (
@@ -61,6 +63,11 @@ def main() -> int:
     skill = wiki / ".agents/skills/brain-consult"
     shutil.copyfile(skill / "SKILL.md", public / "review.md")
     shutil.copytree(skill / "references", public / "references", dirs_exist_ok=True)
+
+    revision = subprocess.run(
+        ["git", "-C", str(wiki), "log", "-1", "--format=%h %cs"], capture_output=True, text=True
+    ).stdout.strip()
+    (public / "revision.txt").write_text((revision or "unknown") + "\n", encoding="utf-8")
 
     def absolute(text: str, folder: str) -> str:
         """Rewrite relative .md links to absolute links to the raw copies."""
