@@ -15,17 +15,27 @@ The review is read-only. The result appears in the same chat, under your agent�
 
 ### What comes back
 
-On a small Python demo project, the first review found a misleading green test run. Here’s the finding, shortened.
+![A review in ten seconds: the pasted line, then one upgrade with its change, check, source, evidence age and effort](.github/review-demo.gif)
 
-> **Fix the test command in `AGENTS.md`.** Its `-s test` argument sent discovery into Python’s own test suite. On this machine 49 tests ran and the command passed. None exercised the project.
+On a small support agent that issues refunds, the review led with this upgrade. Here it is, shortened.
+
+> **Upgrade 1: Make refunds and emails safe to retry.**
 >
-> **Change** the directory to `tests` in `AGENTS.md`, line 2. Keep the existing formatter test. [Osmani on what a green check proves, 3 Nov 2026](sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md)
+> **Change.** `agent.py:16` retries every tool the same way, and `tools.py:42` sends the refund with no key. Keep the retry for reads. Give each write one operation ID, and have the payments service drop a repeat.
 >
-> **Check** with `python3 -m unittest discover -s tests -v`. Look for `test_minutes.Headings.test_trim` and `Ran 1 test`. Both appeared in the review run.
+> **Why.** A write can succeed just before the timeout that loses its response, so the retry repeats it. [Side effects and approvals](concepts/side-effects.md) · [Running durable agents, Oct 2026](sources/2026-10-15-vercel-running-durable-agents.md) · [original](https://vercel.com/kb/guide/durable-ai-agents)
+>
+> **Check.** A fake refund that records the call and then times out is sent 3 times today. After the change it is sent once.
+>
+> **Evidence.** Published 15 October 2026, 35 days old.
+>
+> **Effort and impact.** Small to stop the unsafe retry, medium to deduplicate across services. Prevents a customer being refunded twice.
 
-You can inspect the evidence, narrow the review (“follow one customer email through a retry”), or tell the same agent “make that change and run the check.” A review of this wiki led to a check for broken links in the published skill. [See the finding and merged fix](https://github.com/mishaevoma/aie-brain/pull/5)
+Every upgrade carries those five parts, and a source older than 12 months is labelled as older. You can inspect the evidence, narrow the review (“follow one customer email through a retry”), or reply “make upgrade 1 and run the check.” When nothing needs upgrading, the review says so.
 
-If your agent can reach GitHub but can't open the review URL, use the same prompt with [the skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md).
+The review is tested on seven sample projects. One has planted issues and one has no AI at all. [See the latest scorecard](evals/scorecard.md)
+
+Some agents cannot read the review URL with their web tool: Codex fails to open the site, and Claude Code gets a summary in place of the file. Both then fetch it with `curl`, so allow that command when your agent asks. If your agent can reach GitHub but not the site, use the same prompt with [the skill on GitHub](https://github.com/mishaevoma/aie-brain/blob/main/.agents/skills/brain-consult/SKILL.md). An agent with no network access at all cannot load the review, and should tell you so.
 
 ## Keep it in your agent
 
@@ -68,7 +78,7 @@ Start with a decision such as “How do I know the agent did the right thing?”
 
 In a wiki checkout, ask your agent to **ingest a source** by URL, **refresh** the watchlist, or **lint** the wiki. To cite a review later, keep the wiki revision that the agent reports. [Repository guide](AGENTS.md) · [Watchlist](watchlist.md) · [Sources considered](considered.md) · [Change log](log.md)
 
-Run `python3 tools/lint.py` to check citations and links. Use `--ages` to inspect the age of the evidence. For a wiki edit, `--sync --log "edit | Title"` regenerates the index and backlinks and records the change. For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`. Both checks use the Python standard library.
+Run `python3 tools/lint.py` to check citations and links. Use `--ages` to inspect the age of the evidence. For a wiki edit, `--sync --log "edit | Title"` regenerates the index and backlinks and records the change. For changes to the review skill or its public URL, run `python3 site/test_review_publication.py`, then rerun the review on the sample projects as [the eval runbook](evals/README.md) describes. All of it uses the Python standard library.
 
 ## Licence
 
