@@ -1,0 +1,6 @@
+[
+  {"number": 812, "title": "Remove legacy /v1/export endpoint", "labels": ["breaking"], "body": "Deletes the v1 export endpoint, deprecated since March. Customers must use /v2/reports."},
+  {"number": 815, "title": "Speed up dashboard load", "labels": ["performance"], "body": "Caches the account summary query. Median dashboard load drops from 2.1s to 0.6s."},
+  {"number": 819, "title": "Fix CSV import for dates before 1970", "labels": ["bug"], "body": "Negative timestamps were rejected by the importer."},
+  {"number": 822, "title": "Bump eslint to 9.14", "labels": ["chore"], "body": "No user-facing change."}
+]

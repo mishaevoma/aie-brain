@@ -1,0 +1,7 @@
+diff --git a/client/http.py b/client/http.py
+--- a/client/http.py
++++ b/client/http.py
+@@ -11,6 +11,6 @@ class Client:
+     def get(self, path):
+-        return requests.get(self.base + path)
++        return requests.get(self.base + path, timeout=10)

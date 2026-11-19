@@ -1,0 +1,26 @@
+{
+  "fixture": "01-llm-wrapper",
+  "fixture_revision": "5675e9a",
+  "agent": "codex",
+  "agent_version": "codex-cli 0.169.0-alpha.11.1",
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "via": "skill",
+  "network_approved": true,
+  "prompt": "Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md",
+  "wiki_revision": "fe44a47 2026-11-19",
+  "date": "2026-11-19",
+  "seconds_total": 51.4,
+  "seconds_to_review": 50.9,
+  "steps": 10,
+  "usage": {
+    "input_tokens": 161547,
+    "cached_input_tokens": 107264,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1626,
+    "reasoning_output_tokens": 84
+  },
+  "read_only": true,
+  "left_behind": [],
+  "exit_code": 0
+}

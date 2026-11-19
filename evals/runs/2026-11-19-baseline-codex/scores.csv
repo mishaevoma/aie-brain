@@ -1,0 +1,21 @@
+fixture,finding,ids,specific,correct,cited,fresh,verifiable,actionable,note
+01-llm-wrapper,Reference message expects facts the diff lacks,,2,2,1,2,1,1,True and unplanned. Cites the wiki page and the original but no source note. Proposed check has no command. No effort or impact.
+01-llm-wrapper,Passing tests show plumbing not message quality,W1 W2,2,2,1,2,1,1,Same gaps. The unbounded diff (W3) is not mentioned.
+02-rag-app,Archived policy indexed beside the current one,R4,2,2,1,1,1,1,Labelled as the reviewer's own judgment although the wiki covers stale versions.
+02-rag-app,Fixed-size chunks split facts,R3,2,2,1,1,1,1,The 2024 source is dated but not labelled as older where it is cited.
+02-rag-app,Tests cannot detect the reported failures,R1,2,2,1,2,1,1,Finds the unused question file.
+02-rag-app,Identifier search needs keyword search,R2,2,2,1,1,1,1,Says the source is older but not why the advice still holds.
+03-tool-agent,Retries can duplicate refunds and emails,T1 T2,2,2,1,2,1,1,Reproduced with a mock. No original link and no command to rerun.
+03-tool-agent,Two refunds under the limit bypass approval,,2,2,1,2,1,1,True and unplanned.
+03-tool-agent,Step limit reported as done,,2,2,1,2,1,1,True and unplanned.
+04-multi-agent,A rejection containing APPROVED passes,,2,2,1,1,1,1,True and unplanned. 2024 source not labelled as older where cited.
+04-multi-agent,Revision loop has no stopping condition,M3 M4,2,2,1,1,1,1,
+04-multi-agent,Writer and critic never see the pull requests,M2,2,2,1,2,1,1,
+04-multi-agent,Four roles for a fixed sequence,M1,2,2,1,1,1,1,Ranked last although it removes the other three problems.
+05-plain-app,Model output saved as the category unchecked,P2,2,2,1,1,1,1,2025 source not labelled as older where cited.
+05-plain-app,A failed model call loses the ticket,,2,2,1,1,1,1,True and unplanned. Labelled as the reviewer's judgment.
+05-plain-app,Tagging accuracy unmeasured despite labelled data,P1 P3,2,2,1,2,1,1,
+07-seeded,Retries can send the same reply again,S2,2,2,1,2,1,1,
+07-seeded,Recipient and order not bound to the customer,,2,2,1,2,1,1,True and unplanned.
+07-seeded,Green test command skips the behaviour tests,S1,2,2,1,2,2,1,Ran the command and reported 1 passed and 4 skipped.
+07-seeded,Customer history grows without bound,S5,2,2,1,1,1,1,Missing evals (S3) appear as half a sentence with no location. Prompt changes (S4) are not found.

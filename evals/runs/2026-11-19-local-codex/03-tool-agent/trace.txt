@@ -1,0 +1,39 @@
+prompt: 'Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md'
+
+    4.5s  says  I’ll read the brain-consult skill and use its guidance to review the project. … (77 chars)
+    6.6s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/.agents/skills/brain-consult/SKILL.md'
+    6.7s  step  shell exit=1: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!package-lock.json'"' -g '"'!yarn.lock'"' -g '"'!pnpm-lock.yaml'"'"
+   10.6s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/.agents/skills/brain-consult/references/project-review.md; sh ../wiki/.agents/skills/brain-consult/brain-root.sh'
+   10.7s  step  shell exit=0: /bin/zsh -lc "ls -la; rg --files --hidden -g '"'!.git'"'"
+   14.8s  step  shell exit=0: /bin/zsh -lc 'git ls-files; cat README.md; nl -ba agent.py; nl -ba tools.py; nl -ba worker.py; nl -ba test_agent.py'
+   14.9s  step  shell exit=0: /bin/zsh -lc "cat ../wiki/playbooks/upgrading-an-agent-app.md; git -C ../wiki log -1 --format='%h %cs'; for p in ../AGENTS.md ../../AGENTS.md; do if [ -f \""'$p" ]; then cat "$p"; fi; done'
+   18.6s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/side-effects.md ../wiki/concepts/tool-design.md ../wiki/concepts/sandboxing-and-permissions.md ../wiki/concepts/evals.md; python3 -B -m unittest -v'
+   23.4s  says  The four tests pass, but the retry wrapper can repeat a refund when the payment succeeds and its response times out. I’m checking that failure case, the refund authorization boundary, and whether the  … (305 chars)
+   30.0s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/sources/2026-10-15-vercel-running-durable-agents.md ../wiki/sources/2026-03-09-github-agentic-workflows-security.md ../wiki/sources/2025-09-11-anthropic-writing-tools-for-agents.md ../wiki/sources/2026-01-09-anthropic-demystifying-evals.md'
+   30.2s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import patch
+from types import SimpleNamespace as NS
+import agent, tools, worker
+writes=[]
+def committed_then_timeout(**kwargs):
+    writes.append(kwargs)
+    raise TimeoutError('response lost after commit')
+print('retry:', agent.call_with_retry('
+   44.2s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import patch
+from types import SimpleNamespace as N
+import agent, worker
+real_run=agent.run
+with patch.object(agent, 'MAX_STEPS', 0), patch.object(agent, 'run', side_effect=lambda text: real_run(text, client=object())):
+    print('step limit:', wo
+   46.2s  step  web {"type": "open_page", "url": "https://vercel.com/kb/guide/durable-ai-agents"} -> Running Durable Agents on Vercel | Vercel Knowledge Base; Under the hood: Securi
+   57.5s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import Mock, patch
+import agent, tools, worker
+
+effects = []
+def refund(**kw):
+    effects.append(kw)
+    raise TimeoutError('committed; response lost')
+print('retry:', agent.call_with_retry('issue_refund', {'order_id':'A1','amount_cents':4200}, {
+   89.8s  says  **Fix write retries first: a lost response can cause the same refund three times.** Using brain-consult, I reviewed all five project files and ran `python3 -B -m unittest -v`: all four tests pass. Add … (6137 chars)

@@ -1,0 +1,26 @@
+{
+  "fixture": "06-no-ai-control",
+  "fixture_revision": "342db49",
+  "agent": "codex",
+  "agent_version": "codex-cli 0.169.0-alpha.11.1",
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "via": "skill",
+  "network_approved": true,
+  "prompt": "Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md",
+  "wiki_revision": "fe44a47 2026-11-19",
+  "date": "2026-11-19",
+  "seconds_total": 35.1,
+  "seconds_to_review": 34.7,
+  "steps": 6,
+  "usage": {
+    "input_tokens": 121863,
+    "cached_input_tokens": 101888,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1068,
+    "reasoning_output_tokens": 11
+  },
+  "read_only": true,
+  "left_behind": [],
+  "exit_code": 0
+}

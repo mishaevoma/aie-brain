@@ -1,0 +1,17 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.9s  says  I’ll read the review instructions and project files, then run the tests and check for issues. … (93 chars)
+    7.1s  step  shell exit=0: /bin/zsh -lc "pwd && rg --files -g '"'!*.pyc'"' -g '"'!__pycache__'"' -g '"'! .git'"'"
+    8.3s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   15.4s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   15.4s  step  shell exit=0: /bin/zsh -c 'git status --short && cat AGENTS.md README.md pyproject.toml slugkit/__init__.py slugkit/core.py tests/test_core.py'
+   21.4s  step  shell exit=0: /bin/zsh -c "rg --files --hidden -g '"'!.git'"' && python3 -m unittest discover -s tests -v"
+   21.4s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt && curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md'
+   26.4s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/setting-up-a-repo-for-coding-agents.md'
+   26.4s  step  shell exit=0: /bin/zsh -c 'git ls-files && nl -ba .github/workflows/ci.yml && nl -ba AGENTS.md && nl -ba tests/test_core.py && python3 --version'
+   32.8s  says  I’m applying the linked brain-consult review procedure, using the published wiki. This project fits its coding-agent setup review: the documented test command matches CI, and all nine tests pass local … (259 chars)
+   34.9s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/verification.md'
+   34.9s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-07-27-redhat-agents-md-and-agent-skills.md'
+   34.9s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-17-osmani-claude-code-team-verification.md'
+   35.0s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/instruction-files.md'
+   45.1s  says  **Keep the current setup: contributors have a clear, working way to verify slugkit changes.** I traced `AGENTS.md` → public API tests → CI and found no material discrepancy in that workflow. … (1623 chars)

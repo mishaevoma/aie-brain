@@ -1,0 +1,26 @@
+{
+  "fixture": "02-rag-app",
+  "fixture_revision": "5e07c5f",
+  "agent": "codex",
+  "agent_version": "codex-cli 0.169.0-alpha.11.1",
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "via": "skill",
+  "network_approved": true,
+  "prompt": "Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md",
+  "wiki_revision": "fe44a47 2026-11-19",
+  "date": "2026-11-19",
+  "seconds_total": 81.6,
+  "seconds_to_review": 81.3,
+  "steps": 11,
+  "usage": {
+    "input_tokens": 210334,
+    "cached_input_tokens": 173056,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 3047,
+    "reasoning_output_tokens": 109
+  },
+  "read_only": true,
+  "left_behind": [],
+  "exit_code": 0
+}

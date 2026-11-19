@@ -1,0 +1,26 @@
+{
+  "fixture": "03-tool-agent",
+  "fixture_revision": "38db844",
+  "agent": "codex",
+  "agent_version": "codex-cli 0.169.0-alpha.11.1",
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "via": "installed",
+  "network_approved": true,
+  "prompt": "Use brain-consult to review this project.",
+  "wiki_revision": "fe44a47 2026-11-19",
+  "date": "2026-11-19",
+  "seconds_total": 94.7,
+  "seconds_to_review": 94.4,
+  "steps": 14,
+  "usage": {
+    "input_tokens": 272183,
+    "cached_input_tokens": 229376,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 3397,
+    "reasoning_output_tokens": 469
+  },
+  "read_only": true,
+  "left_behind": [],
+  "exit_code": 0
+}

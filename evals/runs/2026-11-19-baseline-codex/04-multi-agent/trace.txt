@@ -1,0 +1,22 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.3s  says  I’ll read the review instructions and inspect the project, then report findings with file references and any verification gaps. … (128 chars)
+    7.0s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"' -g '"'!package-lock.json'"' -g '"'!yarn.lock'"' | head -80"
+    8.6s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   13.1s  step  shell exit=0: /bin/zsh -lc 'ls -la; curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   17.5s  step  shell exit=1: /bin/zsh -lc "cat README.md crew.py prs.json test_crew.py; git status --short; rg --files --hidden -g 'AGENTS.md' .."
+   17.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt; curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md'
+   21.9s  says  I’m applying the linked brain-consult review procedure using the published wiki. The release-note path has two immediate risks: the critic never sees the original PRs, and its rewrite loop has no limi … (294 chars)
+   25.3s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/multi-agent-systems.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md; curl -fsSL https://mishaevoma.github.io/aie-
+   25.5s  step  shell exit=0: /bin/zsh -lc 'git ls-files; nl -ba crew.py; nl -ba test_crew.py; PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v'
+   34.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2024-12-19-anthropic-building-effective-agents.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2025-06-13-anthro
+   34.9s  step  shell exit=0: /bin/zsh -lc "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+import json
+import crew
+from test_crew import ScriptedClient
+prs = json.load(open('prs.json'))
+c = ScriptedClient(['NOT APPROVED: missing breaking change.'])
+result = crew.run(prs, c)
+print('Negative verdict returned notes:', result)
+print('Ca
+   60.1s  says  **First, fix the approval check and cap revisions so rejected release notes cannot be returned as approved or loop indefinitely.** I traced `prs.json → planner → researcher → writer → critic → stdout` … (4292 chars)

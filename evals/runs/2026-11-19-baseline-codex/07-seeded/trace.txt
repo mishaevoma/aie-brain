@@ -1,0 +1,38 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.6s  says  I’ll read the review instructions and inspect the project, then report actionable findings with file references. … (113 chars)
+    6.2s  step  shell exit=0: /bin/zsh -lc "pwd && rg --files -g '"'!*.lock'"' -g '"'!customer*'"'"
+    7.8s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   11.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   11.9s  step  shell exit=0: /bin/zsh -lc 'git status --short && cat AGENTS.md README.md Makefile assistant/*.py tests/test_agent.py kb/*.md'
+   17.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt'
+   17.2s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md'
+   21.9s  says  I’m applying the linked brain-consult review workflow using the public wiki. The main risks are in automatic sending: retries can repeat a send, and the model controls the recipient. I’ll check those  … (290 chars)
+   25.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md'
+   25.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/production-operations.md'
+   25.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/side-effects.md'
+   25.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md'
+   25.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/context-engineering.md'
+   25.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/sandboxing-and-permissions.md'
+   25.9s  step  shell exit=0: /bin/zsh -lc 'git ls-files && nl -ba assistant/agent.py && nl -ba assistant/tools.py && nl -ba assistant/context.py && nl -ba tests/test_agent.py && nl -ba assistant/run.py'
+   31.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/context-engineering.md'
+   31.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/side-effects.md'
+   31.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md'
+   37.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md'
+   37.6s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-04-temporal-deciding-what-survives-failure.md'
+   37.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2025-09-29-anthropic-context-engineering.md'
+   37.7s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-05-25-anthropic-how-we-contain-claude.md'
+   37.9s  step  shell exit=0: /bin/zsh -lc 'ASSISTANT_LIVE_TESTS=0 PYTHONDONTWRITEBYTECODE=1 make test'
+   49.8s  step  shell exit=0: /bin/zsh -lc "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+from types import SimpleNamespace as S
+from unittest.mock import patch
+from assistant import agent
+
+accepted = []
+def ambiguous_send(**kwargs):
+    accepted.append(kwargs)
+    raise TimeoutError('accepted, response lost')
+try:
+    agent.with_r
+   49.9s  step  shell exit=0: /bin/zsh -lc 'git status --short'
+   77.5s  says  **Make sending a checked, deduplicated application action before relying on this assistant for unattended replies.** I traced input → customer history → model → tools; offline simulations demonstrated … (5059 chars)

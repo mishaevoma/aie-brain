@@ -1,0 +1,37 @@
+prompt: 'Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md'
+
+    4.4s  says  I’ll read the brain-consult skill and project instructions, then review the code using that workflow. … (101 chars)
+    6.6s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g 'SKILL.md' -g 'package.json' -g 'README*' -g 'pyproject.toml' -g 'requirements*' -g '"'!node_modules'"' -g '"'!vendor'"'"
+    6.7s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/.agents/skills/brain-consult/SKILL.md'
+   11.5s  step  shell exit=0: /bin/zsh -lc "ls -la; rg --files -g '"'!node_modules'"' -g '"'!.git'"'; for p in .. ../.. ../../..; do if [ -f \""'$p/AGENTS.md" ]; then cat "$p/AGENTS.md"; fi; done'
+   11.5s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/.agents/skills/brain-consult/references/project-review.md; sh ../wiki/.agents/skills/brain-consult/brain-root.sh'
+   15.7s  step  shell exit=0: /bin/zsh -lc 'git ls-files; git status --short; cat README.md; nl -ba qa.py; nl -ba ingest.py; nl -ba test_qa.py; cat data/asked.csv; cat docs/*.md docs/archive/*.md; cat ../wiki/playbooks/upgrading-an-agent-app.md'
+   15.8s  step  shell exit=0: /bin/zsh -lc "git -C ../wiki log -1 --format='%h %cs'; cat ../wiki/overview.md"
+   28.4s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/retrieval.md ../wiki/concepts/context-engineering.md ../wiki/concepts/evals.md; cat ../wiki/sources/2024-09-19-anthropic-contextual-retrieval.md ../wiki/sources/2025-07-14-chroma-context-rot.md ../wiki/sources/2026-01-09-anthropic-demystifying-evals.md'
+   28.7s  step  shell exit=0: /bin/zsh -lc "python3 -B -m unittest -v; python3 -B - <<'PY'
+import csv
+from collections import Counter
+from unittest.mock import patch
+import ingest, qa
+with patch.object(ingest, 'embed', side_effect=lambda texts: [[1.0, 0.0] for _ in texts]):
+    rows = ingest.build()
+with patch.object(qa, 'embed_
+   35.2s  says  The five unit tests pass, but none checks retrieval or answer correctness. I also confirmed that the sample sends both the obsolete 30-day expense rule and the current 60-day rule into the same prompt … (323 chars)
+   39.3s  step  web {"type": "open_page", "url": "https://www.anthropic.com/research/contextual-retrieval"} -> Contextual retrieval in AI systems \ Anthropic; Context Rot: How Increasing Inpu
+   39.5s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for d in reversed([p,*p.parents]):
+    f=d/'AGENTS.md'
+    if f.exists():
+        print(str(f)); print(f.read_text())
+PY
+ git status --short"
+   46.9s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import patch
+import ingest, qa
+with patch.object(ingest, 'embed', side_effect=lambda ts: [[1.0] for _ in ts]):
+    rows = ingest.build()
+print('archived files:', sorted({r['file'] for r in rows if r['file'].startswith('archive/')}))
+print('intact 
+   81.3s  says  The first upgrade is to exclude superseded policies from current-policy answers. The sample currently puts conflicting expense rules into the prompt. Three further upgrades would make retrieval measur … (6586 chars)

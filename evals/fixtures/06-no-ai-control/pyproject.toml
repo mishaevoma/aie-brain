@@ -1,0 +1,6 @@
+[project]
+name = "slugkit"
+version = "1.2.0"
+description = "Turn titles into URL slugs"
+requires-python = ">=3.10"
+dependencies = []

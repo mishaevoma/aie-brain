@@ -133,3 +133,18 @@ Research into how agents run in production, as of November 2026: durable executi
 
 - README.md
 - .agents/skills/brain-consult/references/project-review.md
+
+## [2026-11-19] edit | Project review shows what to upgrade, with an eval suite
+
+- AGENTS.md
+- README.md
+- index.md
+- .agents/skills/brain-consult/SKILL.md
+- .agents/skills/brain-consult/references/project-review.md
+- .github/review-demo.gif
+- evals/ (120 files)
+- playbooks/upgrading-an-agent-app.md
+- site/agentfiles.py
+- site/quartz.config.yaml
+- site/test_review_publication.py
+- tools/lint.py

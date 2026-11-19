@@ -19,6 +19,7 @@ Start from the question you are facing. Each line names the pages to read, the m
 **Building an AI product**
 
 - Where do I start? [Building an agent product](playbooks/building-an-agent-product.md).
+- The app already exists. What should I upgrade first? [Upgrading an existing AI app](playbooks/upgrading-an-agent-app.md).
 - One model call, a workflow or an agent? [Agents and workflows](concepts/agents-and-workflows.md), then step 1 of [Building an agent product](playbooks/building-an-agent-product.md).
 - Build a harness or adopt one? [Harness](concepts/harness.md), [Context layer](concepts/context-layer.md).
 - What rides in every prompt, and what is loaded on demand? [Context engineering](concepts/context-engineering.md), [Retrieval](concepts/retrieval.md), [Skills](concepts/skills.md).
@@ -62,6 +63,7 @@ Start from the question you are facing. Each line names the pages to read, the m
 Task-shaped guides. Use one when the question is "how do I do X".
 
 - [Building an agent product](playbooks/building-an-agent-product.md) — the order of decisions from idea to production.
+- [Upgrading an existing AI app](playbooks/upgrading-an-agent-app.md) — what to look for in code that already calls a model, and what to change first.
 - [Setting up a repository for coding agents](playbooks/setting-up-a-repo-for-coding-agents.md) — instruction file, verify skill, skills, checks, boundaries, pruning.
 - [Reviewing agent work](playbooks/reviewing-agent-work.md) — a checklist for the person, before, during and after.
 

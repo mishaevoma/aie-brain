@@ -1,0 +1,27 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.1s  says  I’ll read the review instructions and inspect the project, then report actionable findings. … (92 chars)
+    6.6s  step  shell exit=0: /bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"' | head -50"
+    7.8s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   10.8s  step  shell exit=0: /bin/zsh -lc 'ls -la && curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   15.2s  step  shell exit=0: /bin/zsh -lc 'cat README.md agent.py tools.py worker.py test_agent.py && git status --short && curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt && curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md'
+   20.9s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md'
+   21.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/durable-execution.md'
+   21.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/side-effects.md'
+   21.3s  step  shell exit=0: /bin/zsh -lc 'git ls-files && nl -ba agent.py && nl -ba tools.py && nl -ba worker.py && PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v'
+   25.2s  says  I’m following the linked brain-consult review procedure using the published wiki. All four tests pass, but the refund retry test only simulates failure before completion. I’ll check what happens when  … (295 chars)
+   35.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md'
+   35.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md'
+   35.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-03-09-github-agentic-workflows-security.md'
+   35.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-10-15-vercel-running-durable-agents.md'
+   35.1s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-04-temporal-deciding-what-survives-failure.md'
+   35.3s  step  shell exit=0: /bin/zsh -lc "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+from unittest.mock import patch
+from types import SimpleNamespace as S
+import agent, tools, worker
+commits=[]
+def committed_then_timeout(**kw):
+    commits.append(kw)
+    if len(commits)==1: raise TimeoutError('response lost after commit')
+   
+   55.6s  says  **Make refund retries safe first: a lost response can currently trigger a second payment.** I traced `worker.handle → agent.run → call_with_retry → issue_refund` and reproduced two simulated payment c … (3134 chars)

@@ -20,7 +20,7 @@ def markdown_links(page):
 class ReviewPublicationTest(unittest.TestCase):
     def test_published_review(self):
         with tempfile.TemporaryDirectory() as temp:
-            public = Path(temp)
+            public = Path(temp).resolve()  # macOS keeps temporary folders behind a symlink
             (public / "index.html").touch()  # Minimal Quartz output.
             subprocess.run(
                 [sys.executable, ROOT / "site/agentfiles.py", ROOT, public, SITE],
@@ -30,6 +30,8 @@ class ReviewPublicationTest(unittest.TestCase):
             self.assertIn(f"{SITE}/review.md", markdown_links(public / "llms.txt"))
             review = public / "review.md"
             self.assertEqual(review.read_bytes(), (SKILL / "SKILL.md").read_bytes())
+
+            self.assertRegex((public / "revision.txt").read_text(encoding="utf-8"), r"^[0-9a-f]{7,} \d{4}-\d{2}-\d{2}\n$")
 
             links = markdown_links(review)
             self.assertIn("references/project-review.md", links)

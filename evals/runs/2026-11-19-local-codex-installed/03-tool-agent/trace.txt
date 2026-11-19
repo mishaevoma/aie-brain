@@ -1,0 +1,41 @@
+prompt: 'Use brain-consult to review this project.'
+
+    3.7s  says  I’ll use the brain-consult skill to inspect the project and review its design against the skill’s engineering sources. … (118 chars)
+    5.8s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g 'SKILL.md' -g 'README*' -g 'package.json' -g 'pyproject.toml' -g '"'!node_modules'"' -g '"'!vendor'"'"
+    5.8s  step  shell exit=0: /bin/zsh -lc 'cat .agents/skills/brain-consult/SKILL.md'
+   10.5s  step  shell exit=0: /bin/zsh -lc "ls -la; rg --files -g '"'!node_modules'"' -g '"'!.git'"' -g '"'!.agents'"' ; for p in ../AGENTS.md ../../AGENTS.md /AGENTS.md; do if test -f \""'$p"; then cat "$p"; fi; done'
+   10.5s  step  shell exit=0: /bin/zsh -lc 'cat .agents/skills/brain-consult/references/project-review.md; sh .agents/skills/brain-consult/brain-root.sh'
+   15.9s  step  shell exit=0: /bin/zsh -lc "cat ../wiki/playbooks/upgrading-an-agent-app.md; cat ../wiki/playbooks/setting-up-a-repo-for-coding-agents.md; git -C ../wiki log -1 --format='%h %cs'"
+   16.0s  step  shell exit=0: /bin/zsh -lc 'git ls-files; git status --short; cat README.md; nl -ba agent.py; nl -ba tools.py; nl -ba worker.py; nl -ba test_agent.py; rg --files --hidden .claude'
+   21.8s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/side-effects.md ../wiki/concepts/tool-design.md ../wiki/concepts/sandboxing-and-permissions.md ../wiki/concepts/verification.md ../wiki/concepts/production-operations.md'
+   21.9s  step  shell exit=0: /bin/zsh -lc 'python3 -B -m unittest -v; cat ../wiki/sources/2026-11-04-temporal-deciding-what-survives-failure.md ../wiki/sources/2026-10-18-loams-coding-agent-harnesses.md ../wiki/sources/2025-06-16-willison-lethal-trifecta.md ../wiki/sources/2026-11-17-osmani-claude-code-team-verification.md'
+   28.0s  says  All four existing tests pass, but the retry test assumes a timeout means nothing happened upstream. The code retries refunds even when a payment may already have succeeded. I’m checking that failure c … (290 chars)
+   33.0s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/sources/2026-03-09-github-agentic-workflows-security.md; cat ../wiki/concepts/verification.md; cat ../wiki/overview.md'
+   33.2s  step  shell exit=1: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import patch
+from types import SimpleNamespace
+import agent, tools, worker
+charges=[]
+def refund(**args):
+    charges.append(args)
+    if len(charges)==1: raise TimeoutError('committed; response lost')
+    return {'refund_id':'R2'}
+agent.call_with
+   44.0s  step  web {"type": "open_page", "url": "https://temporal.io/blog/durable-execution-means-deciding-what-survives-failure"} -> Durable Execution means deciding what survives failure | Temporal; Under the hoo
+   44.4s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import patch
+from types import SimpleNamespace
+import agent, tools, worker
+original=agent.run
+with patch.object(agent,'MAX_STEPS',0), patch.object(agent,'run',side_effect=lambda text:original(text,client=object())):
+    print('worker:',worker.hand
+   58.4s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from unittest.mock import Mock, patch
+import agent, tools, worker
+writes=[]
+def committed_then_timeout(**args):
+    writes.append(args)
+    raise TimeoutError('response lost after commit')
+print(agent.call_with_retry('issue_refund', {'order_id':'A1','amount_cents':4
+   60.1s  step  web {"type": "find_in_page", "pattern": "idempotency"} -> Durable Execution means deciding what survives failure | Temporal; Durable Execu
+   94.4s  says  **The main upgrade is making refund retries safe.** The current wrapper can issue a refund multiple times after a timeout, while all four existing tests pass. … (5698 chars)

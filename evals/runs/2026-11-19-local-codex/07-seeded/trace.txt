@@ -1,0 +1,25 @@
+prompt: 'Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md'
+
+    3.9s  says  I’ll read the brain-consult skill, then review the project using its workflow. … (78 chars)
+    7.0s  step  shell exit=0: /bin/zsh -lc 'cat <work>/wiki/.agents/skills/brain-consult/SKILL.md'
+    7.1s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g '"'!*.lock'"' -g '"'!__pycache__'"' -g '"'!venv'"' -g '"'!.git'"'"
+   13.7s  step  shell exit=0: /bin/zsh -lc 'cat <work>/wiki/.agents/skills/brain-consult/references/project-review.md; sh "<work>…
+   13.7s  step  shell exit=0: /bin/zsh -lc 'git status --short; cat AGENTS.md README.md Makefile; nl -ba assistant/agent.py; nl -ba assistant/context.py; nl -ba assistant/tools.py; nl -ba assistant/run.py; cat tests/test_agent.py kb/*.md'
+   17.6s  step  shell exit=0: /bin/zsh -lc "cat ../wiki/playbooks/upgrading-an-agent-app.md ../wiki/playbooks/setting-up-a-repo-for-coding-agents.md; git -C ../wiki log -1 --format='%h %cs'; rg --files --hidden -g '"'!.git'"' -g '"'!__pycache__'"'"
+   17.8s  step  shell exit=0: /bin/zsh -lc 'PYTHONDONTWRITEBYTECODE=1 ASSISTANT_LIVE_TESTS=0 make test'
+   21.8s  says  The default test command passes, but four of five tests are skipped. I also found that sending mail uses the same retry wrapper as order lookups, and the model controls the recipient address. I’m chec … (260 chars)
+   24.7s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/{side-effects,sandboxing-and-permissions,verification,evals,context-engineering,tool-design}.md'
+   24.7s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/sources/{2026-10-15-vercel-running-durable-agents,2025-06-16-willison-lethal-trifecta,2026-11-17-osmani-claude-code-team-verification,2026-01-09-anthropic-demystifying-evals,2026-11-06-anthropic-components-of-agent-memory,2026-10-18-loams-coding-agent-harnesses}.md'
+   37.4s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/tool-design.md ../wiki/concepts/context-engineering.md ../wiki/concepts/evals.md ../wiki/sources/2026-10-15-vercel-running-durable-agents.md'
+   37.6s  step  shell exit=0: /bin/zsh -lc "PYTHONDONTWRITEBYTECODE=1 python3 -B - <<'PY'
+from types import SimpleNamespace as NS
+from unittest.mock import patch
+from assistant import agent, context
+sent=[]
+def ambiguous_send():
+    sent.append('accepted')
+    raise TimeoutError('response lost')
+try:
+    agent.with_retries(ambig
+   45.3s  step  shell exit=0: /bin/zsh -lc "rg -n 'registry\\[call.name\\]|with_retries|MAX_STEPS' assistant/agent.py; rg -n '\"to\"|def lookup_order|def send_reply' assistant/tools.py; rg -n 'skipUnless|assertIn|assertNotIn' tests/test_agent.py; rg -n 'join|Every email' assistant/context.py; git status --short"
+   82.4s  says  The first priority is controlling what gets sent. Synthetic checks reproduced **three sends after a lost response**, and **eight sends to an unrelated recipient** when the model repeatedly requested t … (7774 chars)
