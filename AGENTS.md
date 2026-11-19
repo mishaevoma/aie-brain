@@ -1,6 +1,6 @@
 # AI Engineering Brain
 
-A wiki of current practice for building AI products. Agents write and maintain it. The owner and their agents read it.
+A dated, cited wiki of AI engineering practice, compiled into high-signal knowledge your agent can load. Agents write and maintain it. The owner and their agents read it.
 
 ## Mission
 

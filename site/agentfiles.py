@@ -17,8 +17,8 @@ import shutil
 import sys
 
 SUMMARY = (
-    "A wiki of current practice for building AI products, written and maintained by AI agents "
-    "and read by both agents and people. Every link below returns raw markdown."
+    "A dated, cited wiki of AI engineering practice, compiled into high-signal knowledge "
+    "your agent can load. Every link below returns raw markdown."
 )
 # What goes into llms-full.txt, in reading order. Source notes stay out: they are long and one click away.
 FULL_FILES = ["overview.md", "glossary.md"]
