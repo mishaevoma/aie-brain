@@ -1,0 +1,41 @@
+text,category
+The discount code did not apply at checkout,billing
+Change the email on our company account,account
+CSV import fails on dates before 1970,bug
+Timezone is wrong in the weekly email,bug
+Notifications arrive twice,bug
+The export button does nothing in Firefox,bug
+I can't log in after changing my email,account
+Is there a way to export all reports at once?,how-to
+Do you offer a non-profit rate?,billing
+Dashboard shows a blank page after login,bug
+Update the company name on our profile,account
+I was charged twice for March,billing
+Can two people edit a report at the same time?,how-to
+Search returns results from deleted projects,bug
+Merge my two accounts please,account
+Password reset email link gives 404,bug
+Where can I change the default currency?,how-to
+Please delete my account and data,account
+How do I archive an old project?,how-to
+Can I duplicate a dashboard?,how-to
+Saving a filter throws error 500,bug
+I need to transfer ownership to a colleague,account
+Need a receipt for order 20418,billing
+What is the keyboard shortcut for search?,how-to
+I never got the verification email,account
+App crashes when I rotate my phone on the report screen,bug
+"Please refund the annual plan, I meant to buy monthly",billing
+Why did my invoice go up this month?,billing
+Locked out after too many attempts,account
+The chart legend overlaps the data on small screens,bug
+How do I set up single sign-on?,how-to
+"My colleague left, how do I remove their access?",account
+How do I schedule a weekly report?,how-to
+I cancelled last week and was still billed,billing
+How do I turn on two-factor authentication?,account
+Can I get an invoice with our VAT number?,billing
+My card was declined but I see a pending charge,billing
+How do I connect our Slack workspace?,how-to
+Charged in USD instead of EUR,billing
+How do I add a teammate to a project?,how-to

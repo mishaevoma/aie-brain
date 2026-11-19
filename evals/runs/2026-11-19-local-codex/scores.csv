@@ -1,0 +1,20 @@
+fixture,finding,ids,specific,correct,cited,fresh,verifiable,actionable,note
+01-llm-wrapper,Turn the three examples into a regression eval,W1 W2,2,2,2,2,2,2,Its mutation check reproduces: all three tests pass with the prompt replaced. The unbounded diff (W3) is not raised.
+02-rag-app,Keep the superseded policy out of the index,R4,2,2,2,2,2,2,Labels the 2025 source as older and gives the reason. Diagnostic reproduces.
+02-rag-app,Turn the 16 asked questions into an evaluation,R1,2,2,2,2,2,2,
+02-rag-app,Chunk on sections and keep their context,R3,2,2,2,2,2,2,Labels the 2024 source as older and says it is an experiment here.
+02-rag-app,Add keyword search for form identifiers,R2,2,2,2,2,2,2,Its demonstration is contrived and says so.
+03-tool-agent,Make refunds and emails safe to retry,T1 T2,2,2,2,2,2,2,Describes its probe and names the tests to add; the probe itself is not pasted.
+03-tool-agent,Enforce refund and recipient rules in code,,2,2,2,2,2,2,True and unplanned. Reproduces: 4 unchecked writes.
+03-tool-agent,Report failed and incomplete runs accurately,T3,2,2,2,2,2,2,
+03-tool-agent,Test the customer outcome through the agent loop,T4,2,2,2,2,2,2,
+04-multi-agent,Bound the review loop and reject false approvals,M3,2,2,2,2,2,2,Command reproduces: NOT APPROVED returns notes.
+04-multi-agent,Give writer and critic the pull requests and simplify the chain,M1 M2 M4,2,2,2,2,2,2,Command reproduces: 4 [True True False False].
+04-multi-agent,Turn the export incident into an evaluation,,2,2,2,2,2,2,
+05-plain-app,Reject categories outside the four before saving,P2,2,2,2,2,2,2,Reproduces: stored other and filtered lists show 0.
+05-plain-app,Measure tagging on the 40 labelled tickets,P1 P3,2,2,2,2,2,2,
+07-seeded,Bind recipient and order access in code,,2,2,2,2,2,2,True and unplanned.
+07-seeded,Make sending idempotent,S2,2,2,2,2,2,2,
+07-seeded,Make the test gate run behaviour and measure reply quality,S1 S3,2,2,2,2,2,2,Ran make test and reported OK (skipped=4).
+07-seeded,Return usable failures and keep processing,,2,2,2,2,2,2,True and unplanned.
+07-seeded,Bound customer history,S5,2,2,2,2,2,2,The prompt in code (S4) appears only as a clause about prompt changes.

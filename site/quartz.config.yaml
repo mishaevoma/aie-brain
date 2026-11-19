@@ -18,6 +18,7 @@ configuration:
     - .github
     - site
     - tools
+    - evals
     - raw
     - README.md
     - CLAUDE.md

@@ -1,0 +1,349 @@
+[
+  {
+    "fixture": "01-llm-wrapper",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 63.3,
+    "seconds_total": 63.7,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/evals.md"
+    ],
+    "broken_links": [],
+    "sources": [],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [
+      "https://www.anthropic.com/research/building-effective-agents",
+      "https://www.anthropic.com/research/demystifying-evals-for-ai-agents/"
+    ],
+    "locations": 2,
+    "bad_locations": [],
+    "parts_missing": [
+      "why",
+      "check",
+      "evidence age",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  },
+  {
+    "fixture": "02-rag-app",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 57.1,
+    "seconds_total": 57.6,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/evals.md",
+      "concepts/retrieval.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2024-09-19-anthropic-contextual-retrieval.md",
+        "published": "2024-09-19",
+        "age_days": 791,
+        "old": true,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      }
+    ],
+    "old_unlabelled": [
+      "sources/2024-09-19-anthropic-contextual-retrieval.md"
+    ],
+    "notes_without_original": [
+      "sources/2024-09-19-anthropic-contextual-retrieval.md",
+      "sources/2026-01-09-anthropic-demystifying-evals.md"
+    ],
+    "originals_without_note": [],
+    "locations": 12,
+    "bad_locations": [],
+    "parts_missing": [
+      "change",
+      "why",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  },
+  {
+    "fixture": "03-tool-agent",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 55.6,
+    "seconds_total": 56.1,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/side-effects.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2026-03-09-github-agentic-workflows-security.md",
+        "published": "2026-03-09",
+        "age_days": 255,
+        "old": false,
+        "labelled_older": true,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-10-15-vercel-running-durable-agents.md",
+        "published": "2026-10-15",
+        "age_days": 35,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-11-04-temporal-deciding-what-survives-failure.md",
+        "published": "2026-11-04",
+        "age_days": 15,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [
+      "sources/2026-03-09-github-agentic-workflows-security.md",
+      "sources/2026-10-15-vercel-running-durable-agents.md",
+      "sources/2026-11-04-temporal-deciding-what-survives-failure.md"
+    ],
+    "originals_without_note": [],
+    "locations": 10,
+    "bad_locations": [],
+    "parts_missing": [
+      "change",
+      "why",
+      "evidence age",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  },
+  {
+    "fixture": "04-multi-agent",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 60.1,
+    "seconds_total": 60.6,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/agents-and-workflows.md",
+      "concepts/evals.md",
+      "concepts/multi-agent-systems.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2024-12-19-anthropic-building-effective-agents.md",
+        "published": "2024-12-19",
+        "age_days": 700,
+        "old": true,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2025-06-13-anthropic-multi-agent-research-system.md",
+        "published": "2025-06-13",
+        "age_days": 524,
+        "old": true,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      }
+    ],
+    "old_unlabelled": [
+      "sources/2024-12-19-anthropic-building-effective-agents.md",
+      "sources/2025-06-13-anthropic-multi-agent-research-system.md"
+    ],
+    "notes_without_original": [
+      "sources/2024-12-19-anthropic-building-effective-agents.md",
+      "sources/2025-06-13-anthropic-multi-agent-research-system.md",
+      "sources/2026-01-09-anthropic-demystifying-evals.md"
+    ],
+    "originals_without_note": [],
+    "locations": 8,
+    "bad_locations": [],
+    "parts_missing": [
+      "why",
+      "evidence age",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  },
+  {
+    "fixture": "05-plain-app",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 55.5,
+    "seconds_total": 56.2,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/evals.md",
+      "concepts/production-operations.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2024-12-19-anthropic-building-effective-agents.md",
+        "published": "2024-12-19",
+        "age_days": 700,
+        "old": true,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2025-09-17-anthropic-postmortem-three-issues.md",
+        "published": "2025-09-17",
+        "age_days": 428,
+        "old": true,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-01-09-anthropic-demystifying-evals.md",
+        "published": "2026-01-09",
+        "age_days": 314,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      }
+    ],
+    "old_unlabelled": [
+      "sources/2024-12-19-anthropic-building-effective-agents.md",
+      "sources/2025-09-17-anthropic-postmortem-three-issues.md"
+    ],
+    "notes_without_original": [
+      "sources/2024-12-19-anthropic-building-effective-agents.md",
+      "sources/2025-09-17-anthropic-postmortem-three-issues.md",
+      "sources/2026-01-09-anthropic-demystifying-evals.md"
+    ],
+    "originals_without_note": [],
+    "locations": 2,
+    "bad_locations": [],
+    "parts_missing": [
+      "why",
+      "evidence age",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  },
+  {
+    "fixture": "06-no-ai-control",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 45.1,
+    "seconds_total": 45.8,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/instruction-files.md",
+      "concepts/verification.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2026-07-27-redhat-agents-md-and-agent-skills.md",
+        "published": "2026-07-27",
+        "age_days": 115,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      },
+      {
+        "note": "sources/2026-11-17-osmani-claude-code-team-verification.md",
+        "published": "2026-11-17",
+        "age_days": 2,
+        "old": false,
+        "labelled_older": false,
+        "original_given": false
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [
+      "sources/2026-07-27-redhat-agents-md-and-agent-skills.md",
+      "sources/2026-11-17-osmani-claude-code-team-verification.md"
+    ],
+    "originals_without_note": [],
+    "locations": 2,
+    "bad_locations": [],
+    "parts_missing": [
+      "why",
+      "check",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  },
+  {
+    "fixture": "07-seeded",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "url",
+    "seconds_to_review": 77.5,
+    "seconds_total": 78.1,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/side-effects.md"
+    ],
+    "broken_links": [],
+    "sources": [],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [
+      "https://temporal.io/blog/durable-execution-means-deciding-what-survives-failure",
+      "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+      "https://www.anthropic.com/research/how-we-contain-claude"
+    ],
+    "locations": 8,
+    "bad_locations": [],
+    "parts_missing": [
+      "change",
+      "why",
+      "evidence age",
+      "effort and impact",
+      "next step",
+      "install offer",
+      "says upgrade"
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+prompt: 'Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md'
+
+    3.9s  says  I’ll read the brain-consult skill and follow its review process for this project. … (81 chars)
+    7.0s  step  shell exit=0: /bin/zsh -lc 'cat <work>/wiki/.agents/skills/brain-consult/SKILL.md'
+    7.1s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g AGENTS.md -g '"'!node_modules'"' -g '"'!vendor'"' -g '"'!dist'"' -g '"'!build'"'; ls -la"
+   12.9s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/.agents/skills/brain-consult/references/project-review.md; sh ../wiki/.agents/skills/brain-consult/brain-root.sh'
+   13.0s  step  shell exit=0: /bin/zsh -lc 'cat README.md crew.py prs.json test_crew.py; git status --short; for p in ../AGENTS.md ../../AGENTS.md; do if [ -f "$p" ]; then cat "$p"; fi; done'
+   16.9s  step  shell exit=0: /bin/zsh -lc "cat ../wiki/playbooks/upgrading-an-agent-app.md; git -C ../wiki log -1 --format='%h %cs'; git ls-files; python3 -B -m unittest -v; nl -ba crew.py"
+   22.9s  says  The two existing tests pass, but they only check canned responses and retry order. The code confirms two risks behind the README’s reported failures: the critic never sees the pull requests, and its r … (269 chars)
+   24.5s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/agents-and-workflows.md ../wiki/concepts/multi-agent-systems.md ../wiki/concepts/evals.md ../wiki/concepts/verification.md; cat ../wiki/sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md ../wiki/sources/2026-11-17-osmani-claude-code-team-verific
+   36.7s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/evals.md ../wiki/concepts/verification.md'
+   36.9s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+import json
+import crew
+from test_crew import ScriptedClient
+prs = json.load(open('prs.json'))
+c = ScriptedClient(['NOT APPROVED: the breaking change is missing.'])
+print('False approval:', bool(crew.run(prs, c)), 'calls:', len(c.calls))
+c = ScriptedClient(['Fix it'
+   43.8s  step  shell exit=0: /bin/zsh -lc "python3 -B -c 'import crew; from test_crew import ScriptedClient; c=ScriptedClient([\"NOT APPROVED\"]); print(crew.run([], c))'
+python3 -B -c 'import crew,json; from test_crew import ScriptedClient; c=ScriptedClient([\"APPROVED\"]); crew.run(json.load(open(\"prs.json\")),c); print(len(
+   75.9s  says  The project needs three upgrades: a reliable stopping rule, direct access to PR facts when writing and reviewing, and tests that measure release-note accuracy. … (6035 chars)

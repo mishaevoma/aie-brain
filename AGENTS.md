@@ -23,6 +23,7 @@ A dated, cited wiki of AI engineering practice, compiled into high-signal knowle
 | `log.md` | Append-only history | Written by `tools/lint.py --log` |
 | `watchlist.md` | Feeds, people and open leads | Update on refresh |
 | `tools/lint.py` | Checks, generated parts, log entries | Run before every commit |
+| `evals/` | Sample projects, an answer key and the scorecard for the project review | Rerun after changing `brain-consult`; see `evals/README.md` |
 
 ## Reading
 

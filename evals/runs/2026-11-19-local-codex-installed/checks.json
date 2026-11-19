@@ -1,0 +1,43 @@
+[
+  {
+    "fixture": "03-tool-agent",
+    "agent": "codex",
+    "model": "gpt-6-astra",
+    "via": "installed",
+    "seconds_to_review": 94.4,
+    "seconds_total": 94.7,
+    "read_only": true,
+    "left_behind": [],
+    "wiki_pages": [
+      "concepts/side-effects.md"
+    ],
+    "broken_links": [],
+    "sources": [
+      {
+        "note": "sources/2026-03-09-github-agentic-workflows-security.md",
+        "published": "2026-03-09",
+        "age_days": 255,
+        "old": false,
+        "labelled_older": true,
+        "original_given": true
+      },
+      {
+        "note": "sources/2026-11-04-temporal-deciding-what-survives-failure.md",
+        "published": "2026-11-04",
+        "age_days": 15,
+        "old": false,
+        "labelled_older": false,
+        "original_given": true
+      }
+    ],
+    "old_unlabelled": [],
+    "notes_without_original": [],
+    "originals_without_note": [],
+    "locations": 5,
+    "bad_locations": [],
+    "parts_missing": [
+      "why",
+      "install offer"
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    5.9s  says  I’ll read the review instructions, inspect the project, and check the relevant code and tests for actionable findings. … (118 chars)
+    8.0s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g 'package.json' -g 'README*' -g 'pyproject.toml' -g '"'!node_modules'"' -g '"'!vendor'"'; git status --short"
+    9.7s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   13.4s  step  shell exit=0: /bin/zsh -lc "curl -fsSL https://mishaevoma.github.io/aie-brain/review.md; rg --files -g '"'!node_modules'"' -g '"'!vendor'"'; ls -la"
+   20.0s  step  shell exit=0: /bin/zsh -lc "cat README.md; nl -ba commitmsg.py; nl -ba test_commitmsg.py; for f in examples/*; do printf '\\n%s\\n' \""'$f"; cat "$f"; done; for d in .. ../.. ../../..; do if [ -f "$d/AGENTS.md" ]; then cat "$d/AGENTS.md"; fi; done'
+   20.0s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt; curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md'
+   24.6s  says  I’m applying the linked Brain review skill using its published wiki. This is a small, single-call CLI; the key question is whether its tests and examples establish commit-message quality. One example  … (281 chars)
+   26.3s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/agents-and-workflows.md; PYTHONDONTWRITEBYTECODE=1 python3 -m unitte
+   34.5s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2024-12-19-anthropic-building-effective-agents.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-11-09-theo-h
+   44.0s  step  web {"type": "open_page", "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents"} -> Demystifying evals for AI agents \ Anthropic; Building effective AI agents \ Ant
+   44.2s  step  shell exit=0: /bin/zsh -lc "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+from pathlib import Path
+import commitmsg
+from test_commitmsg import FakeClient
+prompt = commitmsg.build_prompt(Path('examples/002-timeout.diff').read_text())
+print('Incident rationale present in prompt:', 'nightly sync' in prompt)
+print('Over
+   63.3s  says  **Keep the single-call design; first fix the examples so they reward accurate commit messages.** I traced staged diff → prompt → API call → printed message and ran all three unit tests successfully. A … (2745 chars)

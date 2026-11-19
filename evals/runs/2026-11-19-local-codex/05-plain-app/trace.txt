@@ -1,0 +1,19 @@
+prompt: 'Review this project using\n<work>/wiki/.agents/skills/brain-consult/SKILL.md'
+
+    3.8s  says  I’ll read the requested skill and project guidance, then review the code using that workflow. … (93 chars)
+    5.1s  step  shell exit=0: /bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!vendor'"'; cat ../wiki/.agents/skills/brain-consult/SKILL.md"
+   10.1s  step  shell exit=0: /bin/zsh -lc "cat ../wiki/.agents/skills/brain-consult/references/project-review.md; sh ../wiki/.agents/skills/brain-consult/brain-root.sh; rg --files -g '"'!node_modules'"' -g '"'!.git'"'; git status --short"
+   15.2s  step  shell exit=0: /bin/zsh -lc "ls -a; cat README.md; nl -ba app/cli.py; nl -ba app/tagging.py; nl -ba app/db.py; cat tests/test_tagging.py tests/test_db.py; cat ../wiki/playbooks/setting-up-a-repo-for-coding-agents.md; git -C ../wiki log -1 --format='%h %cs'; for p in .. ../.. ../../..; do if [ -f \""'$p/AGENTS.md" 
+   18.4s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/playbooks/upgrading-an-agent-app.md; cat ../wiki/overview.md; python3 -B -m unittest discover -s tests -v; head -8 data/labelled_tickets.csv'
+   22.9s  says  The five tests pass, but they only check canned model replies and SQLite operations. I also found that an unexpected category is stored unchanged, so the ticket disappears from all four category-filte … (316 chars)
+   24.2s  step  shell exit=0: /bin/zsh -lc 'cat ../wiki/concepts/tool-design.md ../wiki/concepts/evals.md; cat ../wiki/sources/2025-03-30-humanlayer-12-factor-agents.md ../wiki/sources/2026-01-09-anthropic-demystifying-evals.md'
+   33.5s  step  web {"type": "open_page", "url": "https://github.com/humanlayer/12-factor-agents"} -> GitHub - humanlayer/12-factor-agents: What are the principles we can use to buil
+   33.8s  step  shell exit=0: /bin/zsh -lc "python3 -B - <<'PY'
+from types import SimpleNamespace as S
+from app import db, tagging
+import csv
+client = S(messages=S(create=lambda **kw: S(content=[S(text='other')])) )
+c = db.connect(':memory:')
+category = tagging.tag_ticket('charged twice', client)
+db.add(c, 'test@example.com', 'c
+   57.9s  says  The main upgrade is to validate model replies before saving tickets. A second is to turn the 40 labelled examples into a real classification check. I used the requested **brain-consult** skill and lef … (3950 chars)

@@ -1,0 +1,8 @@
+diff --git a/importer/dates.py b/importer/dates.py
+--- a/importer/dates.py
++++ b/importer/dates.py
+@@ -4,7 +4,7 @@ from datetime import datetime
+-def parse(value):
+-    return datetime.strptime(value, "%d/%m/%Y")
++def parse_date(value):
++    return datetime.strptime(value.strip(), "%d/%m/%Y")

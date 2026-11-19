@@ -1,0 +1,20 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    3.9s  says  I’ll read the review instructions and inspect the project, then report findings with file references. … (102 chars)
+    6.1s  step  shell exit=0: /bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'package.json' -g 'README*' -g '"'!node_modules'"' -g '"'!dist'"'"
+    7.4s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   11.2s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   11.3s  step  shell exit=0: /bin/zsh -c "ls -la && rg --files -g '"'!node_modules'"' -g '"'!.git'"' && cat README.md"
+   14.1s  says  I’m using the linked Brain review skill and its public wiki. This is a small CLI helpdesk with one model-powered step: ticket categorization. … (142 chars)
+   17.4s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/project-review.md && curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt'
+   17.4s  step  shell exit=0: /bin/zsh -c 'git status --short && find .. -name AGENTS.md -print && nl -ba app/tagging.py && nl -ba app/db.py && nl -ba app/cli.py && cat tests/test_tagging.py tests/test_db.py && cat data/labelled_tickets.csv'
+   23.1s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md && curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md && curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/production-operations.md && curl -fsSL https://mishaevoma.github.
+   29.4s  says  The category returned by the model goes straight into SQLite without validation, so an unexpected response can leave a ticket outside all four category queues. The existing tests use canned responses; … (349 chars)
+   37.4s  step  shell exit=0: /bin/zsh -c "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v && PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+from types import SimpleNamespace
+from unittest.mock import patch
+from app import db, tagging, cli
+import csv
+client = SimpleNamespace(messages=SimpleNamespace(create=lambda 
+   37.5s  step  shell exit=0: /bin/zsh -c 'curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md && curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2024-12-19-anthropic-building-effective-agents.md && curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2025-09-17-ant
+   55.5s  says  **Validate category output first so tickets cannot silently miss every category queue.** I traced `add → tag_ticket → SQLite → list --category` and reproduced that failure using a mock model response. … (3076 chars)

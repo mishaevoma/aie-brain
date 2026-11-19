@@ -1,0 +1,12 @@
+prompt: 'Review this project using\nhttps://mishaevoma.github.io/aie-brain/review.md'
+
+    4.4s  says  I’ll read the review instructions and inspect the project, then report actionable findings with file references. … (112 chars)
+    6.6s  step  shell exit=0: /bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g '"'!node_modules'"' -g '"'!uv.lock'"' -g '"'!package-lock.json'"' -g '"'!yarn.lock'"' -g '"'!poetry.lock'"' -g '"'!pnpm-lock.yaml'"' | head -100"
+    8.0s  step  web {"type": "open_page", "url": "https://mishaevoma.github.io/aie-brain/review.md"} -> Internal Error
+   10.2s  step  shell exit=0: /bin/zsh -lc 'ls -la && curl -fsSL https://mishaevoma.github.io/aie-brain/review.md'
+   15.0s  step  shell exit=0: /bin/zsh -lc "find .. -name AGENTS.md -print; git status --short; find . -maxdepth 3 -type f -not -path './.git/*' -print; curl -fsSL https://mishaevoma.github.io/aie-brain/llms.txt; curl -fsSL https://raw.githubusercontent.com/mishaevoma/aie-brain/main/.agents/skills/brain-consult/references/projec
+   21.3s  step  shell exit=0: /bin/zsh -lc 'git ls-files; for f in README.md ingest.py qa.py test_qa.py docs/expenses.md docs/leave.md docs/security.md docs/archive/expenses-2024.md data/asked.csv; do echo "$f"; nl -ba "$f"; done'
+   21.8s  step  shell exit=0: /bin/zsh -lc 'curl -fsSL https://mishaevoma.github.io/aie-brain/playbooks/building-an-agent-product.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/retrieval.md; curl -fsSL https://mishaevoma.github.io/aie-brain/concepts/evals.md'
+   26.0s  says  I’m applying the linked Brain review procedure using its published wiki. The code includes archived expense rules in retrieval and drops file names from the answer prompt. I’ll check the sample chunks … (305 chars)
+   32.3s  step  shell exit=0: /bin/zsh -lc "curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2024-09-19-anthropic-contextual-retrieval.md; curl -fsSL https://mishaevoma.github.io/aie-brain/sources/2026-01-09-anthropic-demystifying-evals.md; PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v; PYTHONDONTWRITEBYTECODE=1 pyth
+   57.1s  says  **Fix policy selection and chunk boundaries first so staff receive complete, current handbook rules.** I traced ingestion → retrieval → answer prompt: an offline check with mocked embeddings selected  … (3958 chars)

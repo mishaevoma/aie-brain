@@ -61,6 +61,8 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parent.parent
 SKIP_DIRS = {".git", ".github", ".claude", ".obsidian", "raw", "node_modules", "__pycache__"}
+# Not wiki text: the sample projects the review is tested on, and the reviews agents wrote about them.
+SKIP_PATHS = {"evals/fixtures", "evals/runs"}
 
 KINDS = {"article", "x-post", "x-article", "video", "paper", "docs"}
 READ_LEVELS = {"full", "partial", "summary-only"}
@@ -125,7 +127,8 @@ def normalise(text: str) -> str:
 def markdown_files() -> list[Path]:
     found = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = sorted(d for d in dirnames if d not in SKIP_DIRS)
+        here = Path(dirpath).relative_to(ROOT)
+        dirnames[:] = sorted(d for d in dirnames if d not in SKIP_DIRS and (here / d).as_posix() not in SKIP_PATHS)
         for name in sorted(filenames):
             if name.endswith(".md"):
                 found.append(Path(dirpath) / name)
