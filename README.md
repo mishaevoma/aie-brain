@@ -15,10 +15,6 @@ The review is read-only. The result appears in the same chat, under your agentâ€
 
 ### What comes back
 
-![Three upgrades in twelve seconds, each named by the part of the stack it improves. Harness: start simple, a workflow before an agent. Tools: an action that changes the world needs a plan for running twice. Memory: keep what is always loaded small, and correct notes against evidence. Under each, the file and line, a check and a dated source.](.github/review-demo.gif)
-
-Each scene names the part of [the stack](overview.md#the-stack) and the practice, then shows evidence from a real review of a sample project: [the harness](evals/runs/2026-11-19-published-codex/04-multi-agent/review.md), [the tools](evals/runs/2026-11-19-published-codex/03-tool-agent/review.md) and [the memory](evals/runs/2026-11-19-showcase-memory-codex/08-memory-agent/review.md).
-
 On a small support agent that issues refunds, the review led with this upgrade. Here it is, shortened.
 
 > **1. Prevent duplicate payments after a timeout.** `agent.py:16` retries every exception from every tool. `tools.py:42` sends writes without an idempotency key. A payment can commit before its response is lost, and the retry can then pay again.
