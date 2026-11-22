@@ -8,7 +8,7 @@ published: 2026-11-17
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [background-agents, human-judgment, knowledge-factory]
+concepts: [agent-interfaces, background-agents, human-judgment, knowledge-factory]
 ---
 
 # What We’ve Learned Building Proactive Agents

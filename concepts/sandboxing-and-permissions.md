@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Permissions, sandboxing and containment"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -56,6 +56,12 @@ A boundary limits what an action can reach. Approving, repeating and undoing the
 - Moving from prompts to a sandbox cut permission prompts by 84% internally. [Claude Code sandboxing, Oct 2025](../sources/2025-10-20-anthropic-claude-code-sandboxing.md)
 - Data theft through injected instructions keeps being shown against shipped products. One list has 14 cases going back to April 2023, and 3 more from the weeks before it was written. [Lethal trifecta, Jun 2025](../sources/2025-06-16-willison-lethal-trifecta.md)
 - In an internal test, a pasted prompt sent out cloud credentials 24 times out of 25. Only network and filesystem limits could stop it. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)
+
+## Agent-written extensions and protected configuration
+
+Suh's proposed platform lets agents write harness extensions and hooks in independent actor runtimes. OpenAI's deployment puts the gateway that configures an agent beyond its reach and treats its generated code as untrusted. The tension is how much configuration an agent may change. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md) · [OpenAI, Nov 2026](../sources/2026-11-12-openai-securing-persistent-agents.md)
+
+This brain's reading is to permit extension code only within a boundary enforced by the host, with permission rules, credentials and audit controls outside the writable area. Actor isolation by itself supplies no stated guarantee that those controls cannot be modified. Shared filesystem permissions also need their own enforcement, discussed under [agent identity](agent-identity.md). [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md) · [Rivet, Jul 2026](../sources/2026-07-27-rivet-harness-outside-the-sandbox.md)
 
 ## Open problems
 

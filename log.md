@@ -209,3 +209,18 @@ Research into how agents run in production, as of November 2026: durable executi
 - site/agentfiles.py
 - site/quartz.config.yaml
 - tools/lint.py
+
+## [2026-11-22] ingest | Agent platform of 2027
+
+- glossary.md
+- index.md
+- overview.md
+- watchlist.md
+- concepts/ (11 files)
+- playbooks/building-an-agent-product.md
+- sources/2025-03-30-humanlayer-12-factor-agents.md
+- sources/2026-04-07-harvey-building-spectre.md
+- sources/2026-07-27-rivet-harness-outside-the-sandbox.md
+- sources/2026-11-12-openai-securing-persistent-agents.md
+- sources/2026-11-17-langchain-proactive-agents.md
+- sources/2026-11-22-suh-agent-platform-2027.md

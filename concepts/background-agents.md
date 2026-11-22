@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Background agents"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-18
 status: evolving
 ---
@@ -29,6 +29,7 @@ Unattended agents let one engineer run several sessions in parallel, and they mo
 - Run in the open. One company's agent takes no direct messages, and its public transcripts are mined to improve it. Another saw adoption change when runs moved to public threads. [Shopify, May 2026](../sources/2026-05-28-shopify-under-the-river.md) · [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md)
 - Support three kinds of trigger: outside events, schedules a developer sets, and schedules the agent sets for itself. On LangChain's hosted product more than 70% of runs now start from a schedule. [Proactive agents, Nov 2026](../sources/2026-11-17-langchain-proactive-agents.md)
 - Send every trigger, a person's answer included, through a durable inbox with one active worker, starting with one inbox per user. Direct calls let simultaneous events start competing runs, and a crash loses the event. [Always-on agents, Nov 2026](../sources/2026-11-13-anthropic-building-always-on-agents.md)
+- Consider tenant-defined **listeners** or **monitors** when a trigger needs custom filtering or batching. Suh proposes agents creating subscriptions to external streams and using code or a model to turn events into signals. This extends the existing trigger taxonomy, with implementation and delivery guarantees left open. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
 
 **Protect the queue**
 
@@ -41,6 +42,8 @@ Unattended agents let one engineer run several sessions in parallel, and they mo
 - Treat each check-in as a cost. Send few, lead with a headline and an explicit ask, and deliver them where people already work. Track the share that people act on. [Proactive agents, Nov 2026](../sources/2026-11-17-langchain-proactive-agents.md) · [Always-on agents, Nov 2026](../sources/2026-11-13-anthropic-building-always-on-agents.md)
 - Widen autonomy one kind of action at a time, once people stop correcting it. [Proactive agents, Nov 2026](../sources/2026-11-17-langchain-proactive-agents.md)
 - Launch with one frequent, measurable workflow, and measure outcomes such as the share of sessions that end in a merged pull request. [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md) · [Ramp, Jan 2026](../sources/2026-01-12-ramp-background-agent.md)
+
+Suh's proposed review inbox collects approvals, questions and apps that need human action. It serves the person reviewing work. The durable inbox above queues events for execution. This distinction is this brain's reading, and the interface choices are on [agent interfaces](agent-interfaces.md). [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md) · [Always-on agents, Nov 2026](../sources/2026-11-13-anthropic-building-always-on-agents.md)
 
 ## What is changing
 

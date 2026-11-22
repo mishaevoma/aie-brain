@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Harness"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: contested
 ---
@@ -57,6 +57,12 @@ Two neighbours are often confused with it, though one author grants that none of
 - **It matters and it expires.** Harness design changed the outcome of multi-hour builds, yet the pieces that mattered for one model generation were removed for the next. [Long-running harnesses, Nov 2025](../sources/2025-11-26-anthropic-harnesses-long-running-agents.md) · [Harness design, Mar 2026](../sources/2026-03-24-anthropic-harness-design-long-running-apps.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
 
 This brain's reading, which is a synthesis and not a source claim: they are answering different questions. Which mature coding harness you choose for a given model matters little. How a harness you build handles context, verification and containment matters a lot, until the next model makes part of it unnecessary. What you configure into the harness is where your own effort pays most, and it moves with you. The 2025 case for owning the loop is about the loop inside your own product's feature, and the 2026 advice to adopt is about general coding harnesses. The loud voices have a stake: one builds a layer above harnesses, another sells one, and a third sells tooling for the loop you own.
+
+## Harnesses that modify themselves
+
+Suh proposes independent actor runtimes so a harness can generate its own hooks and extensions while several loop implementations share a backend. His meaning of self-improvement is changing harness code. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
+OpenAI's deployment treats agent-written code as untrusted and protects the gateway that configures the agent. This brain's reading is that editable hooks belong within an explicitly limited environment, with authorization and containment enforced outside the agent's control. See [permissions and sandboxing](sandboxing-and-permissions.md). [OpenAI, Nov 2026](../sources/2026-11-12-openai-securing-persistent-agents.md) · [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
 
 ## Related
 

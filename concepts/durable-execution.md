@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Durable execution"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-18
 status: contested
 ---
@@ -56,6 +56,8 @@ A recorded run can still repeat a tool call. Making the repeat harmless is on [s
 - **Where does it live?** Inside the harness [Pi Durable, Oct 2026](../sources/2026-10-01-earendil-pi-durable.md), around an unchanged harness [Durable harness, Oct 2026](../sources/2026-10-19-vercel-making-every-harness-durable.md), under the agent SDK [Restate, Jun 2026](../sources/2026-06-15-restate-checkpointing-is-not-resiliency.md), or in a hosted session log [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md). A workflow vendor's reply to the first accepts its model and names what an engine adds: takeover by another machine when the host fails. [Pi on Temporal, Oct 2026](../sources/2026-10-08-temporal-immortal-life-of-pi.md)
 
 This brain's reading: the camps agree on what must hold (recorded steps, a plan for repeated tool calls, an outside supervisor, one writer) and differ on who supplies it. Most of them sell one of the answers. Choose by what a repeated side effect would cost and by who will operate the system.
+
+Suh predicts isolated actor runtimes for extensible harnesses while also proposing durable workflows for business processes. This brain's reading is that those can coexist. An actor's isolation addresses where code runs, and the mechanisms above address what survives a failure. The proposal supplies no recovery protocol or evidence that actor isolation replaces recorded progress, supervision or repeat-safe effects. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md) · [Rivet, Jul 2026](../sources/2026-07-27-rivet-harness-outside-the-sandbox.md)
 
 ## Related
 

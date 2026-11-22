@@ -1,3 +1,7 @@
+---
+updated: 2026-11-22
+---
+
 # Watchlist
 
 Where new material for the brain comes from. The `brain-refresh` skill reads this file.
@@ -14,6 +18,7 @@ Last checked: 2026-11-18 (seed on 17 November, then research on agent platforms 
 | Theo Browne | https://x.com/theo, https://t3.gg/blog, YouTube "Theo - t3.gg" | Harness and interface vocabulary, and the view from above several harnesses. |
 | Dan Shipper and Every Frontier | https://x.com/danshipper, https://frontier.every.to | Experiments with skills and shared company agents. |
 | Harrison Chase | https://x.com/hwchase17 | Framing articles on memory, agent architecture and company knowledge. |
+| John Suh | https://x.com/john_ssuh | Platform extension points, agent interfaces and company memory. Follow the November blueprint for implementations and measured outcomes. |
 | Andrej Karpathy | https://x.com/karpathy | Source of the LLM wiki pattern. Quiet on these topics since July 2026. |
 | Google Developers Blog | https://developers.googleblog.com | Harness engineering and behavioural evals. |
 | Red Hat Developer | https://developers.redhat.com | A series on `AGENTS.md` and Agent Skills. Part one ingested; later parts cover skill writing and trigger testing. |
@@ -111,3 +116,10 @@ Linked from Harrison Chase's article on the knowledge factory (21 November 2026)
 - LangChain's posts on its internal go-to-market agent, its content studio agent, and the components of its company harness. They may hold the practice and figures the article lacks.
 - LangChain's post introducing Context Hub, and the Open Knowledge Format (OKF) repository, named as a candidate format for knowledge that is not a procedure.
 - Any account of a curator agent in production that says how often it writes something wrong, and whether a person approves its updates.
+
+These leads follow from Suh's platform blueprint. [Suh, Nov 2026](sources/2026-11-22-suh-agent-platform-2027.md)
+
+- Production evidence for editable harness hooks and tenant-defined listeners and workflows, including isolation, recovery and upgrade behaviour.
+- Comparative outcomes for a conversation view, a session view and an approval inbox, and maintenance costs for apps customized by agents.
+- *Formalizing Fermat's Last Theorem*, to check the tool-set example and Suh's inference about bespoke agent definitions.
+- Memory correctness under concurrent writers, conflicting evidence and access scopes for the proposed log/current-state layout.

@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Multi-agent systems"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -58,6 +58,8 @@ A single long thread also has a cost that none of them measured: a context gets 
 In mid-2025 the advice was that most coding is a poor fit for multiple agents. [Multi-agent research system, Jun 2025](../sources/2025-06-13-anthropic-multi-agent-research-system.md) · [Cognition, Jun 2025](../sources/2025-06-12-cognition-dont-build-multi-agents.md) By 2026, teams of agents were building large systems, and one team says verification loops are what let a person run dozens or hundreds of agents instead of one or two. [C compiler, Feb 2026](../sources/2026-02-05-anthropic-building-c-compiler.md) · [Osmani, 17 Nov 2026](../sources/2026-11-17-osmani-claude-code-team-verification.md) What changed was the checking around them: near-perfect test harnesses and verification loops, not more elaborate communication between agents. See [verification](verification.md).
 
 An interface can also broker between harnesses, so that an agent in one harness starts a subagent in another through an MCP server. [Theo video, 30 Oct 2026](../sources/2026-10-30-theo-my-last-video-about-ai-harnesses.md)
+
+Suh proposes a platform that supports both one general agent and many bespoke definitions, keeping definitions separate from instances and sessions and allowing agent and computer counts to vary independently. This brain's reading is that hosting many definitions is a platform capability. Whether a particular task benefits from parallel agents still depends on the coordination and verification evidence above. Suh's example from the Fermat formalization paper is his interpretation and is not independently checked in this brain. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
 
 ## Related
 

@@ -1,5 +1,6 @@
 ---
 title: Index
+updated: 2026-11-22
 ---
 
 # Index
@@ -34,6 +35,8 @@ Start from the question you are facing. Each line names the pages to read, the m
 - How do agents learn how this company works, and who keeps that current? [Knowledge factory](concepts/knowledge-factory.md), [Memory](concepts/memory.md), [Compounding](concepts/compounding.md).
 - One agent or several? [Multi-agent systems](concepts/multi-agent-systems.md).
 - A task that runs for hours, or waits for a person? [Long-running agents](concepts/long-running-agents.md), [Durable execution](concepts/durable-execution.md), [Side effects and approvals](concepts/side-effects.md).
+- What should people see, and how do they review unattended work? [Agent interfaces](concepts/agent-interfaces.md), [Background agents](concepts/background-agents.md).
+- Should customers be able to change agent definitions, listeners, workflows and apps? [Agent platforms](concepts/agent-platforms.md), [Agent interfaces](concepts/agent-interfaces.md).
 - Where does the agent run once it leaves a laptop? [Agent platforms](concepts/agent-platforms.md), then step 8 of [Building an agent product](playbooks/building-an-agent-product.md).
 - How does a run survive a crash, a deploy or a three-day wait? [Durable execution](concepts/durable-execution.md), [Running agents in production](concepts/production-operations.md).
 - Build the agent platform, or rent a managed runtime? [Managed agent runtimes](concepts/managed-agent-runtimes.md), [Agent platforms](concepts/agent-platforms.md).
@@ -78,6 +81,7 @@ One page per idea: definition, what to do, where sources disagree.
 
 - [Harness](concepts/harness.md) — what it is, its parts, the four layers, and whether it still matters. *Contested.*
 - [Context layer](concepts/context-layer.md) — the configuration you own: instructions, skills, MCP servers, memory.
+- [Agent interfaces](concepts/agent-interfaces.md) — conversations, session traces, review inboxes and the proposal for editable apps.
 - [Agents and workflows](concepts/agents-and-workflows.md) — single call, workflow or agent, and the standard patterns.
 
 **Configuring an agent**
@@ -103,7 +107,7 @@ One page per idea: definition, what to do, where sources disagree.
 
 **Runtime**
 
-- [Agent platforms](concepts/agent-platforms.md) — the parts agents run on in production, and where the loop runs.
+- [Agent platforms](concepts/agent-platforms.md) — production infrastructure, where the loop runs, and proposed platform extension points.
 - [Durable execution](concepts/durable-execution.md) — surviving crashes, deploys and waits: four mechanisms and what each costs. *Contested.*
 - [Side effects and approvals](concepts/side-effects.md) — actions that change the world: approving them, repeating them safely, undoing them.
 - [Managed agent runtimes](concepts/managed-agent-runtimes.md) — what can be rented, what to check first, build or rent. *Contested.*
@@ -135,6 +139,7 @@ One page per idea: definition, what to do, where sources disagree.
 Newest first. Select a title for the wiki summary or “Read original” to open the publication.
 
 <!-- sources:start -->
+- 2026-11-22 · [Agent platform of 2027](sources/2026-11-22-suh-agent-platform-2027.md) · John Suh · [Read original](<https://x.com/john_ssuh/status/2124336124172935336>)
 - 2026-11-21 · [How to build a knowledge factory](sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md) · Harrison Chase · [Read original](<https://x.com/hwchase17/status/2124181216719151585>)
 - 2026-11-17 · [Durable Execution](sources/2026-11-17-pydantic-durable-execution.md) · Pydantic · [Read original](<https://pydantic.dev/docs/ai/capabilities/durable_execution/overview/>)
 - 2026-11-17 · [How the Claude Code team thinks about verification](sources/2026-11-17-osmani-claude-code-team-verification.md) · Addy Osmani · [Read original](<https://x.com/addyosmani/status/2122590683055993308>)

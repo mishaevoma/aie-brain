@@ -1,3 +1,7 @@
+---
+updated: 2026-11-22
+---
+
 # Glossary
 
 The shared vocabulary. Use these terms as defined here, in conversation and in this repository. If the owner or a source uses a term differently, say so and reconcile it: adopt this definition, or change this file and the concept page together.
@@ -13,9 +17,12 @@ One line per term. The linked page has the detail and the sources.
 - **ADE (agentic development environment)** — One builder's name for an app that sits above harnesses and manages agent work. Not a harness. [Harness](concepts/harness.md)
 - **Admission control** — Deciding when an accepted task may start: a queue with limits between accepting work and running it. [Background agents](concepts/background-agents.md)
 - **Agent** — A model running in a loop that chooses its own steps and tool calls. Model plus harness. [Agents and workflows](concepts/agents-and-workflows.md)
+- **Agent definition** — The reusable configuration from which agent instances and sessions are created. [Agent platforms](concepts/agent-platforms.md)
+- **Agent interface** — Where people give work, receive results and review proposed actions. [Agent interfaces](concepts/agent-interfaces.md)
 - **Agent identity** — An agent's own verifiable identity, distinct from the person who asked and the platform that runs it. [Agent identity and tenancy](concepts/agent-identity.md)
 - **Agent platform (agent runtime)** — The shared infrastructure agents run on in production: session record, loop host, sandboxes, tool gateway, triggers, queue, traces. [Agent platforms](concepts/agent-platforms.md)
 - **AGENTS.md** — The vendor-neutral instruction file loaded into every session. [Instruction files](concepts/instruction-files.md)
+- **App (artifact)** — In Suh's platform proposal, a customizable interface whose code lives in the user's filesystem. [Agent interfaces](concepts/agent-interfaces.md)
 - **Appropriate response rate** — Share of conversations judged acceptable at every turn against an expert rubric. Used instead of refusal rate. [Trusting eval numbers](concepts/eval-validity.md)
 - **Approval fatigue** — People approve so many prompts that they stop reading them. [Permissions and sandboxing](concepts/sandboxing-and-permissions.md)
 - **Attention budget** — Each token added to the context spends some of a limited capacity to attend. [Context engineering](concepts/context-engineering.md)
@@ -47,6 +54,7 @@ One line per term. The linked page has the detail and the sources.
 - **Context reset** — Starting a fresh agent from a written handoff, instead of compacting. [Long-running agents](concepts/long-running-agents.md)
 - **Context rot** — Output getting less reliable as the input grows, with the task unchanged. [Context engineering](concepts/context-engineering.md)
 - **Contextual retrieval** — Adding a short generated note on where a chunk sits in its document before indexing it. [Retrieval](concepts/retrieval.md)
+- **Conversation** — The thread people interact with, with execution state and intermediate calls held in an agent session. [Agent interfaces](concepts/agent-interfaces.md)
 - **Criteria drift** — Evaluation criteria changing as the grader sees more outputs. [Trusting eval numbers](concepts/eval-validity.md)
 - **Curator agent** — A background agent that keeps shared knowledge current from raw sources, agent traces and the gaps that working agents flag. [Knowledge factory](concepts/knowledge-factory.md)
 
@@ -94,6 +102,7 @@ One line per term. The linked page has the detail and the sources.
 - **Knowledge factory** — The system that collects, curates and maintains company knowledge for agents: working agents flag gaps and a curator agent makes the updates. [Knowledge factory](concepts/knowledge-factory.md)
 - **Known-good oracle** — A trusted implementation used to find where a new one fails. [Verification](concepts/verification.md)
 - **Lethal trifecta** — Access to private data, exposure to untrusted content and a way to send data out, all in one agent. [Permissions and sandboxing](concepts/sandboxing-and-permissions.md)
+- **Listener / monitor** — A tenant-defined subscription that filters external events into signals for an agent. [Background agents](concepts/background-agents.md)
 - **LLM wiki (wiki memory)** — A knowledge base an agent compiles from raw sources and maintains as linked files. [LLM wiki](concepts/llm-wiki.md)
 
 ## M–R
@@ -129,6 +138,7 @@ One line per term. The linked page has the detail and the sources.
 - **Sandbox as a tool** — The loop runs outside the sandbox and reaches it through tool calls. [Agent platforms](concepts/agent-platforms.md)
 - **Scaffold, scaffolding** — Older words for the code around the model. Here: the harness, or one removable part of it. [Harness](concepts/harness.md)
 - **Schema** — The instruction file that tells an agent how a wiki is organised and maintained. [LLM wiki](concepts/llm-wiki.md)
+- **Session** — The agent's execution state and intermediate calls, which may be presented through a separate conversation. [Agent interfaces](concepts/agent-interfaces.md)
 - **Session log** — The durable, append-only record of everything in a run, kept outside the context window. [Long-running agents](concepts/long-running-agents.md)
 - **Side effect** — Anything an agent does that changes the world outside its own run. [Side effects and approvals](concepts/side-effects.md)
 - **Skill** — A folder with a `SKILL.md` and optional scripts, loaded only when a task needs it. [Skills](concepts/skills.md)

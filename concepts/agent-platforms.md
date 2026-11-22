@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Agent platforms"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-18
 status: evolving
 ---
@@ -36,7 +36,7 @@ Sources: [Shopify, May 2026](../sources/2026-05-28-shopify-under-the-river.md) �
 - Start a sandbox only when a task needs one, from an image, snapshot or warm pool prepared ahead of time. [Atlassian, Aug 2026](../sources/2026-08-26-atlassian-rovo-agent-harness.md) · [Ramp, Jan 2026](../sources/2026-01-12-ramp-background-agent.md) · [Stripe, Feb 2026](../sources/2026-02-19-stripe-minions-part-2.md)
 - Release compute while a run waits (hibernation). In a trace study Google cites, coding agents waited on their user for about 80% of a session. Google's cost model has parking pay only below about 4 prompts an hour and from about 37 sessions. [Google, Nov 2026](../sources/2026-11-16-google-agents-are-sessions.md) · [Sierra, Jul 2026](../sources/2026-07-29-sierra-agency-sandboxes-for-agents.md)
 - Define each agent as configuration on the platform: Shopify's *profile* bundles a system prompt, skills, extensions, a sandbox policy and model defaults, and DoorDash's *playbook* a reusable task. Serve interactive, event-driven and batch work from the same parts. [Shopify, May 2026](../sources/2026-05-28-shopify-under-the-river.md) · [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md)
-- Let every surface point at the same run, so that chat, the web page and the pull request show one history. [Harvey, Apr 2026](../sources/2026-04-07-harvey-building-spectre.md) Decide what a message that arrives mid-run does. For this *double-texting* LangChain offers queue (its default, and the safest), reject, interrupt or roll back, and interrupting leaves half-finished tool calls. Ramp calls a message that redirects a running agent *steering*. [Deep Agents runtime, Apr 2026](../sources/2026-04-20-langchain-runtime-behind-deep-agents.md) · [Laminar, Oct 2026](../sources/2026-10-20-ramp-building-laminar.md)
+- Let every surface point at the same run, so that chat, the web page and the pull request refer to one execution history. [Harvey, Apr 2026](../sources/2026-04-07-harvey-building-spectre.md) Decide what a message that arrives mid-run does. For this *double-texting* LangChain offers queue (its default, and the safest), reject, interrupt or roll back, and interrupting leaves half-finished tool calls. Ramp calls a message that redirects a running agent *steering*. [Deep Agents runtime, Apr 2026](../sources/2026-04-20-langchain-runtime-behind-deep-agents.md) · [Laminar, Oct 2026](../sources/2026-10-20-ramp-building-laminar.md)
 - Wrap vendor harnesses behind your own interface, so that a model or harness can be replaced and a fix ships once. [Sierra Pinecone, Jul 2026](../sources/2026-07-15-sierra-pinecone-wisdom-of-the-workforce.md) · [Spotify, Nov 2025](../sources/2025-11-06-spotify-background-coding-agent-part-1.md) This pulls against sandbox as a tool, because Claude Code and Codex expect to run inside the sandbox. Sierra runs them there. [Rivet, Jul 2026](../sources/2026-07-27-rivet-harness-outside-the-sandbox.md) · [Durable harness, Oct 2026](../sources/2026-10-19-vercel-making-every-harness-durable.md)
 
 ## Where the loop runs
@@ -52,6 +52,14 @@ Sources, in row order: [Project Think, Apr 2026](../sources/2026-04-15-cloudflar
 
 Decide the form before the engine: work that starts and ends is a *session*, and a thing whose identity outlives any task is an *actor*. [Three forms, Dec 2025](../sources/2025-12-10-vanlightly-three-durable-function-forms.md) Mapping an agent run to a session and a standing agent to an actor is this brain's reading. How each shape records progress is on [durable execution](durable-execution.md).
 
+## Proposed extension points
+
+Suh's November vision for a future platform separates an **agent definition** from the instances and sessions it creates. It supports general agents alongside bespoke definitions, each able to use a different loop implementation. He proposes isolated actors for harnesses that write their own extensions and hooks. These are proposed capabilities, with no comparative deployment measurements. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
+He also proposes that agent and computer counts vary independently, using both checkpointed cloud sandboxes and local computers. Shared files would carry their own access controls across those computers. This expands the platform's scope beyond the cloud-only choice in Ramp's deployment. [Laminar, Oct 2026](../sources/2026-10-20-ramp-building-laminar.md) · [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
+The same proposal adds conversations, review inboxes and editable apps, covered in [agent interfaces](agent-interfaces.md), and tenant-defined [listeners](background-agents.md) and [workflows](agents-and-workflows.md). This brain's reading is to evaluate these extension points against a product's needs, with recovery and authorization specified independently. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
 ## Where sources disagree
 
 - **Should an endless agent loop be a workflow?** One actor vendor says no: replay keeps growing, every deploy lands mid-run, and a workflow cannot hold a live connection. [Rivet, Jul 2026](../sources/2026-07-27-rivet-harness-outside-the-sandbox.md) Vercel's own benchmark later put the overhead late in a 1,020-step run at 70 ms at p75, for one workload in one region on one day. [Workflow SDK 5, Nov 2026](../sources/2026-11-12-vercel-workflow-sdk-5.md) This brain's reading: that answers the cost of replay, not the other two objections.
@@ -59,4 +67,4 @@ Decide the form before the engine: work that starts and ends is a *session*, and
 
 ## Related
 
-[Managed agent runtimes](managed-agent-runtimes.md) · [Durable execution](durable-execution.md) · [Background agents](background-agents.md) · [Agent identity and tenancy](agent-identity.md) · [Harness](harness.md) · [Permissions and sandboxing](sandboxing-and-permissions.md)
+[Agent interfaces](agent-interfaces.md) · [Managed agent runtimes](managed-agent-runtimes.md) · [Durable execution](durable-execution.md) · [Background agents](background-agents.md) · [Agent identity and tenancy](agent-identity.md) · [Harness](harness.md) · [Permissions and sandboxing](sandboxing-and-permissions.md)

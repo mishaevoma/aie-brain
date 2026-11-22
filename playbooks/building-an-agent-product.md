@@ -1,7 +1,7 @@
 ---
 type: playbook
 title: "Building an agent product"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-17
 ---
 
@@ -74,6 +74,10 @@ Detail: [permissions, sandboxing and containment](../concepts/sandboxing-and-per
 - Choose how a run survives a crash (recorded steps, checkpoints or a session log), then decide for each tool whether it may run twice. [Determinism, Nov 2025](../sources/2025-11-24-vanlightly-determinism-in-durable-execution.md) · [Building LangGraph, Sep 2025](../sources/2025-09-04-langchain-building-langgraph.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md) · [Durable harness, Oct 2026](../sources/2026-10-19-vercel-making-every-harness-durable.md)
 - Decide whose authority the agent acts under, and keep credentials out of the sandbox. [Uber, May 2026](../sources/2026-05-21-uber-solving-identity-crisis-for-ai-agents.md) · [Notion, Feb 2026](../sources/2026-02-27-notion-security-in-custom-agents.md) · [Managed Agents, Apr 2026](../sources/2026-04-08-anthropic-managed-agents.md)
 - Rent when one lab's models are enough and the session may sit on its servers, or rent from a cloud and attach the runtime to your own network. Build when you need to switch model providers, change the platform at your product's pace, read every trace, or keep code and customer data away from any third party. Either way keep your own copy of the session log. This is this brain's reading of the positions in these sources. [Plumbing wars, Apr 2026](../sources/2026-04-28-proctor-plumbing-wars.md) · [Laminar, Oct 2026](../sources/2026-10-20-ramp-building-laminar.md) · [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md) · [Sierra, Jul 2026](../sources/2026-07-29-sierra-agency-sandboxes-for-agents.md) · [Axonius, Aug 2026](../sources/2026-08-18-aws-axonius-multi-tenant-agents.md) · [Session portability, Jul 2026](../sources/2026-07-30-earendil-session-you-cannot-take-with-you.md)
+
+For a platform serving several kinds of agent, evaluate separate definitions, instances, sessions and computers, plus tenant-defined listeners and workflows. These are extension points in Suh's proposal. This brain's reading is to adopt them when a concrete workflow requires them and retain the recovery and authority decisions above. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
+Design the person's review experience alongside the runtime. Consider conversations for deliberate messages and an inbox for questions and approvals, with session traces available for debugging. LangChain's experience adds an outcome to measure, the share of check-ins people act on. See [agent interfaces](../concepts/agent-interfaces.md). [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md) · [Proactive agents, Nov 2026](../sources/2026-11-17-langchain-proactive-agents.md)
 
 Detail: [agent platforms](../concepts/agent-platforms.md), [durable execution](../concepts/durable-execution.md), [side effects and approvals](../concepts/side-effects.md), [managed agent runtimes](../concepts/managed-agent-runtimes.md), [agent identity and tenancy](../concepts/agent-identity.md), [background agents](../concepts/background-agents.md).
 

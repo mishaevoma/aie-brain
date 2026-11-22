@@ -8,7 +8,7 @@ published: 2026-04-07
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [agent-identity, agent-platforms, background-agents, production-operations]
+concepts: [agent-identity, agent-interfaces, agent-platforms, background-agents, production-operations]
 ---
 
 # Building Spectre

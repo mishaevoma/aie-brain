@@ -44,6 +44,12 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 - Give each concurrent writer its own page. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Keep the canonical session log and long-term memory in storage you control, in a form another harness could read. What a provider stores or seals for you is the part you cannot take along. [Your harness, your memory, Apr 2026](../sources/2026-04-11-chase-your-harness-your-memory.md) · [Session portability, Jul 2026](../sources/2026-07-30-earendil-session-you-cannot-take-with-you.md)
 
+## A proposed log and current view
+
+In a follow-up to his platform blueprint, Suh proposes an append-only `memory_log.md` and a derived `memory_current.md`, maintained by dreaming agents. He calls this event sourcing. Directories scope memory to a user, organisation, conversation or client, with filesystem access control and search added as the corpus grows. This gives a concrete storage layout to evaluate, while the update and conflict-resolution rules remain unspecified. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
+Suh characterizes memory as largely solved, with company-specific dreaming a possible remaining difficulty. Anthropic still lists verification frequency, representation cost and errors as open questions, and Chase describes shared knowledge filling with contradictions. This brain's reading is that simple storage helps implement memory while correctness across writers and scopes still needs evaluation. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md) · [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md) · [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
+
 ## Risks and open questions
 
 - Memory can be poisoned: instruction files, memory files and state directories are all read back as trusted context. This is listed as an open problem. [Containing Claude, May 2026](../sources/2026-05-25-anthropic-how-we-contain-claude.md)

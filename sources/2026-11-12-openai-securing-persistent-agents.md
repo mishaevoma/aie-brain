@@ -8,7 +8,7 @@ published: 2026-11-12
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [agent-identity, sandboxing-and-permissions]
+concepts: [agent-identity, harness, sandboxing-and-permissions]
 ---
 
 # Securing persistent agents like OpenClaw at OpenAI

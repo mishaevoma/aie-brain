@@ -8,7 +8,7 @@ published: 2025-03-30
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [agents-and-workflows, context-engineering, harness, human-judgment, long-running-agents, multi-agent-systems, production-operations, sandboxing-and-permissions, tool-design]
+concepts: [agent-interfaces, agents-and-workflows, context-engineering, harness, human-judgment, long-running-agents, multi-agent-systems, production-operations, sandboxing-and-permissions, tool-design]
 ---
 
 # 12-Factor Agents - Principles for building reliable LLM applications

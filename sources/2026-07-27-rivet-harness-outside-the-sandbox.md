@@ -8,7 +8,7 @@ published: 2026-07-27
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [agent-identity, agent-platforms, sandboxing-and-permissions]
+concepts: [agent-identity, agent-platforms, durable-execution, sandboxing-and-permissions]
 ---
 
 # Run Your Harness Outside the Sandbox: Why and How

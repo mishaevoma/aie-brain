@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Agents and workflows"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: settled
 ---
@@ -41,6 +41,8 @@ Errors also multiply along the way. At 95% accuracy per step, a task of 10 steps
 - The framing from [Building effective agents, Dec 2024](../sources/2024-12-19-anthropic-building-effective-agents.md) still holds, but default harnesses now ship planning, subagents and compaction. "Building an agent" increasingly means configuring an existing harness with tools, instructions and MCP servers. [Theo, 22 Oct 2026](../sources/2026-10-22-theo-what-is-a-harness.md) · [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md) See [context layer](context-layer.md).
 - For work that runs for hours, the workflow patterns come back as roles: planner, generator, evaluator. See [long-running agents](long-running-agents.md).
 - Production systems now sit between the two. One company calls its version a *blueprint*: a workflow whose nodes are either fixed code or an agent loop. [Stripe, Feb 2026](../sources/2026-02-19-stripe-minions-part-2.md) An agent cut into recorded steps can also be paused, approved and resumed midway, which a single loop in memory cannot. [Building LangGraph, Sep 2025](../sources/2025-09-04-langchain-building-langgraph.md) See [durable execution](durable-execution.md).
+
+Suh proposes that agents write durable workflows per tenant on the platform that already connects API and MCP data, combining deterministic steps with agent loops. He favours code over drag-and-drop automation. This brain's reading is that authoring the workflow and executing it are separate decisions. Generated workflow code still needs the [durability](durable-execution.md) and [side-effect](side-effects.md) controls of any deployed workflow. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
 
 ## Related
 

@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Agent identity and tenancy"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-18
 status: evolving
 ---
@@ -39,6 +39,12 @@ At Uber, identity covered people and workloads, not something acting for someone
 
 - Log every tool call at one gateway with the agent, the person it acted for, the action and the decision. [DoorDash, Aug 2026](../sources/2026-08-11-doordash-cloud-based-agents.md) · [IETF draft, Nov 2026](../sources/2026-11-02-ietf-ai-identity-management-system.md)
 - Back a sensitive action with a grant from the authorization system. An approval clicked inside the agent's own interface is not authorization by itself. The draft admits that its flow for confirming out of band fits badly when confirmation is needed mid-run. [IETF draft, Nov 2026](../sources/2026-11-02-ietf-ai-identity-management-system.md)
+
+## Permissions on shared files
+
+Suh proposes a shared POSIX filesystem with access control attached to the files independently of the computers that mount them. He leaves the principal configurable, using the agent's identity, the person who initiated the turn, or a mixture. This is a design proposal with no enforcement model or tenancy measurements. [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
+
+He also suggests keeping `.env` files in that shared filesystem. This differs from the brokered-credential approach above. This brain's reading is that filesystem access and credential authority need separate decisions. A file visible to generated code can expose any secret it contains. [Sierra, Jul 2026](../sources/2026-07-29-sierra-agency-sandboxes-for-agents.md) · [IETF draft, Nov 2026](../sources/2026-11-02-ietf-ai-identity-management-system.md) · [Suh, Nov 2026](../sources/2026-11-22-suh-agent-platform-2027.md)
 
 ## What is unsettled
 
