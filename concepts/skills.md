@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Skills"
-updated: 2026-11-17
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -27,6 +27,8 @@ Three levels of progressive disclosure [Agent Skills, Oct 2025](../sources/2025-
 - Write the description as a trigger condition, then test that the skill fires when it should. The description decides relevance. [Agent Skills, Oct 2025](../sources/2025-10-16-anthropic-agent-skills.md) · [Red Hat, Jul 2026](../sources/2026-07-27-redhat-agents-md-and-agent-skills.md)
 - Start from where the agent struggles, found through evals or use, not from a list of topics. [Agent Skills, Oct 2025](../sources/2025-10-16-anthropic-agent-skills.md)
 - Put deterministic steps such as parsing, extraction and sorting in bundled scripts. Code is cheaper and more reliable than generating the result token by token. [Agent Skills, Oct 2025](../sources/2025-10-16-anthropic-agent-skills.md)
+- Write down the procedures that are passed from colleague to colleague: how a task is done properly at this company. A background curator can draft them from traces of how people use the agents. [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
+- Use a skill for data access guidance: which system holds what and how to query it. Do not copy data that already has a current source of truth. [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 - Write steps in tool-neutral terms ("run linting") and teach only what is specific to the project. [Red Hat, Jul 2026](../sources/2026-07-27-redhat-agents-md-and-agent-skills.md)
 - Keep `SKILL.md` short and move reference material into linked files. Say whether a script is to be run or read. [Agent Skills, Oct 2025](../sources/2025-10-16-anthropic-agent-skills.md)
 - Store skills in `.agents/skills/` and link them for tools that look elsewhere. [Red Hat, Jul 2026](../sources/2026-07-27-redhat-agents-md-and-agent-skills.md) · [Lütke, Aug 2026](../sources/2026-08-25-lutke-agents-md-split-brain.md)
@@ -45,7 +47,8 @@ Three levels of progressive disclosure [Agent Skills, Oct 2025](../sources/2025-
 
 - Agent Skills became an open standard in December 2025, and the discovery location is converging on `.agents/skills/`, though not every tool reads it. [Agent Skills, Oct 2025](../sources/2025-10-16-anthropic-agent-skills.md) · [Red Hat, Jul 2026](../sources/2026-07-27-redhat-agents-md-and-agent-skills.md)
 - Users expect skills to follow them between harnesses, and are surprised when they do not. [Theo video, 30 Oct 2026](../sources/2026-10-30-theo-my-last-video-about-ai-harnesses.md)
+- Skills are described as the settled format for procedural memory, the how-to part. For facts and definitions no format is agreed. One candidate named is Open Knowledge Format (OKF). [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## Related
 
-[Context layer](context-layer.md) · [Instruction files](instruction-files.md) · [MCP](mcp.md) · [Verification](verification.md) · [Compounding](compounding.md)
+[Context layer](context-layer.md) · [Instruction files](instruction-files.md) · [MCP](mcp.md) · [Verification](verification.md) · [Compounding](compounding.md) · [Knowledge factory](knowledge-factory.md)

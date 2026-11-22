@@ -8,7 +8,7 @@ published: 2026-07-15
 ingested: 2026-11-17
 kind: x-post
 read: full
-concepts: [compounding, context-layer, instruction-files]
+concepts: [compounding, context-layer, instruction-files, knowledge-factory]
 ---
 
 # Automation is still the highest-leverage work

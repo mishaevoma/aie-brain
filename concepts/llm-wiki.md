@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "LLM wiki (wiki memory)"
-updated: 2026-11-17
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -52,6 +52,7 @@ Two bookkeeping files: an index of every page with a one-line summary, read firs
 - Generated documentation for codebases, such as DeepWiki and AutoWiki. [Chase, Jun 2026](../sources/2026-06-30-chase-wiki-memory.md)
 - Large personal knowledge systems with extra layers on top of files. [Tan, May 2026](../sources/2026-05-16-tan-gbrain.md)
 - Organisational knowledge behind a shared company agent. [Every, Aug 2026](../sources/2026-08-25-every-shared-company-agent.md)
+- A [knowledge factory](knowledge-factory.md): company skills and domain knowledge kept current by a curator agent. It adds two inputs to the wiki's maintenance beside the raw sources: traces of agents at work, and the gaps those agents flag. [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## How this repository adapts it
 
@@ -59,4 +60,4 @@ It is public, so full source texts stay out of git. `sources/` holds our own sum
 
 ## Related
 
-[Memory](memory.md) · [Retrieval](retrieval.md) · [Instruction files](instruction-files.md) · [Compounding](compounding.md)
+[Memory](memory.md) · [Knowledge factory](knowledge-factory.md) · [Retrieval](retrieval.md) · [Instruction files](instruction-files.md) · [Compounding](compounding.md)

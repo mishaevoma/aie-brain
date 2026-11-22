@@ -13,7 +13,7 @@ Last checked: 2026-11-18 (seed on 17 November, then research on agent platforms 
 | Boris Cherny | https://x.com/bcherny | Leads Claude Code. Posts on features and working practice. |
 | Theo Browne | https://x.com/theo, https://t3.gg/blog, YouTube "Theo - t3.gg" | Harness and interface vocabulary, and the view from above several harnesses. |
 | Dan Shipper and Every Frontier | https://x.com/danshipper, https://frontier.every.to | Experiments with skills and shared company agents. |
-| Harrison Chase | https://x.com/hwchase17 | Framing articles on memory and agent architecture. |
+| Harrison Chase | https://x.com/hwchase17 | Framing articles on memory, agent architecture and company knowledge. |
 | Andrej Karpathy | https://x.com/karpathy | Source of the LLM wiki pattern. Quiet on these topics since July 2026. |
 | Google Developers Blog | https://developers.googleblog.com | Harness engineering and behavioural evals. |
 | Red Hat Developer | https://developers.redhat.com | A series on `AGENTS.md` and Agent Skills. Part one ingested; later parts cover skill writing and trigger testing. |
@@ -105,3 +105,9 @@ Added after the research on agent platforms and durable runtimes on 18 November 
 - Tracing and debugging a run across pauses, resumes and machines.
 - Calls between agents (A2A) as run by a team in production, beyond passing identity.
 - Failure and throughput figures for durable agent runs from a team that does not sell an engine.
+
+Linked from Harrison Chase's article on the knowledge factory (21 November 2026) and not read:
+
+- LangChain's posts on its internal go-to-market agent, its content studio agent, and the components of its company harness. They may hold the practice and figures the article lacks.
+- LangChain's post introducing Context Hub, and the Open Knowledge Format (OKF) repository, named as a candidate format for knowledge that is not a procedure.
+- Any account of a curator agent in production that says how often it writes something wrong, and whether a person approves its updates.

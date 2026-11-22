@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Compounding: turning corrections into infrastructure"
-updated: 2026-11-17
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -28,10 +28,12 @@ An agent can fix an issue every time it sees it, but that costs tokens each time
 - Record why something missed your bar, in shared configuration, a hook or a test. [Osmani, 3 Nov 2026](../sources/2026-11-03-osmani-critical-thinking-when-agents-do-the-work.md)
 - File good answers back into the knowledge base, so questions add to it. [Karpathy, 2 Apr 2026](../sources/2026-04-02-karpathy-llm-knowledge-bases.md) · [Karpathy idea file, Apr 2026](../sources/2026-04-04-karpathy-llm-wiki-idea-file.md)
 - Keep traces. They are the raw material for improving the model, the harness or the context. [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
+- Let the agents report gaps. Give a working agent a tool to flag knowledge it could not find or found to be wrong, with an optional suggested fix, and have a separate agent act on the flags later. [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## The same idea, one level up
 
 - Harness: run the agent on tasks, store the logs, and have a coding agent read them and propose harness changes. [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
+- Company knowledge: a curator agent reads the flags, the traces and the raw documents on a schedule and updates skills and domain knowledge, so a correction made once in a session reaches every later run. This is the [knowledge factory](knowledge-factory.md). [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 - Prompts: with a rich eval suite, a model can edit its own system prompt until a failing eval passes, with the rest of the suite guarding against regressions. [Google, Sep 2026](../sources/2026-09-09-google-anatomy-of-harness-engineering.md)
 
 ## The counterweight: prune
@@ -44,4 +46,4 @@ Could someone who does not know the codebase get a correct change merged by prom
 
 ## Related
 
-[Verification](verification.md) · [Skills](skills.md) · [Instruction files](instruction-files.md) · [Memory](memory.md) · [Evals](evals.md)
+[Verification](verification.md) · [Skills](skills.md) · [Instruction files](instruction-files.md) · [Memory](memory.md) · [Knowledge factory](knowledge-factory.md) · [Evals](evals.md)

@@ -30,6 +30,7 @@ Start from the question you are facing. Each line names the pages to read, the m
 - How do I know it works, before launch and after? [Error analysis](concepts/error-analysis.md), [Evals](concepts/evals.md), [Trusting eval numbers](concepts/eval-validity.md), [Running agents in production](concepts/production-operations.md).
 - Does a benchmark number mean anything? [Trusting eval numbers](concepts/eval-validity.md).
 - Should it remember anything between sessions? [Memory](concepts/memory.md), [LLM wiki](concepts/llm-wiki.md).
+- How do agents learn how this company works, and who keeps that current? [Knowledge factory](concepts/knowledge-factory.md), [Memory](concepts/memory.md), [Compounding](concepts/compounding.md).
 - One agent or several? [Multi-agent systems](concepts/multi-agent-systems.md).
 - A task that runs for hours, or waits for a person? [Long-running agents](concepts/long-running-agents.md), [Durable execution](concepts/durable-execution.md), [Side effects and approvals](concepts/side-effects.md).
 - Where does the agent run once it leaves a laptop? [Agent platforms](concepts/agent-platforms.md), then step 8 of [Building an agent product](playbooks/building-an-agent-product.md).
@@ -53,6 +54,7 @@ Start from the question you are facing. Each line names the pages to read, the m
 - The agent picks the wrong tool, or misuses one. [Tool design](concepts/tool-design.md).
 - Quality drops in long sessions. [Context engineering](concepts/context-engineering.md).
 - Quality changed after launch. [Running agents in production](concepts/production-operations.md).
+- Agents keep missing how things are done here, or use a stale source. [Knowledge factory](concepts/knowledge-factory.md), [Context layer](concepts/context-layer.md).
 - Quality is poor and you cannot say why. [Error analysis](concepts/error-analysis.md), then [Evals](concepts/evals.md).
 - A tool call ran twice after a crash or a retry. [Side effects and approvals](concepts/side-effects.md), [Durable execution](concepts/durable-execution.md).
 - A deploy broke agents that were mid-task. [Running agents in production](concepts/production-operations.md), [Durable execution](concepts/durable-execution.md).
@@ -90,6 +92,7 @@ One page per idea: definition, what to do, where sources disagree.
 - [Context engineering](concepts/context-engineering.md) — context as a budget, how a long context fails, compaction, notes, subagents.
 - [Retrieval](concepts/retrieval.md) — cached prompt, hybrid search, agent-driven search, compiled wiki.
 - [LLM wiki](concepts/llm-wiki.md) — the pattern this repository follows, and its limits.
+- [Knowledge factory](concepts/knowledge-factory.md) — keeping company knowledge current for agents: three kinds of knowledge, flags, a curator agent, and what is still open.
 
 **Scale**
 
@@ -131,6 +134,7 @@ One page per idea: definition, what to do, where sources disagree.
 Newest first. Each note is our own summary with a link to the original.
 
 <!-- sources:start -->
+- 2026-11-21 · [How to build a knowledge factory](sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md) · Harrison Chase
 - 2026-11-17 · [Durable Execution](sources/2026-11-17-pydantic-durable-execution.md) · Pydantic
 - 2026-11-17 · [How the Claude Code team thinks about verification](sources/2026-11-17-osmani-claude-code-team-verification.md) · Addy Osmani
 - 2026-11-17 · [Architecture](sources/2026-11-17-openai-agents-api-architecture.md) · OpenAI

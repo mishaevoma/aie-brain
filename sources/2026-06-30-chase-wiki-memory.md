@@ -8,7 +8,7 @@ published: 2026-06-30
 ingested: 2026-11-17
 kind: x-article
 read: full
-concepts: [llm-wiki, memory, retrieval]
+concepts: [knowledge-factory, llm-wiki, memory, retrieval]
 ---
 
 # Wiki Memory

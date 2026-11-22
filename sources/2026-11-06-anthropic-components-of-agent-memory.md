@@ -8,7 +8,7 @@ published: 2026-11-06
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [context-engineering, llm-wiki, memory, retrieval]
+concepts: [context-engineering, knowledge-factory, llm-wiki, memory, retrieval]
 ---
 
 # The components of agent memory
