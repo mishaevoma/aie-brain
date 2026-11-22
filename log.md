@@ -186,3 +186,19 @@ Research into how agents run in production, as of November 2026: durable executi
 - evals/README.md
 - site/graph_gif.html
 - site/graph_gif.py
+
+## [2026-11-22] ingest | How to build a knowledge factory
+
+- glossary.md
+- index.md
+- overview.md
+- watchlist.md
+- .github/knowledge-graph.gif
+- concepts/compounding.md
+- concepts/context-layer.md
+- concepts/knowledge-factory.md
+- concepts/llm-wiki.md
+- concepts/memory.md
+- concepts/retrieval.md
+- concepts/skills.md
+- sources/ (9 files)

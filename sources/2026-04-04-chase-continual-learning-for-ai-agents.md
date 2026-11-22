@@ -8,7 +8,7 @@ published: 2026-04-04
 ingested: 2026-11-17
 kind: x-article
 read: full
-concepts: [agents-and-workflows, compounding, context-layer, harness, memory]
+concepts: [agents-and-workflows, compounding, context-layer, harness, knowledge-factory, memory]
 ---
 
 # Continual learning for AI agents

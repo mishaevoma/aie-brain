@@ -8,7 +8,7 @@ published: 2026-05-25
 ingested: 2026-11-17
 kind: article
 read: full
-concepts: [context-layer, human-judgment, instruction-files, mcp, memory, multi-agent-systems, production-operations, sandboxing-and-permissions]
+concepts: [context-layer, human-judgment, instruction-files, knowledge-factory, mcp, memory, multi-agent-systems, production-operations, sandboxing-and-permissions]
 ---
 
 # How we contain Claude across products

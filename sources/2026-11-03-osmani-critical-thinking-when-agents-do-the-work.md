@@ -8,7 +8,7 @@ published: 2026-11-03
 ingested: 2026-11-17
 kind: x-article
 read: full
-concepts: [compounding, context-engineering, human-judgment, multi-agent-systems, verification]
+concepts: [compounding, context-engineering, human-judgment, knowledge-factory, multi-agent-systems, verification]
 ---
 
 # Critical thinking when agents do the work

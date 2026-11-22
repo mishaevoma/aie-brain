@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Memory"
-updated: 2026-11-18
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -30,6 +30,7 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 - **When to write**: while working (hot-path memory), or offline over recent traces. [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
 - **Who decides**: the user says "remember this", or the agent decides on its own. [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
 - **Scope**: one agent, one user, a team or an organisation, or several at once. [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md)
+- **Who maintains it**: the agents that use it, or a separate curator agent on a schedule. For knowledge shared across a company, one position is that working agents only flag what is missing or wrong and the curator makes the change. See [knowledge factory](knowledge-factory.md). [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## What to do
 
@@ -49,7 +50,8 @@ From bottom to top [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-comp
 - A model's judgement of what is worth keeping has improved a great deal. An older Claude model, Sonnet 3.7, accumulated 413 files and spent its steps on upkeep, where a recent one, Claude Fable 5, kept 10 small ones and got further. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Every figure on this page was measured on Anthropic's models, on tasks Anthropic chose. In those tests the newest models wrote useful notes unaided, and an older one gained little until it was given explicit steps. Where another vendor's models fall is not measured in these sources, so test the model you run before trusting it to decide what to keep. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
 - Still open: whether to write during the task or afterwards, how often to re-verify, and what maintaining representations costs in tokens and errors. [Agent memory, Nov 2026](../sources/2026-11-06-anthropic-components-of-agent-memory.md)
+- The same author who listed writing during the task as an option in April 2026 argues in November 2026 that, for shared company knowledge, working agents should flag and a background curator should write, because agents busy with their own goals leave the store full of contradictions. No measurement is given. [Chase, Apr 2026](../sources/2026-04-04-chase-continual-learning-for-ai-agents.md) · [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## Related
 
-[LLM wiki](llm-wiki.md) · [Context layer](context-layer.md) · [Context engineering](context-engineering.md) · [Compounding](compounding.md) · [Managed agent runtimes](managed-agent-runtimes.md)
+[LLM wiki](llm-wiki.md) · [Knowledge factory](knowledge-factory.md) · [Context layer](context-layer.md) · [Context engineering](context-engineering.md) · [Compounding](compounding.md) · [Managed agent runtimes](managed-agent-runtimes.md)

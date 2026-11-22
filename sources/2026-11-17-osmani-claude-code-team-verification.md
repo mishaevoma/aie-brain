@@ -8,7 +8,7 @@ published: 2026-11-17
 ingested: 2026-11-17
 kind: x-article
 read: full
-concepts: [compounding, evals, human-judgment, multi-agent-systems, skills, verification]
+concepts: [compounding, evals, human-judgment, knowledge-factory, multi-agent-systems, skills, verification]
 ---
 
 # How the Claude Code team thinks about verification

@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Context layer (harness configuration)"
-updated: 2026-11-17
+updated: 2026-11-22
 reviewed: 2026-11-17
 status: evolving
 ---
@@ -30,6 +30,8 @@ It is the layer you control. You do not train the model and you rarely write the
 - Checkable by a machine: lint rule, test or hook, not prose. See [compounding](compounding.md).
 - Access to another system: MCP server or a command-line tool.
 - Learned by the agent while working: memory.
+- Data that already has a complete and current system of record: leave it there, and write down where it lives and how to query it (data access guidance). [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
+- Slow-changing facts about the business (definitions, policies, products, customers): a maintained knowledge base, loaded on demand. See [knowledge factory](knowledge-factory.md). [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## What to do
 
@@ -43,7 +45,8 @@ It is the layer you control. You do not train the model and you rarely write the
 
 - Users switch harnesses and expect their skills and instructions to follow. Tools that sit above several harnesses are being asked to manage this layer. [Theo, 29 Oct 2026](../sources/2026-10-29-theo-harness-configuration-question.md) · [Theo video, 30 Oct 2026](../sources/2026-10-30-theo-my-last-video-about-ai-harnesses.md)
 - Organisations are building one shared agent with common knowledge and connections instead of per-person setups. [Every, Aug 2026](../sources/2026-08-25-every-shared-company-agent.md)
+- Keeping this layer current is described as a system of its own, a [knowledge factory](knowledge-factory.md): agents flag gaps as they work and a background curator agent makes the updates. [Knowledge factory, Nov 2026](../sources/2026-11-21-chase-how-to-build-a-knowledge-factory.md)
 
 ## Related
 
-[Harness](harness.md) · [Instruction files](instruction-files.md) · [Skills](skills.md) · [MCP](mcp.md) · [Memory](memory.md)
+[Harness](harness.md) · [Instruction files](instruction-files.md) · [Skills](skills.md) · [MCP](mcp.md) · [Memory](memory.md) · [Knowledge factory](knowledge-factory.md)
