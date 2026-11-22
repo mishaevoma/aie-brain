@@ -223,6 +223,7 @@ plugins:
     enabled: true
     options:
       links:
+        Sources: https://mishaevoma.github.io/aie-brain/#sources
         GitHub: https://github.com/mishaevoma/aie-brain
         llms.txt: https://mishaevoma.github.io/aie-brain/llms.txt
     layout:

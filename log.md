@@ -202,3 +202,10 @@ Research into how agents run in production, as of November 2026: durable executi
 - concepts/retrieval.md
 - concepts/skills.md
 - sources/ (9 files)
+
+## [2026-11-22] edit | Link directly to original sources from GitHub Pages
+
+- index.md
+- site/agentfiles.py
+- site/quartz.config.yaml
+- tools/lint.py

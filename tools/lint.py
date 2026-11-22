@@ -75,7 +75,7 @@ PAGE_FIELDS = {
 }
 MONTHS = {m: i for i, m in enumerate("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(), start=1)}
 
-LINK = re.compile(r"(?<!!)\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+LINK = re.compile(r"(?<!!)\[([^\]]*)\]\((<[^<>\n]+>|[^)\s]+)(?:\s+\"[^\"]*\")?\)")
 LINK_FULL = re.compile(r"!?\[[^\]]*\]\([^)]*\)")
 SCHEME = re.compile(r"^[a-z][a-z0-9+.-]*:", re.I)
 FENCE = re.compile(r"```.*?```", re.S)
@@ -161,6 +161,7 @@ def links_in(path: Path, text: str) -> list[tuple[str, Path]]:
     """(label, resolved target) for every relative link in a piece of markdown."""
     found = []
     for label, raw in LINK.findall(text):
+        raw = raw.removeprefix("<").removesuffix(">")
         if SCHEME.match(raw) or raw.startswith("#"):
             continue
         target = unquote(raw.split("#", 1)[0].split("?", 1)[0])
@@ -196,7 +197,10 @@ def sources_block(sources: set[Path], pages: Pages) -> str:
     for path in sorted(sources, key=lambda p: p.name, reverse=True):
         fields = pages[path][0]
         title = str(fields.get("title", path.stem)).replace("[", "(").replace("]", ")")
-        lines.append(f"- {fields.get('published', '')} · [{title}](sources/{path.name}) · {fields.get('author', '')}")
+        lines.append(
+            f"- {fields.get('published', '')} · [{title}](sources/{path.name})"
+            f" · {fields.get('author', '')} · [Read original](<{fields.get('url', '')}>)"
+        )
     return "\n".join(lines)
 
 
