@@ -20,7 +20,7 @@ import sys
 
 SUMMARY = (
     "A dated, cited wiki of AI engineering practice, compiled into high-signal knowledge "
-    "your agent can load. Every link below returns raw markdown."
+    "your agent can load. Wiki pages are linked as raw markdown."
 )
 # What goes into llms-full.txt, in reading order. Source notes stay out: they are long and one click away.
 FULL_FILES = ["overview.md", "glossary.md"]
